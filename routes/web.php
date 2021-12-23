@@ -17,12 +17,4 @@ Route::get('/', function () {
     return view('admin.index');
 });
 
-Route::get('/test', function() {
-    $pizzas = [
-        ['type' => 'crunchi', 'price' => '10', 'base'=> 'cheese' ],
-        ['type' => 'bunchi', 'price' => '8', 'base'=> 'veggy' ],
-        ['type' => 'munchi', 'price' => '9', 'base'=> 'garlic' ]
-    ];
 
-    return view('test', ['pizzas' => $pizzas]);
-});
