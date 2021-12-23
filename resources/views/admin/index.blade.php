@@ -28,17 +28,18 @@
             <div class="card">
               <div class="card-body">
                 <div class="form-group">
+                  <form action="">
                   <label for="exampleInputEmail1">Hotel City</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Hotel City">
+                  <input type="text" name="hotel-city" class="form-control" id="exampleInputEmail1" placeholder="Hotel City">
                 </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Hotel Name</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Hotel Name">
+                  <input type="text" name="hotel-name" class="form-control" id="exampleInputEmail1" placeholder="Hotel Name">
                 </div>
                 <div class="form-group">
                   <label>Check In Date:</label>
                     <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                        <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate"/>
+                        <input type="text" name="checkin-date" class="form-control datetimepicker-input" data-target="#reservationdate"/>
                         <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                         </div>
@@ -47,7 +48,7 @@
                 <div class="form-group">
                   <label>Check Out Date:</label>
                     <div class="input-group date" id="reservationdate2" data-target-input="nearest">
-                        <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate2"/>
+                        <input type="text" name="checkout-date" class="form-control datetimepicker-input" data-target="#reservationdate2"/>
                         <div class="input-group-append" data-target="#reservationdate2" data-toggle="datetimepicker">
                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                         </div>
@@ -55,8 +56,13 @@
                 </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Number of Double Rooms</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Double Room Number">
+                  <input type="text" name="dbl" class="form-control" id="exampleInputEmail1" placeholder="Double Room Number">
                 </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Number of Twin Rooms</label>
+                  <input type="text" name="twn" class="form-control" id="exampleInputEmail1" placeholder="Twin Room Number">
+                </div>
+                </form>
               </div>
             </div>
 
