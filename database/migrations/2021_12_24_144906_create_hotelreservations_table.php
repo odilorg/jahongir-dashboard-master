@@ -20,6 +20,7 @@ class CreateHotelreservationsTable extends Migration
             $table->string('hotel_name');
             $table->date('checkin_date');
             $table->date('checkout_date');
+            $table->integer('tourgroup_id')->unsigned();
         });
     }
 

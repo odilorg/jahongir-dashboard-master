@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Tourgroup extends Model
 {
     use HasFactory;
+    public function hotelreservations() {
+        return $this->hasMany(Hotelreservation::class);
+
+
+
+    }
 }
