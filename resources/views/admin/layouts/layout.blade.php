@@ -27,7 +27,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
-        @yield('content')
+       
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <!-- Left navbar links -->
@@ -213,10 +213,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="#" class="nav-link active">
+                            <a href="{{ url('hotelreservation/'); }}" class="nav-link active">
                                 <i class="nav-icon fas fa-hotel"></i>
                                 <p>
-                                    Bookings
+                                    Hotel Reservations
 
                                 </p>
                             </a>
@@ -225,7 +225,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-money-check-alt"></i>
                                 <p>
-                                    Expenses
+                                    Transport
 
                                 </p>
                             </a>
@@ -234,7 +234,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <a href="#" class="nav-link ">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
-                                    Reports
+                                    Restaurants
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
@@ -274,7 +274,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
         </aside>
         <!-- /.control-sidebar -->
-
+        @yield('content')
         <!-- Main Footer -->
         <footer class="main-footer">
             <!-- To the right -->
