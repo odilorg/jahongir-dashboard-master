@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HotelreservationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,7 @@ Route::get('/', function () {
     return view('admin.index');
 });
 
+Route::resources([
+    'hotelreservation' => HotelreservationController::class
+    
+]);
