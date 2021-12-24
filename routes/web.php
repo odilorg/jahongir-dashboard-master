@@ -19,6 +19,6 @@ Route::get('/', function () {
 });
 
 Route::resources([
-    'hotelreservation' => HotelreservationController::class
+    'hotelreservations' => HotelreservationController::class
     
 ]);

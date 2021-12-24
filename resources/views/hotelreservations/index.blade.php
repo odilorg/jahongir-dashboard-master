@@ -42,8 +42,16 @@
                 </div>
               </div>
             </div>
+            
             <!-- /.card-header -->
             <div class="card-body table-responsive p-0">
+              <div>
+                <a class="btn btn-info btn-sm" href="{{ route('hotelreservations.create') }}">
+                  <i class="fas fa-pencil-alt">
+                  </i>
+                  Add Hotel Reservation
+              </a>
+              </div>
               <table class="table table-hover text-nowrap">
                 <thead>
                   <tr>
@@ -55,6 +63,7 @@
                     <th>Early Chechin Time</th>
                     <th>Late Checkout Time</th>
                     <th>Status</th>
+                    <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -67,6 +76,21 @@
                     <td>At 05:00am</td>
                     <td>At 06:00pm</td>
                     <td>OK</td>
+                    <td><a class="btn btn-primary btn-sm" href="{{ route('hotelreservations.show', ['hotelreservation' =>1]) }}">
+                      <i class="fas fa-folder">
+                      </i>
+                      View
+                  </a>
+                  <a class="btn btn-info btn-sm" href="#">
+                      <i class="fas fa-pencil-alt">
+                      </i>
+                      Edit
+                  </a>
+                  <a class="btn btn-danger btn-sm" href="#">
+                      <i class="fas fa-trash">
+                      </i>
+                      Delete
+                  </a></td>
                   </tr>
                   
                 </tbody>

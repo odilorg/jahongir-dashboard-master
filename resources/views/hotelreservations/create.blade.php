@@ -28,7 +28,8 @@
             <div class="card">
               <div class="card-body">
                 <div class="form-group">
-                  <form action="">
+                  <form action="{{ route('hotelreservations.store') }}" method="POST">
+                    @csrf
                   <label for="exampleInputEmail1">Hotel City</label>
                   <input type="text" name="hotel-city" class="form-control" id="exampleInputEmail1" placeholder="Hotel City">
                 </div>

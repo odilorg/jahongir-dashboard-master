@@ -46,7 +46,7 @@ class HotelreservationController extends Controller
      */
     public function show($id)
     {
-        return view('hotelreservation.show');
+        return "Hotel Reservcation - $id";
     }
 
     /**
