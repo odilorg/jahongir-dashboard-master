@@ -55,14 +55,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Number of Double Rooms</label>
-                  <input type="text" name="dbl" class="form-control" id="exampleInputEmail1" placeholder="Double Room Number">
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Number of Twin Rooms</label>
-                  <input type="text" name="twn" class="form-control" id="exampleInputEmail1" placeholder="Twin Room Number">
-                </div>
                 <button type="submit">Submit</button>
                 </form>
               </div>
