@@ -13,5 +13,8 @@ class Hotelreservation extends Model
         return $this->belongsTo(Tourgroup::class);
     }
 
+   protected $fillable = ['hotel_city', 'hotel_name', 'checkin_date', 'checkout_date'];
+   
+
 
 }

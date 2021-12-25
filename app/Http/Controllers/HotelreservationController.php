@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Hotelreservation;
 
 class HotelreservationController extends Controller
 {
@@ -35,7 +36,15 @@ class HotelreservationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $hotelreservation = new Hotelreservation();
+        $hotelreservation->hotel_city = request('hotel_city');
+        $hotelreservation->hotel_name = request('hotel_name');
+        $hotelreservation->checkin_date = request('checkin_date');
+        $hotelreservation->checkout_date = request('checkout_date');
+        $hotelreservation->save();
+        dd($hotelreservation);
+        return redirect('/');
+        
     }
 
     /**
