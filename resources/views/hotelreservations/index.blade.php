@@ -12,7 +12,7 @@
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Simple Tables</li>
+            <li class="breadcrumb-item active">Hotel Reservations</li>
           </ol>
         </div>
       </div>
@@ -29,7 +29,6 @@
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">Group Jp-0154 Japan from 01/05-10/05/2022</h3>
-
               <div class="card-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
                   <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
@@ -42,7 +41,6 @@
                 </div>
               </div>
             </div>
-            
             <!-- /.card-header -->
             <div class="card-body table-responsive p-0">
               <div>
@@ -67,12 +65,13 @@
                   </tr>
                 </thead>
                 <tbody>
+                  @foreach ($hotelreservations as $hotelres )
                   <tr>
-                    <td>1</td>
-                    <td>Samarkand</td>
-                    <td>Jahongir Hotel</td>
-                    <td><span class="tag tag-success">01-01-2022</span></td>
-                    <td>02-02-2022</td>
+                    <td>{{ $hotelres->id }}</td>
+                    <td>{{ $hotelres->hotel_city }}</td>
+                    <td>{{ $hotelres->hotel_name }}</td>
+                    <td><span class="tag tag-success">{{ $hotelres->checkin_date }}</span></td>
+                    <td>{{ $hotelres->checkout_date }}</td>
                     <td>At 05:00am</td>
                     <td>At 06:00pm</td>
                     <td>OK</td>
@@ -81,13 +80,15 @@
                       </i>
                       View
                   </a>
-                  <a class="btn btn-info btn-sm" href="#">
+                  <a class="btn btn-info btn-sm" href="hotelreservations/{{ $hotelres->id }}/edit">
                       <i class="fas fa-pencil-alt">
                       </i>
                       Edit
                   </a>
-                  <form action="" class="float-left">
-                    <button class="btn btn-danger btn-sm">
+                  <form action="/hotelreservations/{{ $hotelres->id }}" method="post" class="float-left">
+                    @csrf
+                    @method('delete')
+                    <button type="submit" class="btn btn-danger btn-sm">
                       <i class="fas fa-trash">
                       </i>
                       Delete
@@ -99,6 +100,7 @@
                   </form>
                   </td>
                   </tr>
+                  @endforeach
                   
                 </tbody>
               </table>
@@ -115,6 +117,8 @@
   </section>
   <!-- /.content -->
 </div>
+
+  
 
 
 

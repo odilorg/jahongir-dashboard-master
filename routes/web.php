@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\HotelreservationController;
 
 /*
@@ -22,3 +23,5 @@ Route::resources([
     'hotelreservations' => HotelreservationController::class
     
 ]);
+
+Route::get('register', [RegisterController::class, 'create']);

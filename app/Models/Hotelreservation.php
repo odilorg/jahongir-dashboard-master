@@ -15,6 +15,6 @@ class Hotelreservation extends Model
 
    protected $fillable = ['hotel_city', 'hotel_name', 'checkin_date', 'checkout_date'];
    
-
+  protected $dateFormat = 'Y-m-d';
 
 }

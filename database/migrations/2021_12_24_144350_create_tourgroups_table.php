@@ -19,6 +19,7 @@ class CreateTourgroupsTable extends Migration
             $table->string('tourgroup_name');
             $table->string('tourgroup_country');
             $table->string('tourgroup_status');
+            $table->foreignId('user_id');
 
         });
     }

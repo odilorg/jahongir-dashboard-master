@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Hotelreservation;
+use App\Models\User;
+use App\Models\Tourgroup;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,6 +16,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+      // $user =  User::factory()->create();
+      Hotelreservation::factory(5)->create();
     }
 }

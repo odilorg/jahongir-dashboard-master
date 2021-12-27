@@ -14,8 +14,8 @@ class HotelreservationController extends Controller
      */
     public function index()
     {
-        
-        return view('hotelreservations.index');
+        $hotelreservations = Hotelreservation::all();
+        return view('hotelreservations.index', ['hotelreservations' => $hotelreservations]);
     }
 
     /**
@@ -36,14 +36,13 @@ class HotelreservationController extends Controller
      */
     public function store(Request $request)
     {
-        $hotelreservation = new Hotelreservation();
-        $hotelreservation->hotel_city = request('hotel_city');
-        $hotelreservation->hotel_name = request('hotel_name');
-        $hotelreservation->checkin_date = request('checkin_date');
-        $hotelreservation->checkout_date = request('checkout_date');
-        $hotelreservation->save();
-        dd($hotelreservation);
-        return redirect('/');
+        $hotelreservations = Hotelreservation::create([
+            'hotel_city' => $request->input('hotel_city'),
+            'hotel_name' => $request->input('hotel_name'),
+        ]);
+
+        return redirect('hotelreservations');    
+
         
     }
 
@@ -66,7 +65,14 @@ class HotelreservationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $hotelreservation = Hotelreservation::find($id);
+        $hotelreservation->checkin_date = date('d/m/Y', strtotime($hotelreservation->checkin_date));
+        
+       //dd($hotelreservation);
+
+        
+        
+        return view('hotelreservations.edit')->with('hotelres', $hotelreservation);
     }
 
     /**
@@ -78,17 +84,25 @@ class HotelreservationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $hotelreservations = Hotelreservation::where('id', $id)->update([
+            'hotel_city' => $request->input('hotel_city'),
+            'hotel_name' => $request->input('hotel_name')
+            
+        ]);
+        return redirect('hotelreservations');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\H
+     * ttp\Response
      */
-    public function destroy($id)
+    public function destroy(Hotelreservation $hotelreservation)
     {
-        //
-    }
+        
+        $hotelreservation->delete();
+        return redirect('hotelreservations');
+}
 }
