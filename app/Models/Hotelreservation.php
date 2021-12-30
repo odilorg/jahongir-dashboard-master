@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Hotelreservation extends Model
 {
@@ -15,6 +16,24 @@ class Hotelreservation extends Model
 
    protected $fillable = ['hotel_city', 'hotel_name', 'checkin_date', 'checkout_date'];
    
-  protected $dateFormat = 'Y-m-d';
+   public function setCheckinDateAttribute($value)
+   {
+       $this->attributes['checkin_date'] = Carbon::createFromFormat('m/d/Y', $value)->format('Y-m-d');
+   }
+
+   public function setCheckoutDateAttribute($value)
+   {
+       $this->attributes['checkout_date'] = Carbon::createFromFormat('m/d/Y', $value)->format('Y-m-d');
+   }
+   
+   public function getCheckinDateAttribute($value)
+{
+    return Carbon::parse($value)->format('d/m/Y');
+}
+
+public function getCheckoutDateAttribute($value)
+{
+    return Carbon::parse($value)->format('d/m/Y');
+}
 
 }

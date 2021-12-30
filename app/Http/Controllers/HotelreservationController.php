@@ -36,10 +36,17 @@ class HotelreservationController extends Controller
      */
     public function store(Request $request)
     {
-        $hotelreservations = Hotelreservation::create([
-            'hotel_city' => $request->input('hotel_city'),
-            'hotel_name' => $request->input('hotel_name'),
+     
+     
+       $attributes = request()->validate([
+            'hotel_city' => ['required', 'max:255'],
+            'hotel_name' => ['required', 'max:255'],
+            'checkin_date'=>['required'],
+            'checkout_date'=>['required']
+
+            
         ]);
+        Hotelreservation::create($attributes);
 
         return redirect('hotelreservations');    
 
@@ -66,7 +73,7 @@ class HotelreservationController extends Controller
     public function edit($id)
     {
         $hotelreservation = Hotelreservation::find($id);
-        $hotelreservation->checkin_date = date('d/m/Y', strtotime($hotelreservation->checkin_date));
+        
         
        //dd($hotelreservation);
 
@@ -84,11 +91,17 @@ class HotelreservationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $hotelreservations = Hotelreservation::where('id', $id)->update([
-            'hotel_city' => $request->input('hotel_city'),
-            'hotel_name' => $request->input('hotel_name')
+
+        $attributes = request()->validate([
+            'hotel_city' => ['required', 'max:255'],
+            'hotel_name' => ['required', 'max:255'],
+            'checkin_date'=>['required'],
+            'checkout_date'=>['required']
+
             
         ]);
+        
+        $hotelreservations = Hotelreservation::where('id', $id)->update($attributes);
         return redirect('hotelreservations');
     }
 
