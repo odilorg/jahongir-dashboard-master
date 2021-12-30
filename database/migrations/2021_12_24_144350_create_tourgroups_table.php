@@ -18,6 +18,9 @@ class CreateTourgroupsTable extends Migration
             $table->timestamps();
             $table->string('tourgroup_name');
             $table->string('tourgroup_country');
+            $table->string('tourgroup_pax');
+            $table->date('tourgroup_ci');
+            $table->date('tourgroup_co');
             $table->string('tourgroup_status');
             $table->foreignId('user_id');
 

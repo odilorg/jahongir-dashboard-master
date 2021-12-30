@@ -70,8 +70,8 @@
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->hotel_city }}</td>
                     <td>{{ $item->hotel_name }}</td>
-                    <td><span class="tag tag-success"> {{ \Carbon\Carbon::parse($item->checkin_date)->format('d-m-Y') }} </span></td>
-                    <td>{{ \Carbon\Carbon::parse($item->checkout_date)->format('d-m-Y') }}</td>
+                    <td><span class="tag tag-success">{{ $item->checkin_date }}</span></td>
+                    <td>{{ $item->checkout_date }}</td>
                     <td>{{ $item->early_checkin }}</td>
                     <td>{{ $item->late_checkout }}</td>
                     <td>{{ $item->tourgroup_name }}</td>

@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\Tourgroup;
 use Illuminate\Http\Request;
 use App\Models\Hotelreservation;
-use App\Models\Tourgroup;
+use Illuminate\Support\Facades\DB;
 
 class HotelreservationController extends Controller
 {
@@ -16,17 +17,16 @@ class HotelreservationController extends Controller
      */
     public function index()
     {
-        $hotelreservations = Hotelreservation::all();
+       // $hotelreservations = Hotelreservation::all();
        
-      $tourgroup = Tourgroup::all()->pluck('tourgroup_name');
+       $tourgroups = DB::table('hotelreservations')
+       ->join('tourgroups', 'tourgroups.id', '=', 'hotelreservations.tourgroup_id')
+       ->select('hotelreservations.*', 'tourgroups.tourgroup_name')
+       ->get();
+        
      
-     // dd($tourgroup);
-        return view('hotelreservations.index', [
-            'hotelreservations' => $hotelreservations,
-            'tourgroup' =>$tourgroup
-           
-            
-        ]);
+    // dd($tourgroups);
+        return view('hotelreservations.index', compact('tourgroups'));
     }
 
     /**
@@ -47,19 +47,6 @@ class HotelreservationController extends Controller
      */
     public function store(Request $request)
     {
-<<<<<<< HEAD
-     
-     
-       $attributes = request()->validate([
-            'hotel_city' => ['required', 'max:255'],
-            'hotel_name' => ['required', 'max:255'],
-            'checkin_date'=>['required'],
-            'checkout_date'=>['required']
-
-            
-        ]);
-        Hotelreservation::create($attributes);
-=======
         $attributes =  request()->validate([
             'hotel_city' => ['required', 'max:255'],
             'hotel_name' => ['required', 'max:255'],
@@ -76,7 +63,6 @@ class HotelreservationController extends Controller
         $attributes['tourgroup_id'] =$request->get('tour_id');
         Hotelreservation::create($attributes);
          session()->flash('success', 'Hotel reservation has been created');
->>>>>>> 6210d9e9d11777a871ea5f0380730da15483c36f
 
         return redirect('hotelreservations');    
 
@@ -103,12 +89,8 @@ class HotelreservationController extends Controller
     public function edit($id)
     {
         $hotelreservation = Hotelreservation::find($id);
-<<<<<<< HEAD
-        
-=======
         $hotelreservation->checkin_date = date('d/m/Y', strtotime($hotelreservation->checkin_date));
         $hotelreservation->checkout_date = date('d/m/Y', strtotime($hotelreservation->checkout_date));
->>>>>>> 6210d9e9d11777a871ea5f0380730da15483c36f
         
       // dd($hotelreservation->checkout_date);
 
@@ -131,19 +113,9 @@ class HotelreservationController extends Controller
      */
     public function update(Hotelreservation $hotelreservation, Request $request)
     {
-<<<<<<< HEAD
-
-        $attributes = request()->validate([
-            'hotel_city' => ['required', 'max:255'],
-            'hotel_name' => ['required', 'max:255'],
-            'checkin_date'=>['required'],
-            'checkout_date'=>['required']
-
-=======
         // $hotelreservations = Hotelreservation::where('id', $id)->update([
         //     'hotel_city' => $request->input('hotel_city'),
         //     'hotel_name' => $request->input('hotel_name')
->>>>>>> 6210d9e9d11777a871ea5f0380730da15483c36f
             
         // ]);
 
@@ -158,15 +130,11 @@ class HotelreservationController extends Controller
 
         ]);
         
-<<<<<<< HEAD
-        $hotelreservations = Hotelreservation::where('id', $id)->update($attributes);
-=======
         $attributes['checkin_date'] = Carbon::createFromFormat('m/d/Y', $request->checkin_date)->format('Y-m-d');
         $attributes['checkout_date'] = Carbon::createFromFormat('m/d/Y', $request->checkout_date)->format('Y-m-d');
        // dd($attributes);
         $hotelreservation->update($attributes);
         
->>>>>>> 6210d9e9d11777a871ea5f0380730da15483c36f
         return redirect('hotelreservations');
     }
 
