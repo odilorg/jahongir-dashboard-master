@@ -74,8 +74,8 @@
                     <td>{{ \Carbon\Carbon::parse($item->checkout_date)->format('d-m-Y') }}</td>
                     <td>{{ $item->early_checkin }}</td>
                     <td>{{ $item->late_checkout }}</td>
-                    <td>{{ $item->tourgroup_name }}</td>
-                    <td><a class="btn btn-primary btn-sm" href="{{ route('hotelreservations.show', ['hotelreservation' =>1]) }}">
+                    <td><a href="{{ $item->tourgroup_id }}">{{ $item->tourgroup_name }}</a> </td>
+                    <td><a class="btn btn-primary btn-sm" href="hotelreservations/{{ $item->id }}/show">
                       <i class="fas fa-folder">
                       </i>
                       View

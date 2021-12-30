@@ -17,6 +17,9 @@ class TourgroupFactory extends Factory
         return [
             'tourgroup_name' =>$this->faker->bothify('??-##'),
             'tourgroup_country' =>$this->faker->countryISOAlpha3(),
+            'tourgroup_ci' =>$this->faker->dateTimeBetween('+1 week', '+2 week'),
+            'tourgroup_co' =>$this->faker->dateTimeBetween('+1 week', '+2 week'),
+            'tourgroup_pax' =>$this->faker->numberBetween(0, 10),
             'tourgroup_status' =>$this->faker->randomElement(['OK', 'Cancelled', 'Pending']),
             'user_id' =>User::factory()
         ];

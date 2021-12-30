@@ -220,7 +220,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="{{ route('tourgroups.index'); }}" class="nav-link {{ (request()->is('hotelreservations')) ? 'active' : '' }}">
+                            <a href="{{ route('tourgroups.index'); }}" class="nav-link {{ (request()->is('tourgroups*')) ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-money-check-alt"></i>
                                 <p>
                                     Tour Groups
@@ -228,7 +228,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('hotelreservations.index'); }}" class="nav-link {{ (request()->is('hotelreservations')) ? 'active' : '' }}">
+                            <a href="{{ route('hotelreservations.index'); }}" class="nav-link {{ (request()->is('hotelreservations*')) ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-hotel"></i>
                                 <p>
                                     Hotel Reservations
@@ -284,7 +284,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         @yield('content')
         <!-- Main Footer -->
         @if (session()->has('success'))
-  <p> <div id="toastsContainerTopRight" class="toasts-top-right fixed"><div class="toast bg-success fade show" role="alert" aria-live="assertive" aria-atomic="true"><div class="toast-header"><strong class="mr-auto">Hotel Reservation</strong><button data-dismiss="toast" type="button" class="ml-2 mb-1 close" onclick="closeDialog()" aria-label="Close"><span aria-hidden="true">×</span></button></div><div class="toast-body">{{ session()->get('success') }}</div></div></div> </p>
+  <p> <div id="toastsContainerTopRight" class="toasts-top-right fixed"><div class="toast bg-success fade show" role="alert" aria-live="assertive" aria-atomic="true"><div class="toast-header"><strong class="mr-auto">{{  session()->get('type')  }}</strong><button data-dismiss="toast" type="button" class="ml-2 mb-1 close" onclick="closeDialog()" aria-label="Close"><span aria-hidden="true">×</span></button></div><div class="toast-body">{{ session()->get('success') }}</div></div></div> </p>
 @endif
         <footer class="main-footer">
             <!-- To the right -->

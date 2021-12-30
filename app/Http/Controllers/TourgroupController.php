@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\Tourgroup;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TourgroupController extends Controller
 {
@@ -13,7 +16,12 @@ class TourgroupController extends Controller
      */
     public function index()
     {
-      return view('tourgroups.index');
+        $tourgroups = Tourgroup::all();
+        
+     
+    // dd($tourgroups);
+       
+      return view('tourgroups.index', compact('tourgroups'));
     }
 
     /**
@@ -23,7 +31,7 @@ class TourgroupController extends Controller
      */
     public function create()
     {
-        //
+        return view('tourgroups.create');
     }
 
     /**
@@ -34,7 +42,27 @@ class TourgroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       // dd($request);
+        $attributes =  request()->validate([
+            'tourgroup_name' => ['required', 'max:255'],
+             'tourgroup_country' => ['required', 'max:255'],
+             'tourgroup_pax' => ['required', 'numeric', 'max:255'],
+             'tourgroup_ci' => ['required', 'max:255'],
+             'tourgroup_co' => ['required', 'max:255'],
+             'tourgroup_status' => ['required', 'max:255']
+        ]);
+        
+        //dd($request->get('tour_id'));
+        $attributes['tourgroup_ci'] = Carbon::createFromFormat('m/d/Y', $request->tourgroup_ci)->format('Y-m-d');
+        $attributes['tourgroup_co'] = Carbon::createFromFormat('m/d/Y', $request->tourgroup_co)->format('Y-m-d');
+    //    // $attributes['tourgroup_id'] =$request->get('tour_id');
+       (Tourgroup::create($attributes));
+        
+         session()->flash('success', 'Tour reservation has been created');
+         session()->flash('type', 'Tour Reservation');
+         
+
+        return redirect('tourgroups');  
     }
 
     /**
@@ -45,7 +73,7 @@ class TourgroupController extends Controller
      */
     public function show($id)
     {
-        //
+        return "Tour Reservcation - $id";
     }
 
     /**
@@ -56,7 +84,19 @@ class TourgroupController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tourgroup = Tourgroup::find($id);
+        $tourgroup->tourgroup_ci = date('d/m/Y', strtotime($tourgroup->tourgroup_ci));
+        $tourgroup->tourgroup_co = date('d/m/Y', strtotime($tourgroup->tourgroup_co));
+        
+      // dd($hotelreservation->checkout_date);
+
+        //dd(Tourgroup::all());
+       // $tourgroup = Hotelreservation::find($id)->tourgroup->tourgroup_name;
+       // dd($tourgroup);
+        return view('tourgroups.edit')->with([
+            'tourgroup' =>$tourgroup
+            
+        ]);
     }
 
     /**
@@ -66,9 +106,22 @@ class TourgroupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Tourgroup $tourgroup, Request $request)
     {
-        //
+        $attributes =  request()->validate([
+            'tourgroup_name' => ['required', 'max:255'],
+             'tourgroup_country' => ['required', 'max:255'],
+             'tourgroup_pax' => ['required','numeric', 'max:255'],
+             'tourgroup_ci' => ['required', 'max:255'],
+             'tourgroup_co' => ['required', 'max:255'],
+             'tourgroup_status' => ['required', 'max:255']
+        ]);
+        $attributes['tourgroup_ci'] = Carbon::createFromFormat('m/d/Y', $request->tourgroup_ci)->format('Y-m-d');
+        $attributes['tourgroup_co'] = Carbon::createFromFormat('m/d/Y', $request->tourgroup_co)->format('Y-m-d');
+       // dd($attributes);
+        $tourgroup->update($attributes);
+        
+        return redirect('tourgroups');
     }
 
     /**
@@ -77,8 +130,9 @@ class TourgroupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Tourgroup $tourgroup)
     {
-        //
+        $tourgroup->delete();
+        return redirect('tourgroups');
     }
 }

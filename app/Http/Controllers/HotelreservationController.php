@@ -18,10 +18,10 @@ class HotelreservationController extends Controller
     public function index()
     {
        // $hotelreservations = Hotelreservation::all();
-       
+       //dd((request()->is('hotelreservations')));
        $tourgroups = DB::table('hotelreservations')
        ->join('tourgroups', 'tourgroups.id', '=', 'hotelreservations.tourgroup_id')
-       ->select('hotelreservations.*', 'tourgroups.tourgroup_name')
+       ->select('hotelreservations.*', 'tourgroups.tourgroup_name', 'tourgroups.id as tourgroup_id')
        ->get();
         
      
@@ -63,6 +63,7 @@ class HotelreservationController extends Controller
         $attributes['tourgroup_id'] =$request->get('tour_id');
         Hotelreservation::create($attributes);
          session()->flash('success', 'Hotel reservation has been created');
+         session()->flash('type', 'Hotel Reservation');
 
         return redirect('hotelreservations');    
 
