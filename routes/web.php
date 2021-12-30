@@ -24,4 +24,3 @@ Route::resources([
     
 ]);
 
-Route::get('register', [RegisterController::class, 'create']);

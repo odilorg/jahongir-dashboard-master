@@ -20,7 +20,9 @@ class CreateHotelreservationsTable extends Migration
             $table->string('hotel_name');
             $table->date('checkin_date');
             $table->date('checkout_date');
-            $table->foreignId('tourgroup_id');
+            $table->string('early_checkin');
+            $table->string('late_checkout');
+            $table->foreignId('tourgroup_id')->nullable();
         });
     }
 
