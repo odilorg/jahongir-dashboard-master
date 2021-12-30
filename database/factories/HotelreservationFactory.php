@@ -19,6 +19,8 @@ class HotelreservationFactory extends Factory
             'hotel_name' =>$this->faker->randomElement(['Jahongir', 'Komil', 'Mirza' ]),
             'checkin_date' =>$this->faker->dateTimeBetween('-1 week', '+1 week'),
             'checkout_date' =>$this->faker->dateTimeBetween('-1 week', '+1 week'),
+            'early_checkin' =>$this->faker->randomElement(['2 am', '3 am', '5 am']),
+            'late_checkout' =>$this->faker->randomElement(['2 pm', '3 pm', '5 pm']),
             'tourgroup_id'=>Tourgroup::factory()
 
 

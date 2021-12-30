@@ -27,8 +27,18 @@
           <div class="col-lg-6">
             <div class="card">
               <div class="card-body">
-                <div class="form-group">
-                  <form action="/hotelreservations/{{ $hotelres->id }}" method="POST">
+                <form action="/hotelreservations/{{ $hotelres->id }}" method="POST">
+                  <div class="form-group">
+                    <label for="exampleSelectRounded0">Choose Tour Group</label>
+                    <select class="custom-select rounded-0" id="exampleSelectRounded0">
+                      
+                      <option>{{ $tourgroup }}</option>  
+                     
+                      
+                      
+                    </select>
+                  </div>
+                  <div class="form-group">
                     @csrf
                     @method('PUT')
                   <label for="exampleInputEmail1">Hotel City</label>
@@ -36,34 +46,64 @@
                   class="form-control" 
                   value="{{ $hotelres->hotel_city }}"
                   id="exampleInputEmail1" placeholder="Hotel City">
+                  @error('hotel_city')
+                  <p class="text-danger">{{ $message }}</p>
+                  @enderror
                 </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Hotel Name</label>
                   <input type="text" 
                   value="{{ $hotelres->hotel_name }}"
                   name="hotel_name" class="form-control" id="exampleInputEmail1" placeholder="Hotel Name">
+                  @error('hotel_name')
+                  <p class="text-danger">{{ $message }}</p>
+                  @enderror
                 </div>
                 <div class="form-group">
                   <label>Check In Date:</label>
                     <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                        <input type="text"
-                       
-                        name="checkin_date" class="form-control datetimepicker-input" data-target="#reservationdate"/>
+                        <input type="text" 
+                        value="{{ $hotelres->checkin_date }}"
+                        name="checkin_date" class="form-control datetimepicker-input" data-target="#reservationdate">
                         <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                         </div>
                     </div>
+                    @error('checkin_date')
+                    <p class="text-danger">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="form-group">
                   <label>Check Out Date:</label>
                     <div class="input-group date" id="reservationdate2" data-target-input="nearest">
                         <input type="text" 
-                       
-                        name="checkout_date" class="form-control datetimepicker-input" data-target="#reservationdate2"/>
+                        value="{{ $hotelres->checkout_date }}"
+                        name="checkout_date" class="form-control datetimepicker-input" data-target="#reservationdate2">
                         <div class="input-group-append" data-target="#reservationdate2" data-toggle="datetimepicker">
                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                         </div>
                     </div>
+                    @error('checkout_date')
+                    <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Early Checkin</label>
+                  <input type="text" 
+                  value="{{ $hotelres->early_checkin }}"
+                  name="early_checkin" class="form-control" id="exampleInputEmail1" placeholder="Hotel Name">
+                  @error('early_checkin')
+                  <p class="text-danger">{{ $message }}</p>
+                  @enderror
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Late Checkout</label>
+                  <input type="text" 
+                  value="{{ $hotelres->late_checkout }}"
+                  name="late_checkout" class="form-control" id="exampleInputEmail1" placeholder="Hotel Name">
+                  @error('late_checkout')
+                  <p class="text-danger">{{ $message }}</p>
+                  @enderror
                 </div>
                 
                 <button type="submit">Submit</button>

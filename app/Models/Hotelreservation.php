@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Hotelreservation extends Model
 {
@@ -13,8 +14,22 @@ class Hotelreservation extends Model
         return $this->belongsTo(Tourgroup::class);
     }
 
-   protected $fillable = ['hotel_city', 'hotel_name', 'checkin_date', 'checkout_date'];
+   protected $guarded = [];
    
-  protected $dateFormat = 'Y-m-d';
+//    public function getCheckinDateAttribute($value)
+// {
+//     return Carbon::parse($value)->format('d/m/Y');
+// }
+
+// public function getCheckoutDateAttribute($value)
+// {
+//     return Carbon::parse($value)->format('d/m/Y');
+// }
+
+// public function getEarlyCheckinAttribute($value)
+// {
+//     return Carbon::parse($value)->format('d/m/Y HH:MM:SS');
+// }
+  
 
 }

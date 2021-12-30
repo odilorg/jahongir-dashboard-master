@@ -23,8 +23,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{ asset('assets/admin/css/select2-bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/css/bootstrap-duallistbox.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/css/bs-stepper.min.css') }}">
+    <script>
+        function closeDialog() {
+        let d = document.getElementById('toastsContainerTopRight')
+        d.style.display = "none"
+        d.close()
+    }
+    </script>
 </head>
-
+@yield('contentregister')
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
        
@@ -276,6 +283,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- /.control-sidebar -->
         @yield('content')
         <!-- Main Footer -->
+        @if (session()->has('success'))
+  <p> <div id="toastsContainerTopRight" class="toasts-top-right fixed"><div class="toast bg-success fade show" role="alert" aria-live="assertive" aria-atomic="true"><div class="toast-header"><strong class="mr-auto">Hotel Reservation</strong><button data-dismiss="toast" type="button" class="ml-2 mb-1 close" onclick="closeDialog()" aria-label="Close"><span aria-hidden="true">×</span></button></div><div class="toast-body">{{ session()->get('success') }}</div></div></div> </p>
+@endif
         <footer class="main-footer">
             <!-- To the right -->
             <div class="float-right d-none d-sm-inline">
@@ -297,6 +307,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
     <script>
+        
         $(function () {
           //Initialize Select2 Elements
           $('.select2').select2()
@@ -323,6 +334,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       
           //Date and time picker
           $('#reservationdatetime').datetimepicker({ icons: { time: 'far fa-clock' } });
+          $('#reservationdatetime2').datetimepicker({ icons: { time: 'far fa-clock' } });
       
           //Date range picker
           $('#reservation').daterangepicker()
@@ -331,7 +343,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             timePicker: true,
             timePickerIncrement: 30,
             locale: {
-              format: 'MM/DD/YYYY hh:mm A'
+              format: 'DD/MM/YYYY hh:mm A'
             }
           })
           //Date range as a button

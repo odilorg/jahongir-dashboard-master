@@ -60,7 +60,7 @@
                     <th>Checkout Date</th>
                     <th>Early Chechin Time</th>
                     <th>Late Checkout Time</th>
-                    <th>Status</th>
+                    <th>Tour Group</th>
                     <th>Actions</th>
                   </tr>
                 </thead>
@@ -72,9 +72,9 @@
                     <td>{{ $hotelres->hotel_name }}</td>
                     <td><span class="tag tag-success">{{ $hotelres->checkin_date }}</span></td>
                     <td>{{ $hotelres->checkout_date }}</td>
-                    <td>At 05:00am</td>
-                    <td>At 06:00pm</td>
-                    <td>OK</td>
+                    <td>{{ $hotelres->early_checkin }}</td>
+                    <td>{{ $hotelres->late_checkout }}</td>
+                    <td>{{ $tourgroup->tourgroup_id }}</td>
                     <td><a class="btn btn-primary btn-sm" href="{{ route('hotelreservations.show', ['hotelreservation' =>1]) }}">
                       <i class="fas fa-folder">
                       </i>
