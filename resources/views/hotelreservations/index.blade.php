@@ -74,7 +74,7 @@
                     <td>{{ $hotelres->checkout_date }}</td>
                     <td>{{ $hotelres->early_checkin }}</td>
                     <td>{{ $hotelres->late_checkout }}</td>
-                    <td>{{ $tourgroup->tourgroup_id }}</td>
+                    <td>{{ $hotelres->tourgroup_name }}</td>
                     <td><a class="btn btn-primary btn-sm" href="{{ route('hotelreservations.show', ['hotelreservation' =>1]) }}">
                       <i class="fas fa-folder">
                       </i>

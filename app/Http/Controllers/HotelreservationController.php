@@ -18,12 +18,13 @@ class HotelreservationController extends Controller
     {
         $hotelreservations = Hotelreservation::all();
        
-      $tourgroup = Tourgroup::all()->pluck('tourgroup_name');
-     
-     // dd($tourgroup);
+      $tourgroup = Hotelreservation::where('id', '>', 1);
+      $tour = $tourgroup->tourgroup->tourgroup_name;
+       
+      dd($tour);
         return view('hotelreservations.index', [
-            'hotelreservations' => $hotelreservations,
-            'tourgroup' =>$tourgroup
+            'hotelreservations' => $hotelreservations
+            
            
             
         ]);
