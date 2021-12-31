@@ -30,6 +30,8 @@ class Hotelreservation extends Model
 // {
 //     return Carbon::parse($value)->format('d/m/Y HH:MM:SS');
 // }
-  
+public function getCheckinDateAttribute($value) {
+    return \Carbon\Carbon::parse($value)->format('d-m-Y');
+}
 
 }

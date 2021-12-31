@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Tourgroup extends Model
 {
     use HasFactory;
+    protected $guarded = [];
     public function hotelreservation() {
         return $this->hasMany(Hotelreservation::class);
 
@@ -19,5 +20,6 @@ class Tourgroup extends Model
 
 
     }
+
 
 }
