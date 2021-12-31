@@ -17,7 +17,6 @@ class HotelreservationController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
         $hotelreservations = Hotelreservation::all();
        
       $tourgroup = Hotelreservation::where('id', '>', 1);
@@ -30,18 +29,6 @@ class HotelreservationController extends Controller
            
             
         ]);
-=======
-       // $hotelreservations = Hotelreservation::all();
-       //dd((request()->is('hotelreservations')));
-       $tourgroups = DB::table('hotelreservations')
-       ->join('tourgroups', 'tourgroups.id', '=', 'hotelreservations.tourgroup_id')
-       ->select('hotelreservations.*', 'tourgroups.tourgroup_name', 'tourgroups.id as tourgroup_id')
-       ->get();
-        
-     
-    // dd($tourgroups);
-        return view('hotelreservations.index', compact('tourgroups'));
->>>>>>> 44bd2c92a43205473466cc59e8c9d491af35aa3c
     }
 
     /**
