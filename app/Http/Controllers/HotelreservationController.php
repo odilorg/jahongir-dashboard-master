@@ -18,16 +18,9 @@ class HotelreservationController extends Controller
     public function index()
     {
         $hotelreservations = Hotelreservation::all();
-       
-      $tourgroup = Hotelreservation::where('id', '>', 1);
-      $tour = $tourgroup->tourgroup->tourgroup_name;
-       
-      dd($tour);
+      
         return view('hotelreservations.index', [
             'hotelreservations' => $hotelreservations
-            
-           
-            
         ]);
     }
 

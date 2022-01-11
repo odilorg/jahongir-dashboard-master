@@ -47,45 +47,45 @@
                 <a class="btn btn-info btn-sm" href="{{ route('hotelreservations.create') }}">
                   <i class="fas fa-pencil-alt">
                   </i>
-                  Add Hotel Reservation
+                  Add Transport
               </a>
               </div>
               <table class="table table-hover text-nowrap">
                 <thead>
                   <tr>
-                    <th>ID</th>
-                    <th>City</th>
-                    <th>Hotel Name</th>
+                    <th>Type</th>
+                    <th>Tour Group</th>
+                    <th>Driver Name</th>
+                    <th>Driver Tel</th>
                     <th>CI Date</th>
-                    <th>CI Date</th>
-                    <th>Early CI Time</th>
-                    <th>Late CO Time</th>
-                    <th>Tour Gr</th>
+                    <th>CO Date</th>
+                    <th>Car Make</th>
                     <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($hotelreservations as $hotelres )
+                  @foreach ($transports as $transport   )
                   <tr>
-                    <td>{{ $hotelres->id }}</td>
-                    <td>{{ $hotelres->hotel_city }}</td>
-                    <td>{{ $hotelres->hotel_name }}</td>
-                    <td><span class="tag tag-success">{{ $hotelres->checkin_date }}</span></td>
-                    <td>{{ $hotelres->checkout_date }}</td>
-                    <td>{{ $hotelres->early_checkin }}</td>
-                    <td>{{ $hotelres->late_checkout }}</td>
-                    <td>{{ $hotelres->tourgroup_name }}</td>
-                    <td><a class="btn btn-primary btn-sm" href="{{ route('hotelreservations.show', ['hotelreservation' =>1]) }}">
+                    <td>{{ $transport->transport_type }}</td>
+                    <td>{{ $transport->tourgroup_name }}</td>
+                    <td>{{ $transport->driver_name }}</td>
+                    <td>{{ $transport->driver_tel }}</td>
+                    <td>{{ $transport->tourgroup_ci }}</td>
+                    <td>{{ $transport->tourgroup_co }}</td>
+                    <td>{{ $transport->car_make }}</td>
+
+                   
+                    <td><a class="btn btn-primary btn-sm" href="transports/{{ $transport->id }}">
                       <i class="fas fa-folder">
                       </i>
                       View
                   </a>
-                  <a class="btn btn-info btn-sm" href="hotelreservations/{{ $hotelres->id }}/edit">
+                  <a class="btn btn-info btn-sm" href="#">
                       <i class="fas fa-pencil-alt">
                       </i>
                       Edit
                   </a>
-                  <form action="/hotelreservations/{{ $hotelres->id }}" method="post" class="float-left">
+                  <form action="" class="float-left">
                     @csrf
                     @method('delete')
                     <button type="submit" class="btn btn-danger btn-sm">

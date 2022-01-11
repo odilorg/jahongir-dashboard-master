@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TourgroupController;
+use App\Http\Controllers\TransportController;
 use App\Http\Controllers\HotelreservationController;
 
 /*
@@ -27,5 +28,10 @@ Route::resources([
 
 Route::resources([
     'tourgroups' => TourgroupController::class
+    
+]);
+
+Route::resources([
+    'transports' => TransportController::class
     
 ]);

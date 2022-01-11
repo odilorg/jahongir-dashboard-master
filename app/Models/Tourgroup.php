@@ -17,7 +17,9 @@ class Tourgroup extends Model
     public function touroperator() {
         return $this->belongsTo(User::class, 'user_id');
 
-
+    }
+    public function transport() {
+        return $this->hasMany(Transport::class);
 
     }
 
