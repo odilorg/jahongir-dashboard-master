@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use ArrayIterator;
+use MultipleIterator;
 use App\Models\Itinarary;
 use App\Models\Transport;
 use Illuminate\Http\Request;
@@ -31,11 +33,8 @@ class TransportController extends Controller
                       
        
         //dd($itinararies);
-    //dd($transports);
-        return view('transports.index', [
-            'transports' => $transports,
-          
-        ]);
+    //dd($transports[0]->driver_name);
+        return view('transports.index', compact('transports'));
     }
 
     /**
@@ -73,8 +72,49 @@ class TransportController extends Controller
              'driver_tel' => ['required'],
             
         ]);
-       // dd($attributes2);
-        (Itinarary::create($attributes2));
+       
+        // $requestData = collect($request->only('names', 'emails', 'occupations'));
+
+        // $contacts = $requestData->transpose()->map(function ($contactData) {
+        //     return new Contact([
+        //         'name' => $contactData[0],
+        //         'email' => $contactData[1],
+        //         'occupation' => $contactData[2],
+        //     ]);
+        // });
+    
+        // Auth::user()->contacts()->saveMany($contacts);
+        
+
+    //     $requestData = collect($request->only('pickup_or_dropoff_or_marshrut', 'pickup_or_dropoff_date_time'));
+    //     //dd($requestData );
+    //     $itinarary = $requestData->transpose()->map(function ($itinararyData) {
+    //         return new Itinarary([
+    //             'pickup_or_dropoff_or_marshrut' => $itinararyData[0],
+    //             'pickup_or_dropoff_date_time' => $itinararyData[1],
+
+    //         ]);
+    //     });
+    //    // dd($itinarary);
+    // $itin = new Itinarary();
+   
+    
+
+
+    // $addressesInput = $request->get('pickup_or_dropoff_date_time');
+    // $addresses = [];
+    
+    // foreach($addressesInput as $address)
+    // {
+    //     $addresses[] = new Itinarary($address);
+    // }
+    // dd($addresses);
+    // $itin->addresses()->saveMany($addresses);
+    //   $itin->itinarary()->createMany($itinarary);
+
+    //    dd($itin);
+    (Itinarary::create($attributes2));
+       // dd($tran->driver_name[0]);
     }
 
     /**
@@ -85,7 +125,19 @@ class TransportController extends Controller
      */
     public function show($id)
     {
-        //
+        $itinarary = Itinarary::findOrFail($id);
+        $mi = new MultipleIterator();
+$mi->attachIterator(new ArrayIterator($itinarary['pickup_or_dropoff_or_marshrut']));
+$mi->attachIterator(new ArrayIterator($itinarary['pickup_or_dropoff_date_time']));
+$mi->attachIterator(new ArrayIterator($itinarary['pickup_or_dropoff_from']));
+$mi->attachIterator(new ArrayIterator($itinarary['pickup_or_dropoff_to']));
+$mi->attachIterator(new ArrayIterator($itinarary['driver_name']));
+$mi->attachIterator(new ArrayIterator($itinarary['driver_tel']));
+
+       
+      //  $itinarary = array_merge($itinarary['driver_name'],$itinarary['pickup_or_dropoff_or_marshrut']);
+    //  dd($mi);
+       return view('transports.show', compact('mi'));
     }
 
     /**
@@ -96,7 +148,7 @@ class TransportController extends Controller
      */
     public function edit($id)
     {
-        //
+       
     }
 
     /**
