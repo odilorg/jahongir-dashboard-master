@@ -44,7 +44,7 @@
             <!-- /.card-header -->
             <div class="card-body table-responsive p-0">
               <div>
-                <a class="btn btn-info btn-sm" href="{{ route('hotelreservations.create') }}">
+                <a class="btn btn-info btn-sm" href="{{ route('transports.create') }}">
                   <i class="fas fa-pencil-alt">
                   </i>
                   Add Transport

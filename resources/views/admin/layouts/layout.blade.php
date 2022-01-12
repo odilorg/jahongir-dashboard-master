@@ -8,7 +8,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Starter</title>
+    <title>SSST</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -245,7 +245,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
+                            <ul class="nav nav-treeview" style="display: block;">
                                 <li class="nav-item">
                                     <a href="{{ route('transports.index'); }}" class="nav-link {{ (request()->is('transports*')) ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
