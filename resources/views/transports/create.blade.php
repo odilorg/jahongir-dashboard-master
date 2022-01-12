@@ -7,12 +7,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Create Tour Group</h1>
+            <h1 class="m-0">Create Transport</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Create Tour Group</li>
+              <li class="breadcrumb-item active">Create Transport</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -29,13 +29,36 @@
               <div class="card-body">
                 <form action="{{ route('tourgroups.store') }}" method="POST">
                     @csrf
+                    <div class="form-group">
+                      <label for="exampleSelectRounded0">Choose Transport type</label>
+                      <select class="custom-select rounded-0" name="tourgroup_status" id="exampleSelectRounded0">
+                        <option>Auto</option>  
+                        <option>Air</option>  
+                        <option>Train</option>  
+                      </select>
+                    </div>
+
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Tourgroup Name</label>
-                    <input type="text" value="{{ old('tourgroup_name') }}" name="tourgroup_name" class="form-control  @error('tourgroup_name')
-                     {{ 'is-invalid' }} @enderror " id="inputError" placeholder="Tour Group Name">
-                    @error('tourgroup_name')
+                  <label for="exampleInputEmail1">Car Make</label>
+                    <input type="text" value="{{ old('car_make') }}" name="car_make" class="form-control  @error('car_make')
+                     {{ 'is-invalid' }} @enderror " id="inputError" placeholder="Car Make">
+                    @error('car_make')
                     <p class="text-danger">{{ $message }}</p>
                     @enderror
+                </div>
+                <div class="form-group">
+                  <div class="form-check">
+                    <input class="form-check-input"  type="radio" name="radio1">
+                    <label class="form-check-label">Sedan</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radio1" >
+                    <label class="form-check-label">Mini Bus</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" >
+                    <label class="form-check-label">Bus</label>
+                  </div>
                 </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Tourgroup Country</label>
