@@ -23,7 +23,7 @@
 
      
         <div class="container-fluid ">
-          <form action="" method="POST">
+          <form action="{{ route('transports.store') }}" method="POST">
             @csrf
             <div class="card card-primary bs-form-wrappe">
                 <div class="card-header">
@@ -32,23 +32,23 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="exampleSelectRounded0">Choose Transport type</label>
-                        <select class="custom-select rounded-0" name="tourgroup_status" id="exampleSelectRounded0">
-                            <option>Auto</option>
-                            <option>Air</option>
-                            <option>Train</option>
+                        <select class="custom-select rounded-0" name="transport_type" id="exampleSelectRounded0">
+                            <option value="Auto">Auto</option>
+                            <option value="Air">Air</option>
+                            <option value="Train">Train</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="transport_type">
+                            <input class="form-check-input" value="Sedan" type="radio" name="auto_type">
                             <label class="form-check-label">Sedan</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="transport_type">
+                            <input class="form-check-input" value="Mini Bus" type="radio" name="auto_type">
                             <label class="form-check-label">Mini Bus</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="transport_type">
+                            <input class="form-check-input" value="Bus" type="radio" name="auto_type">
                             <label class="form-check-label">Bus</label>
                         </div>
                     </div>
@@ -68,25 +68,19 @@
                     <h3 class="card-title">Itinarary</h3>
                 </div>
                 <div class="card-body">
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="pickup_or_dropoff_or_marshrut[]">
-                            <label class="form-check-label">Pickup</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="pickup_or_dropoff_or_marshrut[]">
-                            <label class="form-check-label">Dropoff</label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="pickup_or_dropoff_or_marshrut[]">
-                          <label class="form-check-label">Marshrut</label>
-                      </div>
-                    </div>
+                  <div class="form-group">
+                    <label for="exampleSelectRounded0">Choose Transport type</label>
+                    <select class="custom-select rounded-0" name="pickup_or_dropoff_or_marshrut[]" id="exampleSelectRounded0">
+                        <option value="Pickup">Pickup</option>
+                        <option value="Dropoff">Dropoff</option>
+                        <option value="Marshrut">Marshrut</option>
+                    </select>
+                </div>
                     <div class="form-group ">
                         <label>Date and time:</label>
-                        <div class="input-group date" id="reservationdatetime" data-target-input="nearest">
-                            <input type="datetime-local" class="form-control datetimepicker-input"
-                                data-target="#reservationdatetime" name="pickup_or_dropoff_date_time[]">
+                        <div class="input-group date" >
+                            <input type="datetime-local" 
+                                name="pickup_or_dropoff_date_time[]">
                         </div>
                     </div>
                     <div class="row">
@@ -115,7 +109,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Driver Tel</label>
-                                <input type="text" class="form-control" name="driver_tel" placeholder="Driver Tel">
+                                <input type="text" class="form-control" name="driver_tel[]" placeholder="Driver Tel">
                             </div>
                         </div>
                     </div>
@@ -124,7 +118,7 @@
             <button type="button" class="btn btn-block btn-success bs-add-button">Add itinarary</button>
 
 
-            <button type="button" type ="submit" class="btn btn-block btn-primary">Submit</button>
+            <button  type ="submit" class="btn btn-block btn-primary">Submit</button>
 
           </form> <!-- /.card-body -->
         </div>

@@ -31,7 +31,7 @@ class TransportController extends Controller
                       
        
         //dd($itinararies);
-    //   /  dd($transports);
+    //dd($transports);
         return view('transports.index', [
             'transports' => $transports,
           
@@ -56,7 +56,25 @@ class TransportController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributes =  request()->validate([
+            'transport_type' => ['required'],
+             'auto_type' => ['required'],
+             'car_extra_features' => ['required'],
+            
+        ]);
+       // dd($attributes);
+        (Transport::create($attributes));
+        $attributes2 =  request()->validate([
+            'pickup_or_dropoff_or_marshrut' => ['required'],
+             'pickup_or_dropoff_date_time' => ['required'],
+             'pickup_or_dropoff_from' => ['required'],
+             'pickup_or_dropoff_to' => ['required'],
+             'driver_name' => ['required'],
+             'driver_tel' => ['required'],
+            
+        ]);
+       // dd($attributes2);
+        (Itinarary::create($attributes2));
     }
 
     /**
