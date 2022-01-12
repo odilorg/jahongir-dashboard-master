@@ -33,8 +33,8 @@
                       <label for="exampleSelectRounded0">Choose Transport type</label>
                       <select class="custom-select rounded-0" name="tourgroup_status" id="exampleSelectRounded0">
                         <option>Auto</option>  
-                        <option>Air</option>  
                         <option>Train</option>  
+                        <option>Air</option>  
                       </select>
                     </div>
 
