@@ -48,25 +48,36 @@
                 </div>
                 <div class="form-group">
                   <div class="form-check">
-                    <input class="form-check-input"  type="radio" name="radio1">
+                    <input class="form-check-input"  type="radio" name="transport_type">
                     <label class="form-check-label">Sedan</label>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="radio1" >
+                    <input class="form-check-input" type="radio" name="transport_type" >
                     <label class="form-check-label">Mini Bus</label>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" >
+                    <input class="form-check-input" type="radio" name="transport_type" >
                     <label class="form-check-label">Bus</label>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Tourgroup Country</label>
-                  <input type="text" value="{{ old('tourgroup_country') }}" name="tourgroup_country" class="form-control @error('tourgroup_country')
-                  {{ 'is-invalid' }} @enderror" id="exampleInputEmail1" placeholder="Tourgroup Country">
-                  @error('tourgroup_country')
+                  <label for="exampleInputEmail1">Car extra features</label>
+                  <input type="text" value="{{ old('car_extra_features') }}" name="car_extra_features" class="form-control @error('car_extra_features')
+                  {{ 'is-invalid' }} @enderror" id="exampleInputEmail1" placeholder="Car Extra">
+                  @error('car_extra_features')
                   <p class="text-danger">{{ $message }}</p>
                   @enderror
+                </div>
+                <div class="form-group">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox">
+                    <label class="form-check-label">Pickup</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" >
+                    <label class="form-check-label">Dropoff</label>
+                  </div>
+                  
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Tourgroup Pax</label>
