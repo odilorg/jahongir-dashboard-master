@@ -17,13 +17,13 @@ class CreateItinarariesTable extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignId('transport_id')->nullable();
-            $table->string('pickup_or_dropoff_or_marshrut');
-            $table->date('pickup_or_dropoff_date');
-            $table->time('pickup_or_dropoff_time');
-            $table->string('pickup_or_dropoff_from');
-            $table->string('pickup_or_dropoff_to');
-            $table->string('driver_name');
-            $table->string('driver_tel');
+            $table->json('pickup_or_dropoff_or_marshrut');
+            $table->json('pickup_or_dropoff_date_time');
+           
+            $table->json('pickup_or_dropoff_from');
+            $table->json('pickup_or_dropoff_to');
+            $table->json('driver_name');
+            $table->json('driver_tel');
             $table->string('train_class');
             $table->string('train_name');
             $table->string('plane_class');

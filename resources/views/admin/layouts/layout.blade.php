@@ -458,6 +458,30 @@ scratch. This page gets rid of all links and provides the needed markup only.
         // DropzoneJS Demo Code End
       </script>
 
+<script type="text/javascript">
+
+	jQuery(document).ready(function(){
+	    var maxLimit = 5;
+        var appendHTML = '<div class="card card-success "> <!--start here --> <div class="card-header "> <h3 class="card-title">Itinarary</h3> </div> <div class="card-body"> <div class="form-group"> <div class="form-check"> <input class="form-check-input" type="radio" name="radio1"> <label class="form-check-label">Pickup</label> </div> <div class="form-check"> <input class="form-check-input" type="radio" name="radio1"> <label class="form-check-label">Dropoff</label> </div> </div> <div class="form-group "> <label>Date and time:</label> <div class="input-group date" id="reservationdatetime" data-target-input="nearest"> <input type="text" class="form-control datetimepicker-input" data-target="#reservationdatetime"> <div class="input-group-append" data-target="#reservationdatetime" data-toggle="datetimepicker"> <div class="input-group-text"><i class="fa fa-calendar"></i></div> </div> </div> </div> <div class="row"> <div class="col-sm-6"> <!-- text input --> <div class="form-group"> <label>From</label> <input type="text" class="form-control" placeholder="From"> </div> </div> <div class="col-sm-6"> <div class="form-group"> <label>To</label> <input type="text" class="form-control" placeholder="TO"> </div> </div> </div> <div class="row"> <div class="col-sm-6"> <!-- text input --> <div class="form-group"> <label>Deiver Name</label> <input type="text" class="form-control" placeholder="Driver Name"> </div> </div> <div class="col-sm-6"> <div class="form-group"> <label>Driver Tel</label> <input type="text" class="form-control" placeholder="Driver Tel"> </div> </div> </div> </div> <!-- /.card-body --> </div>'; 
+	    //var appendHTML = '<div class="input-group control-group input-wrapper mt-2"><input type="text" name="name[]" class="form-control" placeholder="Enter value here"><div class="input-group-btn"><button class="btn btn-danger bs-remove-button" type="button"><i class="fa fa-minus"></i> Remove</button></div></div>'; 
+	    var x = 1;
+	    
+	    // for addition
+	    jQuery('.bs-add-button').click(function(e){
+	    	e.preventDefault();
+	        if(x < maxLimit){ 
+	            jQuery('.bs-form-wrappe').append(appendHTML);
+	            x++;
+	        }
+	    });
+	    
+	    // for deletion
+	    
+	});
+
+
+</script>
+
 </body>
 
 </html>

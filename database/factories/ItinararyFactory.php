@@ -18,7 +18,7 @@ class ItinararyFactory extends Factory
             'transport_id' => Transport::factory(),
             'pickup_or_dropoff_or_marshrut' => $this->faker->randomElement(['Pickup', 'Dropoff', 'Marshrut']),
             'pickup_or_dropoff_date' => $this->faker->dateTimeBetween('+1 week', '+2 week'),
-            'pickup_or_dropoff_time' => $this->faker->time(),
+            
             'pickup_or_dropoff_from' => $this->faker->randomElement(['Samarkand', 'Bukhara', 'Khiva']),
             'pickup_or_dropoff_to' => $this->faker->randomElement(['Hotel Jahongir', 'Vokzal', 'Aeroport']),
             'driver_name' => $this->faker->randomElement(['Ozod', 'Mahmud', 'Akram']),
