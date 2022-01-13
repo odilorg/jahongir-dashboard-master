@@ -20,7 +20,8 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => 'Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
-            'role' => $this->faker->randomElement(['Admin', 'Tour Operator', 'Transport', 'Booking Agent']),
+            
+            'role' =>$this->faker->numberBetween(1, 4),
             'profile_image' => $this->faker->name(),
         ];
     }

@@ -55,7 +55,7 @@
                   <tr>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>Password</th>
+                    
                     <th>Role</th>
                     <th>Profile Image</th>
                     
@@ -66,8 +66,7 @@
                   <tr>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
-                    <td>{{ $user->password }}</td>
-                    <td>{{ $user->role }}</span></td>
+                                       <td>{{ $user->role }}</span></td>
                     <td>{{ $user->profile_image }}</td>
                     
                     <td><a class="btn btn-primary btn-sm" href="{{ route('users.show', ['user' =>1]) }}">
@@ -75,12 +74,12 @@
                       </i>
                       View
                   </a>
-                  <a class="btn btn-info btn-sm" href="hotelreservations/{{ $user->id }}/edit">
+                  <a class="btn btn-info btn-sm" href="users/{{ $user->id }}/edit">
                       <i class="fas fa-pencil-alt">
                       </i>
                       Edit
                   </a>
-                  <form action="/hotelreservations/{{ $user->id }}" method="post" class="float-left">
+                  <form action="/users/{{ $user->id }}" method="post" class="float-left">
                     @csrf
                     @method('delete')
                     <button type="submit" class="btn btn-danger btn-sm">

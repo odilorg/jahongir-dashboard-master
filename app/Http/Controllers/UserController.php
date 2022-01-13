@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+
 
 class UserController extends Controller
 {
@@ -75,7 +77,12 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+      //  dd($user);
+        return view('users.edit')->with([
+            'user' =>$user
+            
+        ]);
     }
 
     /**
@@ -87,7 +94,23 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $attributes =  request()->validate([
+            'name' => ['required', 'max:255'],
+             'email' => ['required', 'max:255', 'email',  Rule::unique('users')->ignore($id),],
+             'password' => ['required', 'max:255'],
+             'role' => ['required', 'max:255'],
+             'profile_image' => ['required', 'max:255'],
+            
+        ]);
+      // dd($attributes);
+      $attributes['password'] = bcrypt($request->password); 
+        (User::find($id)->update($attributes));
+        
+         session()->flash('success', 'User has been updated');
+         session()->flash('type', 'User Update');
+         
+
+        return redirect('users');  
     }
 
     /**
@@ -98,6 +121,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::find($id)->delete();
+        return redirect('users');
     }
 }
