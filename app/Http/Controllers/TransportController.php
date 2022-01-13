@@ -31,7 +31,7 @@ class TransportController extends Controller
                       
        
         //dd($itinararies);
-    //dd($transports);
+    dd($transports);
         return view('transports.index', [
             'transports' => $transports,
           
