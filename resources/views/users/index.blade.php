@@ -67,7 +67,7 @@
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                                        <td>{{ $user->role }}</span></td>
-                    <td>{{ $user->profile_image }}</td>
+                    <td><img src="{{ asset('storage/' . $user->profile_image) }}" width="50px" height="50px" alt=""> </td>
                     
                     <td><a class="btn btn-primary btn-sm" href="{{ route('users.show', ['user' =>1]) }}">
                       <i class="fas fa-folder">

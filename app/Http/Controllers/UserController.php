@@ -43,11 +43,12 @@ class UserController extends Controller
              'email' => ['required', 'max:255', 'email', 'unique:users'],
              'password' => ['required', 'max:255'],
              'role' => ['required', 'max:255'],
-             'profile_image' => ['required', 'max:255'],
+             'profile_image' => ['nullable', 'image'],
             
         ]);
-      // dd($attributes);
+      //  dd($attributes);
       $attributes['password'] = bcrypt($request->password); 
+      $attributes['profile_image'] = request()->file('profile_image')->store('profile_image');
         (User::create($attributes));
         
          session()->flash('success', 'User has been created');
@@ -99,11 +100,14 @@ class UserController extends Controller
              'email' => ['required', 'max:255', 'email',  Rule::unique('users')->ignore($id),],
              'password' => ['required', 'max:255'],
              'role' => ['required', 'max:255'],
-             'profile_image' => ['required', 'max:255'],
+             'profile_image' => ['image'],
             
         ]);
       // dd($attributes);
       $attributes['password'] = bcrypt($request->password); 
+      if (isset($attributes['profile_image'])) {
+        $attributes['profile_image'] = request()->file('profile_image')->store('profile_image');
+      }
         (User::find($id)->update($attributes));
         
          session()->flash('success', 'User has been updated');
