@@ -21,7 +21,9 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->foreignId('tourgroup_id')->nullable();
+           
+            $table->string('role');
+            $table->string('profile_image');
         });
     }
 

@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
       // $user =  User::factory()->create();
-    //  Hotelreservation::factory(5)->create();
+     Hotelreservation::factory(5)->create();
       Itinarary::factory(5)->create();
     }
 }

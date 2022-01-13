@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TourgroupController;
 use App\Http\Controllers\TransportController;
@@ -22,16 +23,10 @@ Route::get('/', function () {
 });
 
 Route::resources([
-    'hotelreservations' => HotelreservationController::class
+    'hotelreservations' => HotelreservationController::class,
+    'transports' => TransportController::class,
+    'tourgroups' => TourgroupController::class,
+    'users' => UserController::class
     
 ]);
 
-Route::resources([
-    'tourgroups' => TourgroupController::class
-    
-]);
-
-Route::resources([
-    'transports' => TransportController::class
-    
-]);
