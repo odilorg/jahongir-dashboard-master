@@ -18,9 +18,9 @@ use App\Http\Controllers\HotelreservationController;
 |
 */
 
-Route::get('/', function () {
-    return view('admin.index');
-});
+Route::get('/', [RegisterController::class, 'loginForm'])->name('loginForm');
+Route::post('/', [RegisterController::class, 'login'])->name('login');
+Route::get('/logout', [RegisterController::class, 'logout'])->name('logout');
 
 Route::resources([
     'hotelreservations' => HotelreservationController::class,

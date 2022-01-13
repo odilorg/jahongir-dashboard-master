@@ -3,22 +3,35 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
-   public function create() {
-       return view('register.create');
+   public function loginForm() {
+       return view('login');
    }
 
-   public function store() {
-   //create user
-   dd(request()->all());
-   request()->validate([
-       'name' => ['required', 'max:255'],
-       'username' => ['required', 'max:255'],
-       'email' => ['required', 'email', 'max:255'],
-       'password' => ['required']
+   public function login(Request $request) {
+  $request->validate([
+      'email' => 'required|email',
+      'password' => 'required'
+  ]);
+  if (Auth::attempt([
+      'email' => $request->email,
+      'password' => $request->password,
+  ])) {
+    session()->flash('success', 'You logged in ');
+         session()->flash('type', 'User Login');
+         
 
-   ]);
+        return redirect('tourgroups')->with('success', 'Welcome back');  
+  }
+  return redirect()->back()->withInput()->withErrors(['email' => 'Your privided cred could not be verified']);
+}
+
+public function logout() {
+    Auth::logout();
+    return redirect()->route('loginForm')->with('success', 'Good bye');  ;
+  
 }
 }
