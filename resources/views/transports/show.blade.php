@@ -53,55 +53,41 @@
               <table class="table table-hover text-nowrap">
                 <thead>
                   <tr>
-                    <th>Type</th>
-                    <th>Tour Group</th>
+                    <th>Itinarary</th>
+                    <th>Date and Time</th>
+                    <th>From</th>
+                    <th>To</th>
                     <th>Driver Name</th>
                     <th>Driver Tel</th>
-                    <th>CI Date</th>
-                    <th>CO Date</th>
-                    <th>Car Make</th>
-                    <th>Actions</th>
+                    
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($transports as $transport   )
-                  <tr>
-                    <td>{{ $transport->transport_type }}</td>
-                    <td>{{ $transport->tourgroup_name }}</td>
-                    <td>{{ $transport['driver_name'] }}</td>
-                    <td>{{ $transport->driver_tel }}</td>
-                    <td>{{ $transport->tourgroup_ci }}</td>
-                    <td>{{ $transport->tourgroup_co }}</td>
-                    <td>{{ $transport->car_make }}</td>
+                    
+                    @foreach($mi as list($marshrut, $date_time, $from, $to, $driver_name, $driver_tel))
 
-                   
-                    <td><a class="btn btn-primary btn-sm" href="transports/{{ $transport->id }}">
-                      <i class="fas fa-folder">
-                      </i>
-                      View
-                  </a>
-                  <a class="btn btn-info btn-sm" href="#">
-                      <i class="fas fa-pencil-alt">
-                      </i>
-                      Edit
-                  </a>
-                  <form action="" class="float-left">
-                    @csrf
-                    @method('delete')
-                    <button type="submit" class="btn btn-danger btn-sm">
-                      <i class="fas fa-trash">
-                      </i>
-                      Delete
-                    </button>
-                    
+                        <tr>
+                            <td>{{ $marshrut }}</td>
+                            <td>{{ $date_time }}</td>
+                            <td>{{ $from }}</td>
+                            <td>{{ $to }}</td>
+                            <td>{{ $driver_name }}</td>
+                            <td>{{ $driver_tel }}</td>
+                            
+                        </tr>
                       
+                      
+                          
+                      @endforeach
                     
                   
-                  </form>
-                  </td>
-                  </tr>
-                  @endforeach
                   
+                 
+                  
+                    
+                  
+                
+                </tr>
                 </tbody>
               </table>
             </div>

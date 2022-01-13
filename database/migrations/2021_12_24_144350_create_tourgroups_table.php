@@ -22,7 +22,7 @@ class CreateTourgroupsTable extends Migration
             $table->date('tourgroup_ci');
             $table->date('tourgroup_co');
             $table->string('tourgroup_status');
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->nullable();
 
         });
     }

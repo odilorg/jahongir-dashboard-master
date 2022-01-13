@@ -24,9 +24,9 @@ class CreateItinarariesTable extends Migration
             $table->json('pickup_or_dropoff_to');
             $table->json('driver_name');
             $table->json('driver_tel');
-            $table->string('train_class');
-            $table->string('train_name');
-            $table->string('plane_class');
+            $table->string('train_class')->nullable();
+            $table->string('train_name')->nullable();
+            $table->string('plane_class')->nullable();
 
         });
     }
