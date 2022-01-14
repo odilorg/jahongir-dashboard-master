@@ -31,11 +31,10 @@
                                 <div class="form-group">
                                     <label for="exampleSelectRounded0">Choose Tour Group</label>
                                     <select class="custom-select rounded-0" id="exampleSelectRounded0">
-
-                                        <option>{{ $tourgroup }}</option>
-
-
-
+                                        @foreach ($tourgroups as $tourgroup )
+                                        <option {{ $tourgroup->tourgroup_name == $tourgroup_name ? 'selected' : '' }}>{{ $tourgroup->tourgroup_name }}</option>
+                                        @endforeach
+                                        
                                     </select>
                                 </div>
                                 <div class="form-group">
