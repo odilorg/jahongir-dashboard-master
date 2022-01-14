@@ -194,11 +194,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="{{ asset('assets/admin/img/user2-160x160.jpg') }}" class="img-circle elevation-2"
+                        <img src="{{ asset('storage/' . auth()->user()->profile_image) }}" width="50px" height="50px" class="img-circle elevation-2"
                             alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Odiljon Jakhangirov</a>
+                        <a href="#" class="d-block">{{ auth()->user()->name }}</a>
                     </div>
                 </div>
 
@@ -221,15 +221,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                        <li class="nav-item">
-                            <a href="{{ route('users.index') }}"
-                                class="nav-link {{ (request()->is('users*')) ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-users"></i>
-                                <p>
-                                    Users
-                                </p>
-                            </a>
-                        </li>
+                       @can('admin')
+                       <li class="nav-item">
+                        <a href="{{ route('users.index') }}"
+                            class="nav-link {{ (request()->is('users*')) ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>
+                                Users
+                            </p>
+                        </a>
+                    </li>
+                       @endcan
+                       
                         <li class="nav-item">
                             <a href="{{ route('tourgroups.index'); }}"
                                 class="nav-link {{ (request()->is('tourgroups*')) ? 'active' : '' }}">

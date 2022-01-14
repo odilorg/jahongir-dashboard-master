@@ -22,11 +22,15 @@ Route::get('/', [RegisterController::class, 'loginForm'])->name('loginForm');
 Route::post('/', [RegisterController::class, 'login'])->name('login');
 Route::get('/logout', [RegisterController::class, 'logout'])->name('logout');
 
-Route::resources([
-    'hotelreservations' => HotelreservationController::class,
-    'transports' => TransportController::class,
-    'tourgroups' => TourgroupController::class,
-    'users' => UserController::class
+Route::middleware('auth')->group(function () {
+    Route::resources([
+        'hotelreservations' => HotelreservationController::class,
+        'transports' => TransportController::class,
+        'tourgroups' => TourgroupController::class,
     
-]);
+    ]);
+    
+});
+
+Route::resource('users', UserController::class)->middleware('can:admin');
 
