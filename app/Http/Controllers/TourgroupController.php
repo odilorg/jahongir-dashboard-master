@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Tourgroup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class TourgroupController extends Controller
 {
@@ -16,7 +17,7 @@ class TourgroupController extends Controller
      */
     public function index()
     {
-        $tourgroups = Tourgroup::all();
+        $tourgroups = Tourgroup::with('user')->whereUserId(Auth::user()->id)->get();
         
      
     // dd($tourgroups);
@@ -53,9 +54,10 @@ class TourgroupController extends Controller
         ]);
         
         //dd($request->get('tour_id'));
-        $attributes['tourgroup_ci'] = Carbon::createFromFormat('m/d/Y', $request->tourgroup_ci)->format('Y-m-d');
-        $attributes['tourgroup_co'] = Carbon::createFromFormat('m/d/Y', $request->tourgroup_co)->format('Y-m-d');
+        // $attributes['tourgroup_ci'] = Carbon::createFromFormat('m/d/Y', $request->tourgroup_ci)->format('Y-m-d');
+        // $attributes['tourgroup_co'] = Carbon::createFromFormat('m/d/Y', $request->tourgroup_co)->format('Y-m-d');
     //    // $attributes['tourgroup_id'] =$request->get('tour_id');
+    $attributes['user_id'] = auth()->user()->id; 
        (Tourgroup::create($attributes));
         
          session()->flash('success', 'Tour reservation has been created');
@@ -85,8 +87,8 @@ class TourgroupController extends Controller
     public function edit($id)
     {
         $tourgroup = Tourgroup::find($id);
-        $tourgroup->tourgroup_ci = date('d/m/Y', strtotime($tourgroup->tourgroup_ci));
-        $tourgroup->tourgroup_co = date('d/m/Y', strtotime($tourgroup->tourgroup_co));
+        // $tourgroup->tourgroup_ci = date('d/m/Y', strtotime($tourgroup->tourgroup_ci));
+        // $tourgroup->tourgroup_co = date('d/m/Y', strtotime($tourgroup->tourgroup_co));
         
       // dd($hotelreservation->checkout_date);
 
@@ -116,8 +118,8 @@ class TourgroupController extends Controller
              'tourgroup_co' => ['required', 'max:255'],
              'tourgroup_status' => ['required', 'max:255']
         ]);
-        $attributes['tourgroup_ci'] = Carbon::createFromFormat('m/d/Y', $request->tourgroup_ci)->format('Y-m-d');
-        $attributes['tourgroup_co'] = Carbon::createFromFormat('m/d/Y', $request->tourgroup_co)->format('Y-m-d');
+        // $attributes['tourgroup_ci'] = Carbon::createFromFormat('m/d/Y', $request->tourgroup_ci)->format('Y-m-d');
+        // $attributes['tourgroup_co'] = Carbon::createFromFormat('m/d/Y', $request->tourgroup_co)->format('Y-m-d');
        // dd($attributes);
         $tourgroup->update($attributes);
         

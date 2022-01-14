@@ -83,7 +83,9 @@
                 <div class="form-group">
                     <label for="exampleSelectRounded0">Choose Tour Group</label>
                     <select class="custom-select rounded-0" name="tourgroup_status" id="exampleSelectRounded0">
-                      <option>{{ $tourgroup->tourgroup_status }}</option>  
+                      <option {{ $tourgroup->tourgroup_status == "OK" ? 'selected' : '' }}>OK</option>
+                      <option {{ $tourgroup->tourgroup_status == "Cancelled" ? 'selected' : '' }}>Cancelled</option>
+                      <option {{ $tourgroup->tourgroup_status == "Pending" ? 'selected' : '' }}>Pending</option>
                     </select>
                   </div>
                 

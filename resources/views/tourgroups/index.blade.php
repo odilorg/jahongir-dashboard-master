@@ -69,8 +69,8 @@
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->tourgroup_name }}</td>
                     <td>{{ $item->tourgroup_country }}</td>
-                    <td><span class="tag tag-success"> {{ \Carbon\Carbon::parse($item->tourgroup_ci)->format('d-m-Y') }} </span></td>
-                    <td>{{ \Carbon\Carbon::parse($item->tourgroup_co)->format('d-m-Y') }}</td>
+                    <td>{{ $item->tourgroup_ci }} </span></td>
+                    <td>{{ $item->tourgroup_co }}</td>
                     <td>{{ $item->tourgroup_pax }}</td>
                     <td>{{ $item->tourgroup_status }}</td>
                     

@@ -39,10 +39,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function tourgroup() {
+    public function tourgroups() {
         return $this->hasMany(Tourgroup::class);
-
-
-
+    }
+    public function hotelreservations() {
+        //return $this->hasManyThrough(Hotelreservation::class, through: Tourgroup::class);
+        return $this->hasManyThrough(Hotelreservation::class, Tourgroup::class);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\User;
 use App\Models\Tourgroup;
 use Illuminate\Http\Request;
 use App\Models\Hotelreservation;
@@ -17,11 +18,16 @@ class HotelreservationController extends Controller
      */
     public function index()
     {
-        $hotelreservations = Hotelreservation::all();
+        $value = auth()->user()->id;
+
+        $hotelreservations = Hotelreservation::with(['tourgroup'])
+       ->whereHas('tourgroup', function($q) use($value) {
+       // Query the name field in status table
+       $q->where('user_id', '=', $value); // '=' is optional
+        })
       
-        return view('hotelreservations.index', [
-            'hotelreservations' => $hotelreservations
-        ]);
+        ->get();
+        return view('hotelreservations.index', compact('hotelreservations'));
     }
 
     /**
@@ -53,8 +59,8 @@ class HotelreservationController extends Controller
 
         ]);
         //dd($request->get('tour_id'));
-        $attributes['checkin_date'] = Carbon::createFromFormat('m/d/Y', $request->checkin_date)->format('Y-m-d');
-        $attributes['checkout_date'] = Carbon::createFromFormat('m/d/Y', $request->checkout_date)->format('Y-m-d');
+        // $attributes['checkin_date'] = Carbon::createFromFormat('m/d/Y', $request->checkin_date)->format('Y-m-d');
+        // $attributes['checkout_date'] = Carbon::createFromFormat('m/d/Y', $request->checkout_date)->format('Y-m-d');
         $attributes['tourgroup_id'] =$request->get('tour_id');
         Hotelreservation::create($attributes);
          session()->flash('success', 'Hotel reservation has been created');
@@ -85,8 +91,8 @@ class HotelreservationController extends Controller
     public function edit($id)
     {
         $hotelreservation = Hotelreservation::find($id);
-        $hotelreservation->checkin_date = date('d/m/Y', strtotime($hotelreservation->checkin_date));
-        $hotelreservation->checkout_date = date('d/m/Y', strtotime($hotelreservation->checkout_date));
+        // $hotelreservation->checkin_date = date('d/m/Y', strtotime($hotelreservation->checkin_date));
+        // $hotelreservation->checkout_date = date('d/m/Y', strtotime($hotelreservation->checkout_date));
         
       // dd($hotelreservation->checkout_date);
 
@@ -126,8 +132,8 @@ class HotelreservationController extends Controller
 
         ]);
         
-        $attributes['checkin_date'] = Carbon::createFromFormat('m/d/Y', $request->checkin_date)->format('Y-m-d');
-        $attributes['checkout_date'] = Carbon::createFromFormat('m/d/Y', $request->checkout_date)->format('Y-m-d');
+        // $attributes['checkin_date'] = Carbon::createFromFormat('m/d/Y', $request->checkin_date)->format('Y-m-d');
+        // $attributes['checkout_date'] = Carbon::createFromFormat('m/d/Y', $request->checkout_date)->format('Y-m-d');
        // dd($attributes);
         $hotelreservation->update($attributes);
         
