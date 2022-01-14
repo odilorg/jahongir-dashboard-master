@@ -22,6 +22,7 @@ class TransportController extends Controller
        //$transports = Transport::all();
         $transports = Transport::join('tourgroups', 'tourgroups.id', '=', 'transports.tourgroup_id')
               		->join('itinararies', 'itinararies.id', '=', 'transports.id')
+                    ->where('user_id', '=', auth()->user()->id)
               		->get(['transports.transport_type',
                             'tourgroups.tourgroup_name', 
                             'itinararies.driver_name',
