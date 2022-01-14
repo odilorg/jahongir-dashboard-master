@@ -31,6 +31,16 @@
                 </div> <!-- /.card-body -->
                 <div class="card-body">
                     <div class="form-group">
+                        <label for="exampleSelectRounded0">Choose Tour Group</label>
+                        <select class="custom-select rounded-0" name="tour_id" id="exampleSelectRounded0">
+                          @foreach ($tourgroups as $tourgroup )
+                          <option  value="{{ $tourgroup->id }}">{{ $tourgroup->tourgroup_name }}</option>  
+                          @endforeach
+                          
+                          
+                        </select>
+                      </div>
+                    <div class="form-group">
                         <label for="exampleSelectRounded0">Choose Transport type</label>
                         <select class="custom-select rounded-0" name="transport_type" id="exampleSelectRounded0">
                             <option value="Auto">Auto</option>

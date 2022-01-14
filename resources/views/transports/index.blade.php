@@ -85,7 +85,7 @@
                       </i>
                       Edit
                   </a>
-                  <form action="" class="float-left">
+                  <form action="/transports/{{ $transport->id }}" method="post" class="float-left">
                     @csrf
                     @method('delete')
                     <button type="submit" class="btn btn-danger btn-sm">

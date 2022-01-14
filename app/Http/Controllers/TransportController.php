@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use ArrayIterator;
 use MultipleIterator;
 use App\Models\Itinarary;
+use App\Models\Tourgroup;
 use App\Models\Transport;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TransportController extends Controller
 {
@@ -17,7 +19,7 @@ class TransportController extends Controller
      */
     public function index()
     {
-        
+       //$transports = Transport::all();
         $transports = Transport::join('tourgroups', 'tourgroups.id', '=', 'transports.tourgroup_id')
               		->join('itinararies', 'itinararies.id', '=', 'transports.id')
               		->get(['transports.transport_type',
@@ -33,7 +35,7 @@ class TransportController extends Controller
                       
        
         //dd($itinararies);
-    //dd($transports[0]->driver_name);
+    //dd($transports);
         return view('transports.index', compact('transports'));
     }
 
@@ -44,7 +46,8 @@ class TransportController extends Controller
      */
     public function create()
     {
-        return view('transports.create');
+        $tourgroups = Tourgroup::with('user')->whereUserId(Auth::user()->id)->get();
+        return view('transports.create', compact('tourgroups'));
     }
 
     /**
@@ -62,6 +65,7 @@ class TransportController extends Controller
             
         ]);
        // dd($attributes);
+       $attributes['tourgroup_id'] =$request->get('tour_id');
         (Transport::create($attributes));
         $attributes2 =  request()->validate([
             'pickup_or_dropoff_or_marshrut' => ['required'],
@@ -73,48 +77,13 @@ class TransportController extends Controller
             
         ]);
        
-        // $requestData = collect($request->only('names', 'emails', 'occupations'));
-
-        // $contacts = $requestData->transpose()->map(function ($contactData) {
-        //     return new Contact([
-        //         'name' => $contactData[0],
-        //         'email' => $contactData[1],
-        //         'occupation' => $contactData[2],
-        //     ]);
-        // });
-    
-        // Auth::user()->contacts()->saveMany($contacts);
-        
-
-    //     $requestData = collect($request->only('pickup_or_dropoff_or_marshrut', 'pickup_or_dropoff_date_time'));
-    //     //dd($requestData );
-    //     $itinarary = $requestData->transpose()->map(function ($itinararyData) {
-    //         return new Itinarary([
-    //             'pickup_or_dropoff_or_marshrut' => $itinararyData[0],
-    //             'pickup_or_dropoff_date_time' => $itinararyData[1],
-
-    //         ]);
-    //     });
-    //    // dd($itinarary);
-    // $itin = new Itinarary();
-   
-    
-
-
-    // $addressesInput = $request->get('pickup_or_dropoff_date_time');
-    // $addresses = [];
-    
-    // foreach($addressesInput as $address)
-    // {
-    //     $addresses[] = new Itinarary($address);
-    // }
-    // dd($addresses);
-    // $itin->addresses()->saveMany($addresses);
-    //   $itin->itinarary()->createMany($itinarary);
+       
 
     //    dd($itin);
+    
     (Itinarary::create($attributes2));
        // dd($tran->driver_name[0]);
+       return redirect('transports');   
     }
 
     /**
@@ -169,8 +138,10 @@ $mi->attachIterator(new ArrayIterator($itinarary['driver_tel']));
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Transport $transport)
     {
-        //
+        //dd('delete');
+        $transport->delete();
+        return redirect('transports');
     }
 }
