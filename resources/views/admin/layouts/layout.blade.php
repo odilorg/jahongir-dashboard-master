@@ -8,6 +8,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <title>SSST</title>
 
     <!-- Google Font: Source Sans Pro -->
@@ -47,9 +50,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="index3.html" class="nav-link">Home</a>
                 </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="{{ route('logout') }}" class="nav-link">Logout</a>
+                <li>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="remove-button-styles">Logout</button>
+                    </form>
                 </li>
+
             </ul>
 
             <!-- Right navbar links -->
@@ -186,7 +193,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="{{ url('/') }}" class="brand-link">
                 <img src="{{ asset('assets/admin/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">Odil</span>
+                <span class="brand-text font-weight-light">SSST</span>
             </a>
 
             <!-- Sidebar -->
@@ -194,8 +201,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="{{ asset('storage/' . auth()->user()->profile_image) }}" width="50px" height="50px" class="img-circle elevation-2"
-                            alt="User Image">
+                        <img src="{{ asset('storage/' . auth()->user()->profile_image) }}" width="50px" height="50px"
+                            class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
                         <a href="#" class="d-block">{{ auth()->user()->name }}</a>
@@ -221,18 +228,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                       @can('admin')
-                       <li class="nav-item">
-                        <a href="{{ route('users.index') }}"
-                            class="nav-link {{ (request()->is('users*')) ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-users"></i>
-                            <p>
-                                Users
-                            </p>
-                        </a>
-                    </li>
-                       @endcan
-                       
+                        @can('admin')
+                        <li class="nav-item">
+                            <a href="{{ route('users.index') }}"
+                                class="nav-link {{ (request()->is('users*')) ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>
+                                    Users
+                                </p>
+                            </a>
+                        </li>
+                        @endcan
+
                         <li class="nav-item">
                             <a href="{{ route('tourgroups.index'); }}"
                                 class="nav-link {{ (request()->is('tourgroups*')) ? 'active' : '' }}">
