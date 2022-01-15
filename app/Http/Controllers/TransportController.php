@@ -21,7 +21,6 @@ class TransportController extends Controller
     {
        //$transports = Transport::all();
         $transports = Tourgroup::join('transports', 'transports.tourgroup_id', '=', 'tourgroups.id')
-              		->join('itinararies', 'itinararies.transport_id', '=', 'transports.id')
                     ->where('user_id', '=', auth()->user()->id)
               		->get(['transports.transport_type',
                             'tourgroups.tourgroup_name',
@@ -61,23 +60,19 @@ class TransportController extends Controller
      */
     public function store(Transport $transport, Request $request)
     {
-        $attributes =  request()->validate([
-            'transport_type' => ['max:255'],
-             'auto_type' => ['max:255'],
-             'extra_info' => ['max:255'],
-            'train_name' => ['max:255'],
-            'train_ticket_class' => ['max:255'],
-            'air_ticket_class'=> ['max:255'],
-            'car_make'=> ['max:255'],
+    //     $attributes =  request()->validate([
+           
+    //          'extra_info' => ['max:255'],
+           
 
-        ]);
-       // dd($attributes);
+    //     ]);
+    //    // dd($attributes);
        
-       $attributes['tourgroup_id'] =$request->get('tour_id');
-        $tr = (Transport::create($attributes));
+     
+        // $tr = (Transport::create($attributes));
         
         
-        $attributes2 =  request()->validate([
+        $attributes =  request()->validate([
             'pickup_or_dropoff_or_marshrut' => ['required'],
              'pickup_or_dropoff_date_time' => ['required'],
              'pickup_or_dropoff_from' => ['required'],
@@ -85,17 +80,23 @@ class TransportController extends Controller
              'driver_name' => ['max:255'],
              'driver_tel' => ['max:255'],
              'extra_info' => ['max:255'],
+             'train_name' => ['max:255'],
+             'train_ticket_class' => ['max:255'],
+             'air_ticket_class'=> ['max:255'],
+             'car_make'=> ['max:255'],
+             'transport_type' => ['max:255'],
+             'auto_type' => ['max:255'],
             
         ]);
        
        
 
     //    dd($itin);
-    $attributes2['transport_id'] =$tr->id;
+    $attributes['tourgroup_id'] =$request->get('tour_id');
    // dd($transport);
-    (Itinarary::create($attributes2));
+    (Transport::create($attributes));
        // dd($tran->driver_name[0]);
-       return redirect('transports');   
+       return redirect('transports/create');   
     }
 
     /**

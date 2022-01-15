@@ -35,6 +35,15 @@
                                 @endforeach
                             </select>
                         </div>
+                        
+                    </div>
+                </div>  
+                <div class="card card-success bs-form-wrappe ">
+                    <!--start here -->
+                    <div class="card-header ">
+                        <h3 class="card-title">Itinarary</h3>
+                    </div>
+                    <div class="card-body">
                         <div class="form-group">
                             <label for="exampleSelectRounded0">Choose Transport type</label>
                             <select class="custom-select rounded-0" name="transport_type" id="train">
@@ -94,21 +103,13 @@
                             </select>
                         </div>
                         <div class="form-group" id="car_extra_features">
-                            <label for="exampleInputEmail1">Extra Info</label>
-                            <input type="text" value="{{ old('extra_info') }}" name="extra_info" class="form-control @error('extra_info')
-                                      {{ 'is-invalid' }} @enderror" id="exampleInputEmail1" placeholder="Extra Info">
-                            @error('extra_info')
+                            <label for="exampleInputEmail1">Extra Info Transport</label>
+                            <input type="text" value="{{ old('extra_info_transport') }}" name="extra_info_transport" class="form-control @error('extra_info_transport')
+                                      {{ 'is-invalid' }} @enderror" id="exampleInputEmail1" placeholder="Extra Info Transport">
+                            @error('extra_info_transport')
                             <p class="text-danger">{{ $message }}</p>
                             @enderror
                         </div>
-                    </div>
-                </div>
-                <div class="card card-success bs-form-wrappe ">
-                    <!--start here -->
-                    <div class="card-header ">
-                        <h3 class="card-title">Itinarary</h3>
-                    </div>
-                    <div class="card-body">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
@@ -177,7 +178,6 @@
                         </div>
                     </div> <!-- /.card-body -->
                 </div>
-                <button type="button" class="btn btn-block btn-success bs-add-button">Add itinarary</button>
                 <button type="submit" class="btn btn-block btn-primary">Submit</button>
             </form> <!-- /.card-body -->
         </div>
