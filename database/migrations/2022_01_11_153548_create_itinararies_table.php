@@ -22,11 +22,11 @@ class CreateItinarariesTable extends Migration
             $table->foreign('transport_id')->references('id')->on('transports')->cascadeOnDelete();
             $table->json('pickup_or_dropoff_from');
             $table->json('pickup_or_dropoff_to');
-            $table->json('driver_name');
-            $table->json('driver_tel');
-            $table->string('train_class')->nullable();
-            $table->string('train_name')->nullable();
-            $table->string('plane_class')->nullable();
+            $table->json('driver_name')->nullable();
+            $table->json('driver_tel')->nullable();
+             $table->string('extra_info')->nullable();
+            // $table->string('train_name')->nullable();
+            // $table->string('plane_class')->nullable();
 
         });
     }

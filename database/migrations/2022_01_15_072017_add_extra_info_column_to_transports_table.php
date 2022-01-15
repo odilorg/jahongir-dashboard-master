@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddAutoTypeToTransportsTable extends Migration
+class AddExtraInfoColumnToTransportsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddAutoTypeToTransportsTable extends Migration
     public function up()
     {
         Schema::table('transports', function (Blueprint $table) {
-            $table->string('auto_type')->nullable();
+            $table->string('extra_info')->nullable();
         });
     }
 
@@ -26,7 +26,7 @@ class AddAutoTypeToTransportsTable extends Migration
     public function down()
     {
         Schema::table('transports', function (Blueprint $table) {
-            Schema::dropIfExists('auto_type');
+            Schema::dropIfExists('extra_info');
         });
     }
 }

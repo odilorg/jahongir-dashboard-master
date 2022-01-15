@@ -17,11 +17,11 @@ use App\Http\Controllers\HotelreservationController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::middleware('guest')->group(function () {
+
     Route::get('/', [RegisterController::class, 'loginForm'])->name('loginForm');
 Route::post('/', [RegisterController::class, 'login'])->name('login');
 
-});
+
 Route::post('/logout', [RegisterController::class, 'logout'])->name('logout');
 
 

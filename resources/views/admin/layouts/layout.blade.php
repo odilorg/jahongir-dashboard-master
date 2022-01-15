@@ -335,10 +335,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <footer class="main-footer">
             <!-- To the right -->
             <div class="float-right d-none d-sm-inline">
-                Anything you want
+                SSST
             </div>
             <!-- Default to the left -->
-            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
+            <strong>Copyright &copy; 2014-2021 <a href="#"></a>.</strong> All rights
             reserved.
         </footer>
     </div>
@@ -521,7 +521,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <script type="text/javascript">
         jQuery(document).ready(function () {
-            var maxLimit = 5;
+            var maxLimit = 15;
             var appendHTML =
                 '<div class="card card-success "> <!--start here --> <div class="card-header "> <h3 class="card-title">Itinarary</h3> </div> <div class="card-body"> <div class="form-group"> <label for="exampleSelectRounded0">Choose Transport type</label> <select class="custom-select rounded-0" name="pickup_or_dropoff_or_marshrut[]" id="exampleSelectRounded0"> <option value="Pickup">Pickup</option> <option value="Dropoff">Dropoff</option> <option value="Marshrut">Marshrut</option> </select> </div> <div class="form-group "> <label>Date and time:</label> <div class="input-group date" > <input type="datetime-local" name="pickup_or_dropoff_date_time[]"> </div> </div> <div class="row"> <div class="col-sm-6"> <!-- text input --> <div class="form-group"> <label>From</label> <input type="text" class="form-control" name="pickup_or_dropoff_from[]" placeholder="From"> </div> </div> <div class="col-sm-6"> <div class="form-group"> <label>To</label> <input type="text" class="form-control" name="pickup_or_dropoff_to[]" placeholder="TO"> </div> </div> </div> <div class="row"> <div class="col-sm-6"> <!-- text input --> <div class="form-group"> <label>Deiver Name</label> <input type="text" class="form-control" name="driver_name[]" placeholder="Driver Name"> </div> </div> <div class="col-sm-6"> <div class="form-group"> <label>Driver Tel</label> <input type="text" class="form-control" name="driver_tel[]" placeholder="Driver Tel"> </div> </div> </div> </div> <!-- /.card-body --> </div>';
             //var appendHTML = '<div class="input-group control-group input-wrapper mt-2"><input type="text" name="name[]" class="form-control" placeholder="Enter value here"><div class="input-group-btn"><button class="btn btn-danger bs-remove-button" type="button"><i class="fa fa-minus"></i> Remove</button></div></div>'; 
@@ -540,6 +540,46 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         });
 
+   
+        $("#train").change(function () {
+            if ($(this).val() == "Train") {
+                $('#trainFieldDiv').show();
+                $('#auto').hide();
+                $('#air').hide();
+                
+            } else {
+                $('#trainFieldDiv').hide();
+               
+            }
+        });
+        $("#train").trigger("change");
+
+        $("#train").change(function () {
+            if ($(this).val() == "Auto") {
+                $('#auto').show();
+                $('#trainFieldDiv').hide();
+                $('#air').hide();
+                
+            } else {
+                $('#auto').hide();
+               
+            }
+        });
+        $("#train").trigger("change");
+        $("#train").change(function () {
+            if ($(this).val() == "Air") {
+                $('#auto').hide();
+                $('#trainFieldDiv').hide();
+                $('#air').show();
+                
+            } else {
+                $('#air').hide();
+               
+            }
+        });
+        $("#train").trigger("change");
+        
+    
     </script>
 
 </body>

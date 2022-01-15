@@ -18,9 +18,9 @@ class CreateTransportsTable extends Migration
             $table->timestamps();
             $table->foreignId('tourgroup_id')->nullable();
             $table->string('car_make')->nullable();
-            $table->string('car_extra_features')->nullable();
+           // $table->string('car_extra_features')->nullable();
             $table->string('train_type')->nullable();
-            $table->string('transport_type');
+            $table->string('transport_type')->nullable();
         });
     }
 

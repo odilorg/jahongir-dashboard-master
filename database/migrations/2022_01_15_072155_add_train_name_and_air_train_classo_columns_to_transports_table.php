@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddAutoTypeToTransportsTable extends Migration
+class AddTrainNameAndAirTrainClassoColumnsToTransportsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,9 @@ class AddAutoTypeToTransportsTable extends Migration
     public function up()
     {
         Schema::table('transports', function (Blueprint $table) {
-            $table->string('auto_type')->nullable();
+            $table->string('train_name')->nullable();
+            $table->string('train_ticket_class')->nullable();
+            $table->string('air_ticket_class')->nullable();
         });
     }
 
@@ -26,7 +28,7 @@ class AddAutoTypeToTransportsTable extends Migration
     public function down()
     {
         Schema::table('transports', function (Blueprint $table) {
-            Schema::dropIfExists('auto_type');
+            //
         });
     }
 }
