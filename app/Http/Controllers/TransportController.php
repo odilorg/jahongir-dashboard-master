@@ -57,7 +57,7 @@ class TransportController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Transport $transport, Request $request)
     {
         $attributes =  request()->validate([
             'transport_type' => ['required'],
@@ -67,7 +67,9 @@ class TransportController extends Controller
         ]);
        // dd($attributes);
        $attributes['tourgroup_id'] =$request->get('tour_id');
-        (Transport::create($attributes));
+        $tr = (Transport::create($attributes));
+        
+        
         $attributes2 =  request()->validate([
             'pickup_or_dropoff_or_marshrut' => ['required'],
              'pickup_or_dropoff_date_time' => ['required'],
@@ -81,7 +83,8 @@ class TransportController extends Controller
        
 
     //    dd($itin);
-    
+    $attributes2['transport_id'] =$tr->id;
+   // dd($transport);
     (Itinarary::create($attributes2));
        // dd($tran->driver_name[0]);
        return redirect('transports');   
