@@ -20,12 +20,14 @@ class TransportController extends Controller
     public function index()
     {
        //$transports = Transport::all();
-        $transports = Transport::join('tourgroups', 'tourgroups.id', '=', 'transports.tourgroup_id')
-              		->join('itinararies', 'itinararies.id', '=', 'transports.id')
+        $transports = Tourgroup::join('transports', 'transports.tourgroup_id', '=', 'tourgroups.id')
+              		->join('itinararies', 'itinararies.transport_id', '=', 'transports.id')
                     ->where('user_id', '=', auth()->user()->id)
               		->get(['transports.transport_type',
-                            'tourgroups.tourgroup_name', 
+                            'tourgroups.tourgroup_name',
+                            'transports.extra_info', 
                             'itinararies.driver_name',
+                            'itinararies.id',
                             'itinararies.driver_tel',
                             'tourgroups.tourgroup_ci',
                             'tourgroups.tourgroup_co',
@@ -36,7 +38,7 @@ class TransportController extends Controller
                       
        
         //dd($itinararies);
-    //dd($transports);
+   // dd($transports);
         return view('transports.index', compact('transports'));
     }
 
@@ -60,12 +62,17 @@ class TransportController extends Controller
     public function store(Transport $transport, Request $request)
     {
         $attributes =  request()->validate([
-            'transport_type' => ['required'],
-             'auto_type' => ['required'],
-             'car_extra_features' => ['required'],
-            
+            'transport_type' => ['max:255'],
+             'auto_type' => ['max:255'],
+             'extra_info' => ['max:255'],
+            'train_name' => ['max:255'],
+            'train_ticket_class' => ['max:255'],
+            'air_ticket_class'=> ['max:255'],
+            'car_make'=> ['max:255'],
+
         ]);
        // dd($attributes);
+       
        $attributes['tourgroup_id'] =$request->get('tour_id');
         $tr = (Transport::create($attributes));
         
@@ -75,8 +82,9 @@ class TransportController extends Controller
              'pickup_or_dropoff_date_time' => ['required'],
              'pickup_or_dropoff_from' => ['required'],
              'pickup_or_dropoff_to' => ['required'],
-             'driver_name' => ['required'],
-             'driver_tel' => ['required'],
+             'driver_name' => ['max:255'],
+             'driver_tel' => ['max:255'],
+             'extra_info' => ['max:255'],
             
         ]);
        
@@ -107,7 +115,7 @@ $mi->attachIterator(new ArrayIterator($itinarary['pickup_or_dropoff_to']));
 $mi->attachIterator(new ArrayIterator($itinarary['driver_name']));
 $mi->attachIterator(new ArrayIterator($itinarary['driver_tel']));
 
-       
+       //dd($mi);
       //  $itinarary = array_merge($itinarary['driver_name'],$itinarary['pickup_or_dropoff_or_marshrut']);
     //  dd($mi);
        return view('transports.show', compact('mi'));
@@ -148,4 +156,14 @@ $mi->attachIterator(new ArrayIterator($itinarary['driver_tel']));
         $transport->delete();
         return redirect('transports');
     }
+
+    public function auto()
+    {
+       
+    }
+
+
+
+
+
 }

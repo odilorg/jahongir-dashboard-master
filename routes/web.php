@@ -18,7 +18,7 @@ use App\Http\Controllers\HotelreservationController;
 |
 */
 
-    Route::get('/', [RegisterController::class, 'loginForm'])->name('loginForm');
+Route::get('/', [RegisterController::class, 'loginForm'])->name('loginForm');
 Route::post('/', [RegisterController::class, 'login'])->name('login');
 
 
@@ -32,6 +32,9 @@ Route::middleware(['auth', 'revalidate'])->group(function () {
         'tourgroups' => TourgroupController::class,
     
     ]);
+    Route::post('/transports/auto', [TransportController::class, 'auto'])->name('auto');
+    Route::post('/transports/air', [TransportController::class, 'air'])->name('air');
+    Route::post('/transports/train', [TransportController::class, 'train'])->name('train');    
     
 });
 

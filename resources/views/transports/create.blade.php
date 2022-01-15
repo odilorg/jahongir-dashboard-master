@@ -19,13 +19,10 @@
         </div><!-- /.container-fluid -->
     </div>
     <section class="content">
-
-
-
         <div class="container-fluid ">
             <form action="{{ route('transports.store') }}" method="POST">
                 @csrf
-                <div class="card card-primary bs-form-wrappe">
+                <div class="card card-primary ">
                     <div class="card-header">
                         <h3 class="card-title">Transport Detals</h3>
                     </div> <!-- /.card-body -->
@@ -82,6 +79,10 @@
                                     <label class="form-check-label">Bus</label>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label>Car Make</label>
+                                <input type="text" class="form-control" name="car_make" placeholder="Car make">
+                            </div>
                         </div>
                         <div class="form-group" id="air">
                             <label for="exampleSelectRounded0">Choose Air Ticket Class</label>
@@ -94,18 +95,15 @@
                         </div>
                         <div class="form-group" id="car_extra_features">
                             <label for="exampleInputEmail1">Extra Info</label>
-                            <input type="text" value="{{ old('car_extra_features') }}" name="car_extra_features" class="form-control @error('car_extra_features')
-                                      {{ 'is-invalid' }} @enderror" id="exampleInputEmail1" placeholder="Car Extra">
-                            @error('car_extra_features')
+                            <input type="text" value="{{ old('extra_info') }}" name="extra_info" class="form-control @error('extra_info')
+                                      {{ 'is-invalid' }} @enderror" id="exampleInputEmail1" placeholder="Extra Info">
+                            @error('extra_info')
                             <p class="text-danger">{{ $message }}</p>
                             @enderror
                         </div>
-
-                        
-
                     </div>
                 </div>
-                <div class="card card-success ">
+                <div class="card card-success bs-form-wrappe ">
                     <!--start here -->
                     <div class="card-header ">
                         <h3 class="card-title">Itinarary</h3>
@@ -124,11 +122,9 @@
                                 </div>
                             </div>
                             <div class="col-sm-6">
-                                <div class="form-group ">
-                                    <label>Date and time:</label>
-                                    <div class="input-group date">
-                                        <input type="datetime-local" name="pickup_or_dropoff_date_time[]">
-                                    </div>
+                                <div class="form-group">
+                                    <label>Extra Info</label>
+                                    <input type="text" class="form-control" name="extra_info" placeholder="Extra info">
                                 </div>
                             </div>
                         </div>
@@ -153,7 +149,7 @@
                             <div class="col-sm-6">
                                 <!-- text input -->
                                 <div class="form-group">
-                                    <label>Deiver Name</label>
+                                    <label>Driver Name</label>
                                     <input type="text" class="form-control" name="driver_name[]"
                                         placeholder="Driver Name">
                                 </div>
@@ -166,17 +162,23 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label>Extra Info</label>
-                            <input type="text" class="form-control" name="extra_info" placeholder="Extra info">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Date and time:</label>
+                                      <div class="input-group date" id="reservationdatetime" data-target-input="nearest">
+                                          <input type="text" name="pickup_or_dropoff_date_time[]" class="form-control datetimepicker-input" data-target="#reservationdatetime">
+                                          <div class="input-group-append" data-target="#reservationdatetime" data-toggle="datetimepicker">
+                                              <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                          </div>
+                                      </div>
+                                  </div>
+                            </div>
                         </div>
                     </div> <!-- /.card-body -->
                 </div>
                 <button type="button" class="btn btn-block btn-success bs-add-button">Add itinarary</button>
-
-
                 <button type="submit" class="btn btn-block btn-primary">Submit</button>
-
             </form> <!-- /.card-body -->
         </div>
 </div><!-- /.container-fluid -->

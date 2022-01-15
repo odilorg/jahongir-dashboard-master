@@ -18,4 +18,6 @@ class Transport extends Model
     }
     protected $guarded = [];
 
+   
+
 }
