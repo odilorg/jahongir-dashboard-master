@@ -91,19 +91,8 @@ class TransportController extends Controller
      */
     public function show($id)
     {
-        $itinarary = Itinarary::findOrFail($id);
-        $mi = new MultipleIterator();
-$mi->attachIterator(new ArrayIterator($itinarary['pickup_or_dropoff_or_marshrut']));
-$mi->attachIterator(new ArrayIterator($itinarary['pickup_or_dropoff_date_time']));
-$mi->attachIterator(new ArrayIterator($itinarary['pickup_or_dropoff_from']));
-$mi->attachIterator(new ArrayIterator($itinarary['pickup_or_dropoff_to']));
-$mi->attachIterator(new ArrayIterator($itinarary['driver_name']));
-$mi->attachIterator(new ArrayIterator($itinarary['driver_tel']));
+       
 
-       //dd($mi);
-      //  $itinarary = array_merge($itinarary['driver_name'],$itinarary['pickup_or_dropoff_or_marshrut']);
-    //  dd($mi);
-       return view('transports.show', compact('mi'));
     }
 
     /**
