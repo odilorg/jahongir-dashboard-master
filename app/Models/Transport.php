@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Transport extends Model
 {
@@ -18,6 +19,10 @@ class Transport extends Model
     }
     protected $guarded = [];
 
+    public function setPickupOrDropoffDateTimeAttribute($value){
+       $this->attributes['pickup_or_dropoff_date_time'] = Carbon::parse($value)->format('Y-m-d\TH:i');
+   }
+   
    
 
 }

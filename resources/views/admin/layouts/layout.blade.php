@@ -232,7 +232,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <li class="nav-item">
                             <a href="{{ route('users.index') }}"
                                 class="nav-link {{ (request()->is('users*')) ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-users"></i>
+                                <i class="nav-icon fas fa-user-circle"></i>
                                 <p>
                                     Users
                                 </p>
@@ -243,7 +243,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <li class="nav-item">
                             <a href="{{ route('tourgroups.index'); }}"
                                 class="nav-link {{ (request()->is('tourgroups*')) ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-money-check-alt"></i>
+                                <i class="nav-icon fas fa-users"></i>
                                 <p>
                                     Tour Groups
                                 </p>
@@ -259,45 +259,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </p>
                             </a>
                         </li>
-
-                        <li class="nav-item ">
-                            <a href="{{ route('transports.index'); }}" class="nav-link ">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <li class="nav-item">
+                            <a href="{{ route('transports.index'); }}"
+                                class="nav-link {{ (request()->is('transports*')) ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-bus"></i>
                                 <p>
-                                    Transport
-                                    <i class="right fas fa-angle-left"></i>
+                                    Transports
+
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview" style="display: block;">
-                                <li class="nav-item">
-                                    <a href="{{ route('transports.index'); }}"
-                                        class="nav-link {{ (request()->is('transports*')) ? 'active' : '' }}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>All</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#"
-                                        class="nav-link {{ (request()->is('transports/auto*')) ? 'active' : '' }}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Auto</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Air</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Train</p>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
-
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

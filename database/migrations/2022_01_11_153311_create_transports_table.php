@@ -9,32 +9,29 @@ class CreateTransportsTable extends Migration
     /**
      * Run the migrations.
      *
-     * @return void
+     * @return void         
      */
     public function up()
     {
         Schema::create('transports', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('tourgroup_id')->nullable();
-            $table->json('pickup_or_dropoff_or_marshrut');
-            $table->json('pickup_or_dropoff_date_time');
-           // $table->foreign('transport_id')->references('id')->on('transports')->cascadeOnDelete();
-            $table->json('pickup_or_dropoff_from');
-            $table->json('pickup_or_dropoff_to');
-            $table->json('driver_name')->nullable();
-            $table->json('driver_tel')->nullable();
-             $table->json('extra_info')->nullable();
-             $table->json('extra_info_transport')->nullable();
-             $table->json('car_make')->nullable();
-             $table->json('train_type')->nullable();
-            $table->json('transport_type')->nullable();
-            $table->json('air_ticket_class')->nullable();
-            $table->json('train_ticket_class')->nullable();
-           
-           
-           // $table->string('car_extra_features')->nullable();
-            
+            $table->foreignId('tourgroup_id');
+            $table->string('transport_type');
+            $table->string('auto_type')->nullable();
+            $table->string('car_make')->nullable();
+            $table->string('extra_info_transport')->nullable();
+            $table->string('pickup_or_dropoff_or_marshrut');
+            $table->string('extra_info')->nullable();
+            $table->string('pickup_or_dropoff_from');
+            $table->string('pickup_or_dropoff_to');
+            $table->string('driver_name')->nullable();
+            $table->string('driver_tel')->nullable();
+            $table->dateTime('pickup_or_dropoff_date_time');
+            $table->string('train_name')->nullable();
+            $table->string('train_ticket_class')->nullable();
+            $table->string('air_ticket_class')->nullable();
+            $table->string('transport_status');
         });
     }
 

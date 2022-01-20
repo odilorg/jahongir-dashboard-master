@@ -23,21 +23,14 @@ class TransportController extends Controller
         $transports = Tourgroup::join('transports', 'transports.tourgroup_id', '=', 'tourgroups.id')
                     ->where('user_id', '=', auth()->user()->id)
               		->get(['transports.transport_type',
+                            'transports.pickup_or_dropoff_date_time',
                             'tourgroups.tourgroup_name',
                             'transports.extra_info', 
-                            'itinararies.driver_name',
-                            'itinararies.id',
-                            'itinararies.driver_tel',
+                            'transports.transport_status', 
                             'tourgroups.tourgroup_ci',
                             'tourgroups.tourgroup_co',
-                            'transports.car_make',
                             'transports.id',
-                             
-                        ]);
-                      
-       
-        //dd($itinararies);
-   // dd($transports);
+                              ]);
         return view('transports.index', compact('transports'));
     }
 
@@ -49,6 +42,7 @@ class TransportController extends Controller
     public function create()
     {
         $tourgroups = Tourgroup::with('user')->whereUserId(Auth::user()->id)->get();
+        
         return view('transports.create', compact('tourgroups'));
     }
 
@@ -60,33 +54,22 @@ class TransportController extends Controller
      */
     public function store(Transport $transport, Request $request)
     {
-    //     $attributes =  request()->validate([
-           
-    //          'extra_info' => ['max:255'],
-           
-
-    //     ]);
-    //    // dd($attributes);
-       
-     
-        // $tr = (Transport::create($attributes));
-        
-        
         $attributes =  request()->validate([
+            'transport_status' => ['required'],
+            'transport_type' => ['required'],
+            'auto_type' => ['max:255'],
+            'car_make'=> ['max:255'],
+            'train_name' => ['max:255'],
+            'train_ticket_class' => ['max:255'],
+            'air_ticket_class'=> ['max:255'],
+            'extra_info_transport' => ['max:255'],          
             'pickup_or_dropoff_or_marshrut' => ['required'],
-             'pickup_or_dropoff_date_time' => ['required'],
-             'pickup_or_dropoff_from' => ['required'],
-             'pickup_or_dropoff_to' => ['required'],
-             'driver_name' => ['max:255'],
-             'driver_tel' => ['max:255'],
-             'extra_info' => ['max:255'],
-             'train_name' => ['max:255'],
-             'train_ticket_class' => ['max:255'],
-             'air_ticket_class'=> ['max:255'],
-             'car_make'=> ['max:255'],
-             'transport_type' => ['max:255'],
-             'auto_type' => ['max:255'],
-            
+            'extra_info' => ['max:255'],          
+            'pickup_or_dropoff_from' => ['required', 'max:255'],
+            'pickup_or_dropoff_to' => ['required', 'max:255'],
+            'driver_name' => ['max:255'],
+            'driver_tel' => ['max:255'],
+            'pickup_or_dropoff_date_time' => ['required'],
         ]);
        
        
@@ -95,8 +78,9 @@ class TransportController extends Controller
     $attributes['tourgroup_id'] =$request->get('tour_id');
    // dd($transport);
     (Transport::create($attributes));
-       // dd($tran->driver_name[0]);
-       return redirect('transports/create');   
+    session()->flash('success', 'Transport reservation has been created');
+    session()->flash('type', 'Trasport Reservation');
+       return redirect('transports');   
     }
 
     /**
@@ -128,9 +112,12 @@ $mi->attachIterator(new ArrayIterator($itinarary['driver_tel']));
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Transport $transport)
     {
-       
+        $tourgroup_name = $transport->tourgroup->tourgroup_name;
+        //$transport = $hotelreservation;
+         $transports = Transport::with('user')->whereUserId(Auth::user()->id)->get();
+         return view('transports.edit', compact('transport', 'transports', 'tourgroup_name'));
     }
 
     /**

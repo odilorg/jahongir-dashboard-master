@@ -94,37 +94,11 @@ class HotelreservationController extends Controller
      */
     public function edit(Hotelreservation $hotelreservation)
     {
-        //$hotelreservation = Hotelreservation::find($id);
-        // $hotelreservation->checkin_date = date('d/m/Y', strtotime($hotelreservation->checkin_date));
-        // $hotelreservation->checkout_date = date('d/m/Y', strtotime($hotelreservation->checkout_date));
-        
-      // dd($hotelreservation->checkout_date);
-
-        //dd(Tourgroup::all());
+       
        $tourgroup_name = $hotelreservation->tourgroup->tourgroup_name;
-      // dd($tourgroup_name);
-        $hotelres = $hotelreservation;
+       $hotelres = $hotelreservation;
         $tourgroups = Tourgroup::with('user')->whereUserId(Auth::user()->id)->get();
-        // $tourgroups = DB::table('hotelreservations')
-        // ->join('tourgroups', 'tourgroups.id', '=', 'hotelreservations.tourgroup_id')
-        // ->where('tourgroups.user_id', '=', Auth::user()->id )
-        // ->select('tourgroups.tourgroup_name')
-        // ->distinct()
-        // ->get(); 
-// /dd($tourgroups);
-    //    $hotelreservations = $hotelreservation->with(['tourgroup'])
-    //   ->whereHas('tourgroup', function($q) use($value) {
-    //   // Query the name field in status table
-    //   $q->where('user_id', '=', $value); // '=' is optional
-    //    })
-    //     ->get();
-    //$hotelreservations = Hotelreservation::find(0002)->get();
-       //dd($hotelreservation);
-
-
         return view('hotelreservations.edit', compact('hotelres', 'tourgroups', 'tourgroup_name'));
-            
-            
         
     }
 

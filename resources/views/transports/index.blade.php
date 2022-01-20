@@ -58,6 +58,8 @@
                     <th>Extra Info</th>
                     <th>CI Date</th>
                     <th>CO Date</th>
+                    <th>Date Time</th>
+                    <th>Status</th>
                     <th>Actions</th>
                   </tr>
                 </thead>
@@ -69,12 +71,14 @@
                     <td>{{ $transport->extra_info }}</td>
                     <td>{{ $transport->tourgroup_ci }}</td>
                     <td>{{ $transport->tourgroup_co }}</td>
+                    <td>{{ \Carbon\Carbon::parse($transport->pickup_or_dropoff_date_time)->format('d/m/Y h:i A') }}</td>
+                    <td>{{ $transport->transport_status }}</td>
                     <td><a class="btn btn-primary btn-sm" href="transports/{{ $transport->id }}">
                       <i class="fas fa-folder">
                       </i>
                       View
                   </a>
-                  <a class="btn btn-info btn-sm" href="#">
+                  <a class="btn btn-info btn-sm" href="transports/{{ $transport->id }}/edit">
                       <i class="fas fa-pencil-alt">
                       </i>
                       Edit

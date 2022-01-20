@@ -19,118 +19,196 @@
         </div><!-- /.container-fluid -->
     </div>
     <section class="content">
-      
-
-     
         <div class="container-fluid ">
-          <form action="{{ route('transports.store') }}" method="POST">
-            @csrf
-            <div class="card card-primary bs-form-wrappe">
-                <div class="card-header">
-                    <h3 class="card-title">Transport Detals</h3>
-                </div> <!-- /.card-body -->
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="exampleSelectRounded0">Choose Tour Group</label>
-                        <select class="custom-select rounded-0" name="tour_id" id="exampleSelectRounded0">
-                          @foreach ($tourgroups as $tourgroup )
-                          <option  value="{{ $tourgroup->id }}">{{ $tourgroup->tourgroup_name }}</option>  
-                          @endforeach
-                          
-                          
-                        </select>
-                      </div>
-                    <div class="form-group">
-                        <label for="exampleSelectRounded0">Choose Transport type</label>
-                        <select class="custom-select rounded-0" name="transport_type" id="exampleSelectRounded0">
-                            <option value="Auto">Auto</option>
-                            <option value="Air">Air</option>
-                            <option value="Train">Train</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input class="form-check-input" value="Sedan" type="radio" name="auto_type">
-                            <label class="form-check-label">Sedan</label>
+            <form action="{{ route('transports.store') }}" method="POST">
+                @csrf
+                <div class="card card-primary ">
+                    <div class="card-header">
+                        <h3 class="card-title">Transport Detals</h3>
+                    </div> <!-- /.card-body -->
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="exampleSelectRounded0">Choose Tour Group</label>
+                            <select class="custom-select rounded-0" name="tourgroup_id" id="exampleSelectRounded0">
+                                @foreach ($tourgroups as $tourgroup )
+                                <option value="{{ $tourgroup->id }}">{{ $tourgroup->tourgroup_name }}</option>
+                                @endforeach
+                            </select>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" value="Mini Bus" type="radio" name="auto_type">
-                            <label class="form-check-label">Mini Bus</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" value="Bus" type="radio" name="auto_type">
-                            <label class="form-check-label">Bus</label>
+                        <div class="form-group">
+                            <label for="exampleSelectRounded0">Choose Transport Status</label>
+                            <select class="custom-select rounded-0" name="transport_status" id="exampleSelectRounded0">
+                                <option>OK</option>
+                                <option>Pending</option>
+                                <option>Cancelled</option>
+                            </select>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Car extra features</label>
-                        <input type="text" value="{{ old('car_extra_features') }}" name="car_extra_features" class="form-control @error('car_extra_features')
-              {{ 'is-invalid' }} @enderror" id="exampleInputEmail1" placeholder="Car Extra">
-                        @error('car_extra_features')
+                </div>
+                <div class="card card-success bs-form-wrappe ">
+                    <!--start here -->
+                    <div class="card-header ">
+                        <h3 class="card-title">Itinarary</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="exampleSelectRounded0">Choose Transport type</label>
+                            <select class="custom-select rounded-0" name="transport_type" id="train">
+                                <option value="Auto">Auto</option>
+                                <option value="Train">Train</option>
+                                <option value="Air">Air</option>
+                            </select>
+                        </div>
+                        <div id="trainFieldDiv">
+                            <div class="form-group">
+                                <label for="exampleSelectRounded0">Choose Train Name</label>
+                                <select class="custom-select rounded-0" name="train_name" id="trainField">
+                                    <option value="Afrosiab">Afrosiab</option>
+                                    <option value="Shark">Shark</option>
+                                    <option value="Standard">Standard</option>
+                                </select>
+                            </div>
+                            <div class="form-group" id="ticket_classFieldDiv">
+                                <label for="exampleSelectRounded0">Choose Train Ticket Class</label>
+                                <select class="custom-select rounded-0" name="train_ticket_class"
+                                    id="ticket_classField">
+                                    <option value="Econom">Econom</option>
+                                    <option value="Business">Business</option>
+                                    <option value="VIP">VIP</option>
+                                    <option value="Plaskard">Plaskard</option>
+                                    <option value="Kupe">Kupe</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="auto">
+                            <div class="form-group" id="auto_type">
+                                <div class="form-check">
+                                    <input class="form-check-input" value="Sedan" type="radio" name="auto_type">
+                                    <label class="form-check-label">Sedan</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" value="Mini Bus" type="radio" name="auto_type">
+                                    <label class="form-check-label">Mini Bus</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" value="Bus" type="radio" name="auto_type">
+                                    <label class="form-check-label">Bus</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Car Make</label>
+                                <input type="text" class="form-control" name="car_make" placeholder="Car make">
+                            </div>
+                        </div>
+                        <div class="form-group" id="air">
+                            <label for="exampleSelectRounded0">Choose Air Ticket Class</label>
+                            <select class="custom-select rounded-0" name="air_ticket_class" id="ticket_classField">
+                                <option value="Econom">Econom</option>
+                                <option value="Business">Business</option>
+                                <option value="VIP">VIP</option>
+
+                            </select>
+                        </div>
+                        <div class="form-group" id="car_extra_features">
+                            <label for="exampleInputEmail1">Extra Info Transport</label>
+                            <input type="text" value="{{ old('extra_info_transport') }}" name="extra_info_transport"
+                                class="form-control @error('extra_info_transport')
+                                      {{ 'is-invalid' }} @enderror" id="exampleInputEmail1"
+                                placeholder="Extra Info Transport">
+                            @error('extra_info_transport')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="exampleSelectRounded0">Choose Transport type</label>
+                                    <select class="custom-select rounded-0" name="pickup_or_dropoff_or_marshrut"
+                                        id="exampleSelectRounded0">
+                                        <option value="Pickup">Pickup</option>
+                                        <option value="Dropoff">Dropoff</option>
+                                        <option value="Marshrut">Marshrut</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Extra Info</label>
+                                    <input type="text" class="form-control" name="extra_info" placeholder="Extra info">
+                                </div>
+                            </div>
+                            @error('extra_info')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <!-- text input -->
+                                <div class="form-group">
+                                    <label>From</label>
+                                    <input type="text" class="form-control" name="pickup_or_dropoff_from"
+                                        placeholder="From">
+                                </div>
+                                @error('pickup_or_dropoff_from')
+                                <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>To</label>
+                                    <input type="text" class="form-control" name="pickup_or_dropoff_to"
+                                        placeholder="TO">
+                                </div>
+                            </div>
+                            @error('pickup_or_dropoff_to')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <!-- text input -->
+                                <div class="form-group">
+                                    <label>Driver Name</label>
+                                    <input type="text" class="form-control" name="driver_name"
+                                        placeholder="Driver Name">
+                                </div>
+                                @error('driver_name')
+                                <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Driver Tel</label>
+                                    <input type="text" class="form-control" name="driver_tel" placeholder="Driver Tel">
+                                </div>
+                                @error('driver_tel')
+                                <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Date and time:</label>
+                                    <div class="input-group date" id="reservationdatetime" data-target-input="nearest">
+                                        <input type="text" name="pickup_or_dropoff_date_time"
+                                            class="form-control datetimepicker-input"
+                                            data-target="#reservationdatetime">
+                                        <div class="input-group-append" data-target="#reservationdatetime"
+                                            data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @error('pickup_or_dropoff_date_time')
                         <p class="text-danger">{{ $message }}</p>
                         @enderror
-                    </div>
+                    </div> <!-- /.card-body -->
                 </div>
-            </div>
-            <div class="card card-success ">
-                <!--start here -->
-                <div class="card-header ">
-                    <h3 class="card-title">Itinarary</h3>
-                </div>
-                <div class="card-body">
-                  <div class="form-group">
-                    <label for="exampleSelectRounded0">Choose Transport type</label>
-                    <select class="custom-select rounded-0" name="pickup_or_dropoff_or_marshrut[]" id="exampleSelectRounded0">
-                        <option value="Pickup">Pickup</option>
-                        <option value="Dropoff">Dropoff</option>
-                        <option value="Marshrut">Marshrut</option>
-                    </select>
-                </div>
-                    <div class="form-group ">
-                        <label>Date and time:</label>
-                        <div class="input-group date" >
-                            <input type="datetime-local" 
-                                name="pickup_or_dropoff_date_time[]">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <!-- text input -->
-                            <div class="form-group">
-                                <label>From</label>
-                                <input type="text" class="form-control" name="pickup_or_dropoff_from[]" placeholder="From">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>To</label>
-                                <input type="text" class="form-control" name="pickup_or_dropoff_to[]" placeholder="TO">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <!-- text input -->
-                            <div class="form-group">
-                                <label>Deiver Name</label>
-                                <input type="text" class="form-control" name="driver_name[]" placeholder="Driver Name">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>Driver Tel</label>
-                                <input type="text" class="form-control" name="driver_tel[]" placeholder="Driver Tel">
-                            </div>
-                        </div>
-                    </div>
-                </div> <!-- /.card-body -->
-            </div>
-            <button type="button" class="btn btn-block btn-success bs-add-button">Add itinarary</button>
-
-
-            <button  type ="submit" class="btn btn-block btn-primary">Submit</button>
-
-          </form> <!-- /.card-body -->
+                <button type="submit" class="btn btn-block btn-primary">Submit</button>
+            </form> <!-- /.card-body -->
         </div>
 </div><!-- /.container-fluid -->
 </section>

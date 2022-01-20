@@ -87,14 +87,7 @@ class TourgroupController extends Controller
     public function edit($id)
     {
         $tourgroup = Tourgroup::find($id);
-        // $tourgroup->tourgroup_ci = date('d/m/Y', strtotime($tourgroup->tourgroup_ci));
-        // $tourgroup->tourgroup_co = date('d/m/Y', strtotime($tourgroup->tourgroup_co));
-        
-      // dd($hotelreservation->checkout_date);
-
-        //dd(Tourgroup::all());
-       // $tourgroup = Hotelreservation::find($id)->tourgroup->tourgroup_name;
-       // dd($tourgroup);
+      
         return view('tourgroups.edit')->with([
             'tourgroup' =>$tourgroup
             

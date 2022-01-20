@@ -1,0 +1,17 @@
+transports
+- tourgroup_id
+- transport_status
+- transport_type
+- auto_type
+- car_make
+- extra_info_transport
+- pickup_or_dropoff_or_marshrut
+- extra_info
+- pickup_or_dropoff_from
+- pickup_or_dropoff_to
+- driver_name
+- driver_tel
+- pickup_or_dropoff_date_time
+- train_name
+- train_ticket_class
+- air_ticket_class
