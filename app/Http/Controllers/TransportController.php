@@ -27,8 +27,8 @@ class TransportController extends Controller
                             'tourgroups.tourgroup_name',
                             'transports.extra_info', 
                             'transports.transport_status', 
-                            'tourgroups.tourgroup_ci',
-                            'tourgroups.tourgroup_co',
+                            'transports.pickup_or_dropoff_from', 
+                            'transports.pickup_or_dropoff_to',
                             'transports.id',
                               ]);
         return view('transports.index', compact('transports'));
@@ -75,7 +75,7 @@ class TransportController extends Controller
        
 
     //    dd($itin);
-    $attributes['tourgroup_id'] =$request->get('tour_id');
+    $attributes['tourgroup_id'] =$request->get('tourgroup_id');
    // dd($transport);
     (Transport::create($attributes));
     session()->flash('success', 'Transport reservation has been created');
@@ -115,9 +115,9 @@ $mi->attachIterator(new ArrayIterator($itinarary['driver_tel']));
     public function edit(Transport $transport)
     {
         $tourgroup_name = $transport->tourgroup->tourgroup_name;
-        //$transport = $hotelreservation;
-         $transports = Transport::with('user')->whereUserId(Auth::user()->id)->get();
-         return view('transports.edit', compact('transport', 'transports', 'tourgroup_name'));
+        $transports = $transport;
+         $tourgroups = Tourgroup::with('user')->whereUserId(Auth::user()->id)->get();
+         return view('transports.edit', compact('transports', 'tourgroups', 'tourgroup_name'));
     }
 
     /**

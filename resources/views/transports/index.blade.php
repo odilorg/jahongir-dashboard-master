@@ -56,8 +56,8 @@
                     <th>Tour Group</th>
                     <th>Transport type</th>
                     <th>Extra Info</th>
-                    <th>CI Date</th>
-                    <th>CO Date</th>
+                    <th>From</th>
+                    <th>To</th>
                     <th>Date Time</th>
                     <th>Status</th>
                     <th>Actions</th>
@@ -69,8 +69,8 @@
                     <td>{{ $transport->tourgroup_name }}</td>
                     <td>{{ $transport->transport_type }}</td>
                     <td>{{ $transport->extra_info }}</td>
-                    <td>{{ $transport->tourgroup_ci }}</td>
-                    <td>{{ $transport->tourgroup_co }}</td>
+                    <td>{{ $transport->pickup_or_dropoff_from }}</td>
+                    <td>{{ $transport->pickup_or_dropoff_to }}</td>
                     <td>{{ \Carbon\Carbon::parse($transport->pickup_or_dropoff_date_time)->format('d/m/Y h:i A') }}</td>
                     <td>{{ $transport->transport_status }}</td>
                     <td><a class="btn btn-primary btn-sm" href="transports/{{ $transport->id }}">

@@ -30,6 +30,7 @@
                         <div class="form-group">
                             <label for="exampleSelectRounded0">Choose Tour Group</label>
                             <select class="custom-select rounded-0" name="tourgroup_id" id="exampleSelectRounded0">
+                                <option value="">Choose Tourgroup..</option>
                                 @foreach ($tourgroups as $tourgroup )
                                 <option value="{{ $tourgroup->id }}">{{ $tourgroup->tourgroup_name }}</option>
                                 @endforeach
@@ -38,6 +39,7 @@
                         <div class="form-group">
                             <label for="exampleSelectRounded0">Choose Transport Status</label>
                             <select class="custom-select rounded-0" name="transport_status" id="exampleSelectRounded0">
+                                <option value="">Choose Status..</option>
                                 <option>OK</option>
                                 <option>Pending</option>
                                 <option>Cancelled</option>
@@ -54,6 +56,7 @@
                         <div class="form-group">
                             <label for="exampleSelectRounded0">Choose Transport type</label>
                             <select class="custom-select rounded-0" name="transport_type" id="train">
+                                <option value="">Choose Transport Type..</option>
                                 <option value="Auto">Auto</option>
                                 <option value="Train">Train</option>
                                 <option value="Air">Air</option>
@@ -63,6 +66,7 @@
                             <div class="form-group">
                                 <label for="exampleSelectRounded0">Choose Train Name</label>
                                 <select class="custom-select rounded-0" name="train_name" id="trainField">
+                                    <option value="">Choose Train Name..</option>
                                     <option value="Afrosiab">Afrosiab</option>
                                     <option value="Shark">Shark</option>
                                     <option value="Standard">Standard</option>
@@ -72,6 +76,7 @@
                                 <label for="exampleSelectRounded0">Choose Train Ticket Class</label>
                                 <select class="custom-select rounded-0" name="train_ticket_class"
                                     id="ticket_classField">
+                                    <option value="">Choose Train Ticket Class.</option>
                                     <option value="Econom">Econom</option>
                                     <option value="Business">Business</option>
                                     <option value="VIP">VIP</option>
@@ -103,6 +108,7 @@
                         <div class="form-group" id="air">
                             <label for="exampleSelectRounded0">Choose Air Ticket Class</label>
                             <select class="custom-select rounded-0" name="air_ticket_class" id="ticket_classField">
+                                <option value="">Choose Air Ticket Class..</option>
                                 <option value="Econom">Econom</option>
                                 <option value="Business">Business</option>
                                 <option value="VIP">VIP</option>
@@ -120,9 +126,10 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="exampleSelectRounded0">Choose Transport type</label>
+                                    <label for="exampleSelectRounded0">Choose Transport Goal</label>
                                     <select class="custom-select rounded-0" name="pickup_or_dropoff_or_marshrut"
                                         id="exampleSelectRounded0">
+                                        <option value="">Choose Marshrut..</option>
                                         <option value="Pickup">Pickup</option>
                                         <option value="Dropoff">Dropoff</option>
                                         <option value="Marshrut">Marshrut</option>
