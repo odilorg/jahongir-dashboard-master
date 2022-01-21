@@ -7,12 +7,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Assign new Guide</h1>
+                    <h1 class="m-0">Update Guide</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Assign new Guide</li>
+                        <li class="breadcrumb-item active">{{ __(Update new Guide) }}</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -27,13 +27,14 @@
                 <div class="col-lg-6">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('guides.store') }}" method="POST">
+                            <form action="/guides/{{ $guides->id }}" method="POST">
                                 @csrf
+                                @method('PUT')
                                 <div class="form-group">
-                                    <label for="exampleSelectRounded0">Choose Tour Group</label>
+                                    <label for="exampleSelectRounded0">Update Guide info</label>
                                     <select class="custom-select rounded-0" name="tour_id" id="exampleSelectRounded0">
                                         @foreach ($tourgroups as $tourgroup )
-                                        <option value="{{ $tourgroup->id }}">{{ $tourgroup->tourgroup_name }}</option>
+                                        <option {{ $tourgroup->tourgroup_name == $tourgroup_name ? 'selected' : '' }}>{{ $tourgroup->tourgroup_name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -63,15 +64,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleSelectRounded0">Guide Status</label>
-                                    <select class="custom-select rounded-0" name="guide_status" id="exampleSelectRounded0">
+                                    <select class="custom-select rounded-0" name="tour_id" id="exampleSelectRounded0">
                                         <option value="">Choose status</option>
                                         <option value="OK">OK</option>
                                         <option value="Pending">Pending</option>
                                         <option value="Cancelled">Cancelled</option>
                                     </select>
-                                    @error('guide_status')
-                                    <p class="text-danger">{{ $message }}</p>
-                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Extra Info</label>

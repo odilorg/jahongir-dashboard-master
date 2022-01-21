@@ -45,9 +45,32 @@ class GuideController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Guide $guide, Tourgroup $tourgroup)
     {
-        //
+        
+        
+        $attributes =  request()->validate([
+            'guide_name' => ['required', 'max:255'],
+            'guide_phone' => ['required','digits:5', 'max:25'],
+            'guide_lang' => ['required', 'max:255'],
+            'guide_status' => ['required', 'max:255'],
+            'guide_extra_info' => ['max:255'],
+        ]);
+       // dd('hello');
+       $comment = $tourgroup->guides();
+       dd($comment);
+       dd($attributes['tourgroup_id'] =$guide->with('tourgroup')->id);
+        
+        Guide::create($attributes);
+         session()->flash('success', 'Guide has been assigned');
+         session()->flash('type', 'New Guide');
+
+        return redirect('guides');    
+        
+
+
+
+
     }
 
     /**

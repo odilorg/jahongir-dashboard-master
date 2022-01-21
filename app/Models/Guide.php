@@ -12,4 +12,5 @@ class Guide extends Model
     public function tourgroup() {
         return $this->belongsTo(Tourgroup::class);
     }
+    protected $guarded = [];
 }

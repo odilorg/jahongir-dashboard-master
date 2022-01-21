@@ -60,9 +60,7 @@ class HotelreservationController extends Controller
             
 
         ]);
-        //dd($request->get('tour_id'));
-        // $attributes['checkin_date'] = Carbon::createFromFormat('m/d/Y', $request->checkin_date)->format('Y-m-d');
-        // $attributes['checkout_date'] = Carbon::createFromFormat('m/d/Y', $request->checkout_date)->format('Y-m-d');
+       
         $attributes['tourgroup_id'] =$request->get('tour_id');
         Hotelreservation::create($attributes);
          session()->flash('success', 'Hotel reservation has been created');

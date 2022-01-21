@@ -28,6 +28,8 @@
                     <div class="card">
                         <div class="card-body">
                             <form action="/hotelreservations/{{ $hotelres->id }}" method="POST">
+                                @csrf
+                                @method('PUT')
                                 <div class="form-group">
                                     <label for="exampleSelectRounded0">Choose Tour Group</label>
                                     <select class="custom-select rounded-0" id="exampleSelectRounded0">
@@ -38,8 +40,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    @csrf
-                                    @method('PUT')
+                                   
                                     <label for="exampleInputEmail1">Hotel City</label>
                                     <input type="text" name="hotel_city" class="form-control"
                                         value="{{ $hotelres->hotel_city }}" id="exampleInputEmail1"
