@@ -7,12 +7,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Hotel Reservations</h1>
+                    <h1>Guides</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Hotel Reservations</li>
+                        <li class="breadcrumb-item active">Guides</li>
                     </ol>
                 </div>
             </div>
@@ -28,7 +28,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Group Jp-0154 Japan from 01/05-10/05/2022</h3>
+                        <h3 class="card-title"></h3>
                         <div class="card-tools">
                             <div class="input-group input-group-sm" style="width: 150px;">
                                 <input type="text" name="table_search" class="form-control float-right"
@@ -45,47 +45,45 @@
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0">
                         <div>
-                            <a class="btn btn-info btn-sm" href="{{ route('transports.create') }}">
+                            <a class="btn btn-info btn-sm" href="{{ route('guides.create') }}">
                                 <i class="fas fa-pencil-alt">
                                 </i>
-                                Add Transport
+                                Add Your Guide
                             </a>
                         </div>
                         <table class="table table-hover text-nowrap">
                             <thead>
                                 <tr>
+                                    <th>Guide Name</th>
+                                    <th>Guide Tel</th>
+                                    <th>Guide Language</th>
+                                    <th>Guide Extra Info</th>
+                                    <th>Guide Status</th>
                                     <th>Tour Group</th>
-                                    <th>Transport type</th>
-                                    <th>Extra Info</th>
-                                    <th>From</th>
-                                    <th>To</th>
-                                    <th>Date Time</th>
-                                    <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($transports as $transport )
+                                @foreach ($guides as $item )
                                 <tr>
-                                    <td>{{ $transport->tourgroup_name }}</td>
-                                    <td>{{ $transport->transport_type }}</td>
-                                    <td>{{ $transport->extra_info }}</td>
-                                    <td>{{ $transport->pickup_or_dropoff_from }}</td>
-                                    <td>{{ $transport->pickup_or_dropoff_to }}</td>
-                                    <td>{{ \Carbon\Carbon::parse($transport->pickup_or_dropoff_date_time)->format('d/m/Y h:i A') }}
-                                    </td>
-                                    <td>{{ $transport->transport_status }}</td>
-                                    <td><a class="btn btn-primary btn-sm" href="transports/{{ $transport->id }}">
+                                    <td>{{ $item->guide_name }}</td>
+                                    <td>{{ $item->guide_phone }}</td>
+                                    <td>{{ $item->guide_lang }}</td>
+                                    <td>{{ $item->guide_extra_info }}</td>
+                                    <td>{{ $item->guide_status }}</td>
+                                    <td>{{ $item->tourgroup->tourgroup_name }} </span></td>
+
+                                    <td><a class="btn btn-primary btn-sm" href="guides/{{ $item->id }}">
                                             <i class="fas fa-folder">
                                             </i>
                                             View
                                         </a>
-                                        <a class="btn btn-info btn-sm" href="transports/{{ $transport->id }}/edit">
+                                        <a class="btn btn-info btn-sm" href="guides/{{ $item->id }}/edit">
                                             <i class="fas fa-pencil-alt">
                                             </i>
                                             Edit
                                         </a>
-                                        <form action="/transports/{{ $transport->id }}" method="post"
+                                        <form action="/guides/{{ $item->id }}" method="post"
                                             class="float-left">
                                             @csrf
                                             @method('delete')

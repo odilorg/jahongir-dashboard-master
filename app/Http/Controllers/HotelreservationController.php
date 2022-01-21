@@ -23,10 +23,8 @@ class HotelreservationController extends Controller
 
         $hotelreservations = Hotelreservation::with(['tourgroup'])
        ->whereHas('tourgroup', function($q) use($value) {
-       // Query the name field in status table
-       $q->where('user_id', '=', $value); // '=' is optional
+       $q->where('user_id', '=', $value); 
         })
-      
         ->get();
         return view('hotelreservations.index', compact('hotelreservations'));
     }

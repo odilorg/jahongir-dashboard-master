@@ -14,6 +14,10 @@ class Tourgroup extends Model
         return $this->hasMany(Hotelreservation::class);
 
     }
+    public function guides() {
+        return $this->hasMany(Guide::class);
+
+    }
 
     public function user() {
         return $this->belongsTo(User::class);

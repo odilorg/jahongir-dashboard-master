@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guide;
+use App\Models\Tourgroup;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class GuideController extends Controller
 {
@@ -13,7 +16,15 @@ class GuideController extends Controller
      */
     public function index()
     {
-        //
+        $value = auth()->user()->id;
+
+        $guides = Guide::with(['tourgroup'])
+       ->whereHas('tourgroup', function($q) use($value) {
+       $q->where('user_id', '=', $value); 
+        })
+        ->get();
+    //    / dd($guides);
+        return view('guides.index', compact('guides'));
     }
 
     /**
@@ -23,7 +34,9 @@ class GuideController extends Controller
      */
     public function create()
     {
-        //
+        $tourgroups = Tourgroup::with('user')->whereUserId(Auth::user()->id)->get();
+        
+        return view('guides.create', compact('tourgroups'));
     }
 
     /**

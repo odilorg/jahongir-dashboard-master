@@ -16,6 +16,10 @@ class CreateGuidesTable extends Migration
         Schema::create('guides', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->foreignId('tourgroup_id');
+            $table->string('guide_name');
+            $table->string('guide_phone');
+            $table->string('guide_lang');
         });
     }
 
