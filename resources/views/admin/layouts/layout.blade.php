@@ -263,10 +263,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <a href="{{ route('transports.index'); }}"
                                 class="nav-link {{ (request()->is('transports*')) ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-bus"></i>
-                                <p>
-                                    Transports
-
-                                </p>
+                                <p>Transports</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('guides.index'); }}"
+                                class="nav-link {{ (request()->is('guides*')) ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-people-arrows"></i>
+                                <p>Guides</p>
                             </a>
                         </li>
                     </ul>

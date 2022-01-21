@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GuideController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RegisterController;
@@ -30,6 +31,7 @@ Route::middleware(['auth', 'revalidate'])->group(function () {
         'hotelreservations' => HotelreservationController::class,
         'transports' => TransportController::class,
         'tourgroups' => TourgroupController::class,
+        'guides' => GuideController::class,
     
     ]);
     Route::post('/transports/auto', [TransportController::class, 'auto'])->name('auto');
