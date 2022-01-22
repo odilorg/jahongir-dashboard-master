@@ -126,7 +126,7 @@ return [
     'uploaded' => 'The :attribute failed to upload.',
     'url' => 'The :attribute must be a valid URL.',
     'uuid' => 'The :attribute must be a valid UUID.',
-
+    
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
@@ -137,10 +137,30 @@ return [
     | specify a specific custom language line for a given attribute rule.
     |
     */
-
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'restaurant_name' => [
+            'required' => 'Please Enter the Restarant Name',
+            'max' => 'Your email address is too long!'
+        ],
+        'restaurant_city' => [
+            'required' => 'Please Enter the Restarant Location',
+            'max' => 'Your email address is too long!'
+        ],
+        'tourgroup_id' => [
+            'required' => 'Please Select the Tour Group',
+            'max' => 'Your email address is too long!'
+        ],
+        'restaurant_status' => [
+            'required' => 'Please Select the Restarant Status',
+            'max' => 'Your email address is too long!'
+        ],
+        'restaurant_tel' => [
+            'regex' => 'The Restaurant Phone Number must be 9 digits.',
+           
+        ],
+        'book_date_time' => [
+            'required' => 'The book Date & Time field are required.',
+            'max' => 'Your email address is too long!'
         ],
     ],
 

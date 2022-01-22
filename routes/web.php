@@ -1,11 +1,14 @@
 <?php
 
-use App\Http\Controllers\GuideController;
+use App\Models\Restaurant;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\GuideController;
+use App\Http\Controllers\TicketController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TourgroupController;
 use App\Http\Controllers\TransportController;
+use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\HotelreservationController;
 
 /*
@@ -32,6 +35,8 @@ Route::middleware(['auth', 'revalidate'])->group(function () {
         'transports' => TransportController::class,
         'tourgroups' => TourgroupController::class,
         'guides' => GuideController::class,
+        'restaurants' => RestaurantController::class,
+        'tickets' => TicketController::class,
     
     ]);
     Route::post('/transports/auto', [TransportController::class, 'auto'])->name('auto');

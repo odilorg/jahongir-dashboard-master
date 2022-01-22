@@ -7,12 +7,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Guides</h1>
+                    <h1>{{ __('Tickets') }}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Guides</li>
+                        <li class="breadcrumb-item active">{{ __('Tickets') }}</li>
                     </ol>
                 </div>
             </div>
@@ -45,44 +45,45 @@
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0">
                         <div>
-                            <a class="btn btn-info btn-sm" href="{{ route('guides.create') }}">
+                            <a class="btn btn-info btn-sm" href="{{ route('restaurants.create') }}">
                                 <i class="fas fa-pencil-alt">
                                 </i>
-                                {{ __('Add Your Guide') }}
+                                {{ __('Add Your Restaurant') }}
                             </a>
                         </div>
                         <table class="table table-hover text-nowrap">
                             <thead>
                                 <tr>
-                                    <th>Tour Group</th>
-                                    <th>Guide Name</th>
-                                    <th>Guide Tel</th>
-                                    <th>Guide Language</th>
-                                    <th>Guide Extra Info</th>
-                                    <th>Guide Status</th>
+                                    <th>{{ __('Tour Group') }}</th>
+                                    <th>{{ __('Location') }}</th>
+                                    <th>{{ __('Name') }}</th>
+                                    <th>{{ __('Phone Number') }}</th>
+                                    <th>{{ __('Extra Info') }}</th>
+                                    <th>{{ __('Status') }}</th>
+                                    
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($guides as $item )
+                                @foreach ($restaurants as $item )
                                 <tr>
                                     <td>{{ $item->tourgroup->tourgroup_name }} </span></td>
-                                    <td>{{ $item->guide_name }}</td>
-                                    <td>{{ $item->guide_phone }}</td>
-                                    <td>{{ $item->guide_lang }}</td>
-                                    <td>{{ $item->guide_extra_info }}</td>
-                                    <td>{{ $item->guide_status }}</td>
-                                    <td><a class="btn btn-primary btn-sm" href="guides/{{ $item->id }}">
+                                    <td>{{ $item->restaurant_city }}</td>
+                                    <td>{{ $item->restaurant_name }}</td>
+                                    <td><a href="tel:+998{{ $item->restaurant_tel }}">{{ $item->restaurant_tel }}</a> </td>
+                                    <td>{{ $item->extra_info_restaurant }}</td>
+                                    <td>{{ $item->restaurant_status }}</td>
+                                    <td><a class="btn btn-primary btn-sm" href="restaurants/{{ $item->id }}">
                                             <i class="fas fa-folder">
                                             </i>
                                             View
                                         </a>
-                                        <a class="btn btn-info btn-sm" href="guides/{{ $item->id }}/edit">
+                                        <a class="btn btn-info btn-sm" href="restaurants/{{ $item->id }}/edit">
                                             <i class="fas fa-pencil-alt">
                                             </i>
                                             Edit
                                         </a>
-                                        <form action="/guides/{{ $item->id }}" method="post"
+                                        <form action="/restaurants/{{ $item->id }}" method="post"
                                             class="float-left">
                                             @csrf
                                             @method('delete')

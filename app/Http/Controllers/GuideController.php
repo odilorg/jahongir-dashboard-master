@@ -58,7 +58,7 @@ class GuideController extends Controller
             'guide_extra_info' => ['max:255'],
             'tourgroup_id' => ['max:255','numeric'],
         ]);
-       // dd('hello');
+        //dd($attributes);
              
         Guide::create($attributes);
          session()->flash('success', 'Guide has been assigned');

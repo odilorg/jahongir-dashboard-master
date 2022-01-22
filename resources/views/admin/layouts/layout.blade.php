@@ -273,6 +273,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <p>Guides</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('restaurants.index'); }}"
+                                class="nav-link {{ (request()->is('restaurants*')) ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-utensils"></i>
+                                <p>Restaurants</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('tickets.index'); }}"
+                                class="nav-link {{ (request()->is('tickets*')) ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-ticket-alt"></i>
+                                <p>Entrance Tickets</p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
