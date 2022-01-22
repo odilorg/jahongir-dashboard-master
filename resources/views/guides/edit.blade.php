@@ -12,7 +12,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">{{ __(Update new Guide) }}</li>
+                        <li class="breadcrumb-item active">Update new Guide </li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -27,7 +27,7 @@
                 <div class="col-lg-6">
                     <div class="card">
                         <div class="card-body">
-                            <form action="/guides/{{ $guides->id }}" method="POST">
+                            <form action="/guides/{{ $guide->id }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group">
@@ -40,7 +40,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Guide Name</label>
-                                    <input type="text" value="{{ old('guide_name') }}" name="guide_name" class="form-control  @error('guide_name')
+                                    <input type="text" value="{{ old('guide_name', $guide->guide_name) }}" name="guide_name" class="form-control  @error('guide_name')
                  {{ 'is-invalid' }} @enderror " id="inputError" placeholder="Guide Name">
                                     @error('guide_name')
                                     <p class="text-danger">{{ $message }}</p>
@@ -48,7 +48,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Guide Tel</label>
-                                    <input type="text" value="{{ old('guide_phone') }}" name="guide_phone" class="form-control @error('guide_phone')
+                                    <input type="text" value="{{ old('guide_phone', $guide->guide_phone) }}" name="guide_phone" class="form-control @error('guide_phone')
                   {{ 'is-invalid' }} @enderror" id="exampleInputEmail1" placeholder="Guide Tel">
                                     @error('guide_phone')
                                     <p class="text-danger">{{ $message }}</p>
@@ -56,7 +56,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Guide Language</label>
-                                    <input type="text" value="{{ old('guide_lang') }}" name="guide_lang" class="form-control @error('guide_lang')
+                                    <input type="text" value="{{ old('guide_lang', $guide->guide_lang) }}" name="guide_lang" class="form-control @error('guide_lang')
                   {{ 'is-invalid' }} @enderror" id="exampleInputEmail1" placeholder="Guide Language">
                                     @error('guide_lang')
                                     <p class="text-danger">{{ $message }}</p>
@@ -64,16 +64,15 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleSelectRounded0">Guide Status</label>
-                                    <select class="custom-select rounded-0" name="tour_id" id="exampleSelectRounded0">
-                                        <option value="">Choose status</option>
-                                        <option value="OK">OK</option>
-                                        <option value="Pending">Pending</option>
-                                        <option value="Cancelled">Cancelled</option>
+                                    <select class="custom-select rounded-0" name="guide_status" id="exampleSelectRounded0">
+                                        <option {{ $guide->guide_status == "OK" ? 'selected' : '' }}>OK</option>
+                                        <option {{ $guide->guide_status == "Pending" ? 'selected' : '' }}>Pending</option>
+                                        <option {{ $guide->guide_status == "Cancelled" ? 'selected' : '' }}>Cancelled</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Extra Info</label>
-                                    <input type="text" value="{{ old('guide_extra_info') }}" name="guide_extra_info" class="form-control @error('guide_extra_info')
+                                    <input type="text" value="{{ old('guide_extra_info', $guide->guide_extra_info) }}" name="guide_extra_info" class="form-control @error('guide_extra_info')
                   {{ 'is-invalid' }} @enderror" id="exampleInputEmail1" placeholder="Guide extra info">
                                     @error('guide_extra_info')
                                     <p class="text-danger">{{ $message }}</p>

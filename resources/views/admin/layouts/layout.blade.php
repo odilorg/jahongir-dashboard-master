@@ -557,6 +557,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
     
     </script>
 
+<script type="text/javascript">
+    $(document).ready( function () {
+        $('#picker').dateTimePicker();
+        $('#picker-no-time').dateTimePicker({ showTime: false, dateFormat: 'DD/MM/YYYY', title: 'Select Date'});
+    })
+    </script>
+
 </body>
 
 </html>

@@ -6,6 +6,7 @@ use App\Models\Guide;
 use App\Models\Tourgroup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Ramsey\Uuid\Guid\Guid;
 
 class GuideController extends Controller
 {
@@ -55,12 +56,10 @@ class GuideController extends Controller
             'guide_lang' => ['required', 'max:255'],
             'guide_status' => ['required', 'max:255'],
             'guide_extra_info' => ['max:255'],
+            'tourgroup_id' => ['max:255','numeric'],
         ]);
        // dd('hello');
-       $comment = $tourgroup->guides();
-       dd($comment);
-       dd($attributes['tourgroup_id'] =$guide->with('tourgroup')->id);
-        
+             
         Guide::create($attributes);
          session()->flash('success', 'Guide has been assigned');
          session()->flash('type', 'New Guide');
@@ -90,9 +89,12 @@ class GuideController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Guide $guide)
     {
-        //
+        $tourgroup_name = $guide->tourgroup->tourgroup_name;
+    //   $hotelres = $hotelreservation;
+        $tourgroups = Tourgroup::with('user')->whereUserId(Auth::user()->id)->get();
+        return view('guides.edit', compact('guide', 'tourgroups', 'tourgroup_name'));
     }
 
     /**
@@ -102,9 +104,20 @@ class GuideController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Guide $guide)
     {
-        //
+         
+        $attributes =  request()->validate([
+            'guide_name' => ['required', 'max:255'],
+            'guide_phone' => ['required','digits:5', 'max:25'],
+            'guide_lang' => ['required', 'max:255'],
+            'guide_status' => ['required', 'max:255'],
+            'guide_extra_info' => ['max:255'],
+            'tourgroup_id' => ['max:255','numeric'],
+        ]);
+        $guide->update($attributes);
+        
+        return redirect('guides');
     }
 
     /**
@@ -113,8 +126,9 @@ class GuideController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Guide $guide)
     {
-        //
+        $guide->delete();
+        return redirect('guides');
     }
 }
