@@ -81,7 +81,7 @@
                                     <td><a class="btn btn-primary btn-sm" href="tickets/{{ $item->id }}">
                                             <i class="fas fa-folder">
                                             </i>
-                                            Print
+                                            View
                                         </a>
                                         <a class="btn btn-info btn-sm" href="tickets/{{ $item->id }}/edit">
                                             <i class="fas fa-pencil-alt">
