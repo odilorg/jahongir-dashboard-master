@@ -74,14 +74,14 @@
                                     <td>{{ $item->ticket_location }}</td>
                                     <td>{{ $item->monument_name }}</td>
                                     <td>{{ $item->voucher_number }}</td>
-                                    <td><img src="{{ asset('storage/' . $item->ticket_file) }}" width="50px" height="50px" alt=""> </td>
+                                    <td><a href="{{ asset('storage/' . $item->ticket_file) }}" data-lightbox="image-1"><img src="{{ asset('storage/' . $item->ticket_file) }}"  width="50px" height="50px" alt=""></a>  </td>
                                     <td>{{ $item->ticket_date }}</td>
                                     <td>{{ $item->ticket_extra_info }}</td>
                                     <td>{{ $item->ticket_status }}</td>
                                     <td><a class="btn btn-primary btn-sm" href="tickets/{{ $item->id }}">
                                             <i class="fas fa-folder">
                                             </i>
-                                            View
+                                            Print
                                         </a>
                                         <a class="btn btn-info btn-sm" href="tickets/{{ $item->id }}/edit">
                                             <i class="fas fa-pencil-alt">
