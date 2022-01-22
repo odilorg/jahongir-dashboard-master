@@ -59,6 +59,7 @@ class TicketController extends Controller
             'ticket_file' => ['nullable', 'image', 'max:1000'],
             'tourgroup_id' => ['required'],
         ]);
+        $attributes['ticket_file'] = request()->file('ticket_file')->store('ticket_file');
         Ticket::create($attributes);
         session()->flash('success', 'Ticket has been added');
         session()->flash('type', 'New Ticket');
