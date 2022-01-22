@@ -162,6 +162,10 @@ return [
             'required' => 'The book Date & Time field are required.',
             'max' => 'Your email address is too long!'
         ],
+        'ticket_file' => [
+            'required' => 'The book Date & Time field are required.',
+            'max' => 'The ticket file must not be greater than 10 MB.'
+        ],
     ],
 
     /*

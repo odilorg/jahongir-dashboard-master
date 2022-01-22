@@ -14,7 +14,7 @@ class AddTicketFilelToTicketsTable extends Migration
     public function up()
     {
         Schema::table('tickets', function (Blueprint $table) {
-            $table->string('ticket_file');
+            $table->string('ticket_file')->nullable();
         });
     }
 

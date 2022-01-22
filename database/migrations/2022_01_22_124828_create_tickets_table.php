@@ -18,10 +18,10 @@ class CreateTicketsTable extends Migration
             $table->timestamps();
             $table->foreignId('tourgroup_id');
             $table->string('ticket_location');
-            $table->string('monument_name');
-            $table->string('voucher_number');
+            $table->string('monument_name')->nullable();
+            $table->string('voucher_number')->nullable();
             $table->date('ticket_date');
-            $table->string('ticket_extra_info');
+            $table->string('ticket_extra_info')->nullable();
             $table->string('ticket_status');
         });
     }

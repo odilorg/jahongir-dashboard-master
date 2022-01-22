@@ -64,7 +64,7 @@
                                       <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                       </div>
-                                      <input type="text" value="{{ old('restaurant_tel') }}" name="restaurant_tel" class="form-control  @error('restaurant_name')
+                                      <input type="text" value="{{ old('restaurant_tel') }}" name="restaurant_tel" class="form-control  @error('restaurant_tel')
                                       {{ 'is-invalid' }} @enderror" data-inputmask='"mask": "(99) 999-9999"' data-mask>
                                     </div>
                                     @error('restaurant_tel')

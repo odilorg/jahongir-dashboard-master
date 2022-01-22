@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ticket;
+use App\Models\Tourgroup;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TicketController extends Controller
 {
@@ -13,7 +16,16 @@ class TicketController extends Controller
      */
     public function index()
     {
-        //
+        $value = auth()->user()->id;
+
+        $tickets = Ticket::with(['tourgroup'])
+       ->whereHas('tourgroup', function($q) use($value) {
+       $q->where('user_id', '=', $value); 
+        })
+        ->get();
+        
+    //    / dd($guides);
+        return view('tickets.index', compact('tickets'));
     }
 
     /**
@@ -23,7 +35,9 @@ class TicketController extends Controller
      */
     public function create()
     {
-        //
+        $tourgroups = Tourgroup::with('user')->whereUserId(Auth::user()->id)->get();
+        
+        return view('tickets.create', compact('tourgroups'));
     }
 
     /**
@@ -34,7 +48,22 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributes =  request()->validate([
+
+            'ticket_location' => ['required ', 'max:255'],
+            'monument_name' => ['max:25'],
+            'voucher_number' => ['max:255'],
+            'ticket_date' => ['required', 'max:255'],
+            'ticket_extra_info' => ['max:255'],
+            'ticket_status' => ['required ', 'max:255'],
+            'ticket_file' => ['nullable', 'image', 'max:1000'],
+            'tourgroup_id' => ['required'],
+        ]);
+        Ticket::create($attributes);
+        session()->flash('success', 'Ticket has been added');
+        session()->flash('type', 'New Ticket');
+
+       return redirect('tickets'); 
     }
 
     /**

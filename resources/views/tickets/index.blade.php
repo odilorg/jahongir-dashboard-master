@@ -45,10 +45,10 @@
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0">
                         <div>
-                            <a class="btn btn-info btn-sm" href="{{ route('restaurants.create') }}">
+                            <a class="btn btn-info btn-sm" href="{{ route('tickets.create') }}">
                                 <i class="fas fa-pencil-alt">
                                 </i>
-                                {{ __('Add Your Restaurant') }}
+                                {{ __('Add Your Ticket') }}
                             </a>
                         </div>
                         <table class="table table-hover text-nowrap">
@@ -57,33 +57,38 @@
                                     <th>{{ __('Tour Group') }}</th>
                                     <th>{{ __('Location') }}</th>
                                     <th>{{ __('Name') }}</th>
-                                    <th>{{ __('Phone Number') }}</th>
+                                    <th>{{ __('Voucher N') }}</th>
+                                    <th>{{ __('File') }}</th>
+                                    <th>{{ __('Date') }}</th>
                                     <th>{{ __('Extra Info') }}</th>
                                     <th>{{ __('Status') }}</th>
+                                    
                                     
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($restaurants as $item )
+                                @foreach ($tickets as $item )
                                 <tr>
                                     <td>{{ $item->tourgroup->tourgroup_name }} </span></td>
-                                    <td>{{ $item->restaurant_city }}</td>
-                                    <td>{{ $item->restaurant_name }}</td>
-                                    <td><a href="tel:+998{{ $item->restaurant_tel }}">{{ $item->restaurant_tel }}</a> </td>
-                                    <td>{{ $item->extra_info_restaurant }}</td>
-                                    <td>{{ $item->restaurant_status }}</td>
-                                    <td><a class="btn btn-primary btn-sm" href="restaurants/{{ $item->id }}">
+                                    <td>{{ $item->ticket_location }}</td>
+                                    <td>{{ $item->monument_name }}</td>
+                                    <td>{{ $item->voucher_number }}</td>
+                                    <td><img src="{{ asset('storage/' . $item->ticket_file) }}" width="50px" height="50px" alt=""> </td>
+                                    <td>{{ $item->ticket_date }}</td>
+                                    <td>{{ $item->ticket_extra_info }}</td>
+                                    <td>{{ $item->ticket_status }}</td>
+                                    <td><a class="btn btn-primary btn-sm" href="tickets/{{ $item->id }}">
                                             <i class="fas fa-folder">
                                             </i>
                                             View
                                         </a>
-                                        <a class="btn btn-info btn-sm" href="restaurants/{{ $item->id }}/edit">
+                                        <a class="btn btn-info btn-sm" href="tickets/{{ $item->id }}/edit">
                                             <i class="fas fa-pencil-alt">
                                             </i>
                                             Edit
                                         </a>
-                                        <form action="/restaurants/{{ $item->id }}" method="post"
+                                        <form action="/tickets/{{ $item->id }}" method="post"
                                             class="float-left">
                                             @csrf
                                             @method('delete')
