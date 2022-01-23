@@ -80,25 +80,90 @@ class TourgroupController extends Controller
     public function show(Tourgroup $tourgroup)
     {
         
-         $transports = Tourgroup::join('transports', 'transports.tourgroup_id', '=', 'tourgroups.id')
-            ->join('hotelreservations', 'hotelreservations.tourgroup_id', '=', 'tourgroups.id')
-            ->join('guides', 'guides.tourgroup_id', '=', 'tourgroups.id')
-            ->join('restaurants', 'restaurants.tourgroup_id', '=', 'tourgroups.id')
-            ->join('tickets', 'tickets.tourgroup_id', '=', 'tourgroups.id')
+        
+        // $transports = Tourgroup::join('transports', 'transports.tourgroup_id', '=', 'tourgroups.id')
+        //     ->join('hotelreservations', 'hotelreservations.tourgroup_id', '=', 'tourgroups.id')
+        //     ->join('guides', 'guides.tourgroup_id', '=', 'tourgroups.id')
+        //     ->join('restaurants', 'restaurants.tourgroup_id', '=', 'tourgroups.id')
+        //     ->join('tickets', 'tickets.tourgroup_id', '=', 'tourgroups.id')
+        //     ->where('user_id', '=', auth()->user()->id)
+        //     ->where('tourgroups.id', '=', $tourgroup->id)
+        //     ->select([
+        //         'tourgroups.*',
+        //         'transports.*',
+        //         'hotelreservations.*',
+        //         'guides.*',
+        //         'restaurants.*',
+        //         'tickets.*',
+                 
+        //            ])
+        //     ->get();
+        $transports_auto = Tourgroup::join('transports', 'transports.tourgroup_id', '=', 'tourgroups.id')
+            
+            ->where('user_id', '=', auth()->user()->id)
+            ->where('tourgroups.id', '=', $tourgroup->id)
+            ->where('transports.transport_type', '=', 'Auto')
+            ->select([
+                
+                'transports.*',
+                
+                 
+                   ])
+            ->get();
+            $transports_air = Tourgroup::join('transports', 'transports.tourgroup_id', '=', 'tourgroups.id')
+            
+            ->where('user_id', '=', auth()->user()->id)
+            ->where('tourgroups.id', '=', $tourgroup->id)
+            ->where('transports.transport_type', '=', 'Air')
+            ->select([
+                
+                'transports.*',
+                
+                 
+                   ])
+            ->get();
+            $transports_train = Tourgroup::join('transports', 'transports.tourgroup_id', '=', 'tourgroups.id')
+            
+            ->where('user_id', '=', auth()->user()->id)
+            ->where('tourgroups.id', '=', $tourgroup->id)
+            ->where('transports.transport_type', '=', 'Train')
+            ->select([
+                
+                'transports.*',
+                
+                 
+                   ])
+            ->get();
+            $hotels = Tourgroup::join('hotelreservations', 'hotelreservations.tourgroup_id', '=', 'tourgroups.id')
+            
             ->where('user_id', '=', auth()->user()->id)
             ->where('tourgroups.id', '=', $tourgroup->id)
             ->select([
-                'tourgroups.*',
-                'transports.*',
+                
                 'hotelreservations.*',
-                'guides.*',
-                'restaurants.*',
-                'tickets.*',
+                
                  
                    ])
-            ->first();
-   
-        return view('tourgroups.show', compact('transports'));
+            ->get();
+            $guides = Tourgroup::join('guides', 'guides.tourgroup_id', '=', 'tourgroups.id')
+            
+            ->where('user_id', '=', auth()->user()->id)
+            ->where('tourgroups.id', '=', $tourgroup->id)
+            ->select([
+                
+                'guides.*',
+                
+                 
+                   ])
+            ->get();
+  // dd(empty($transports_air));
+        return view('tourgroups.show', compact(
+            'transports_train',
+            'transports_auto',
+            'transports_air', 
+            'tourgroup', 
+            'hotels', 
+            'guides'));
     }
 
     /**

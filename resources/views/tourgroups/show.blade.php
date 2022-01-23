@@ -30,7 +30,7 @@
               <div class="row">
                 <div class="col-12">
                   <h4>
-                    <i class="fas fa-globe"></i> {{ $transports->tourgroup_name }}
+                    <i class="fas fa-globe"></i> {{ $tourgroup->tourgroup_name }}
                     <small class="float-right">{{ \Carbon\Carbon::parse(now())->format('d/m/Y')}}
                     </small>
                   </h4>
@@ -42,10 +42,10 @@
                 <div class="col-sm-4 invoice-col">
                   
                   <address>
-                    <strong>{{ $transports->tourgroup_country }}</strong><br>
-                    <strong>{{ __('Tour Group Pax') }}:</strong>  {{ $transports->tourgroup_pax }}<br>
-                    <strong>{{ __('Arrival in Date:') }}</strong>  {{ $transports->tourgroup_ci }}<br>
-                    <strong>{{ __('Departure Date:') }}</strong>  {{ $transports->tourgroup_co }}<br>
+                    <strong>{{ $tourgroup->tourgroup_country }}</strong><br>
+                    <strong>{{ __('Tour Group Pax') }}:</strong>  {{ $tourgroup->tourgroup_pax }}<br>
+                    <strong>{{ __('Arrival in Date:') }}</strong>  {{ $tourgroup->tourgroup_ci }}<br>
+                    <strong>{{ __('Departure Date:') }}</strong>  {{ $tourgroup->tourgroup_co }}<br>
                     Email: info@almasaeedstudio.com
                   </address>
                 </div>
@@ -74,9 +74,8 @@
               <div class="row">
                 <div class="col-12">
                   <h4>
-                    <i class="fas fa-globe"></i> {{ $transports->tourgroup_name }}
-                    <small class="float-right">{{ \Carbon\Carbon::parse(now())->format('d/m/Y')}}
-                    </small>
+                    <i class="fas fa-hotel"></i> {{ __('Hotel Reservations') }}
+                    
                   </h4>
                 </div>
                 <!-- /.col -->
@@ -88,42 +87,213 @@
                   <table class="table table-striped">
                     <thead>
                     <tr>
-                      <th>Qty</th>
-                      <th>Product</th>
-                      <th>Serial #</th>
-                      <th>Description</th>
-                      <th>Subtotal</th>
+                      <th>City</th>
+                      <th>Name</th>
+                      <th>Arrival Date</th>
+                      <th>Departure Date</th>
+                      <th>Early CI</th>
+                      <th>Late CO</th>
                     </tr>
                     </thead>
                     <tbody>
+                      @foreach ($hotels as $item )
                     <tr>
-                      <td>1</td>
-                      <td>Call of Duty</td>
-                      <td>455-981-221</td>
-                      <td>El snort testosterone trophy driving gloves handsome</td>
-                      <td>$64.50</td>
+                      <td>{{ $item->hotel_city }}</td>
+                      <td>{{ $item->hotel_name }}</td>
+                      <td>{{ $item->checkin_date }}</td>
+                      <td>{{ $item->checkout_date }}</td>
+                      <td>{{ $item->early_checkin }}</td>
+                      <td>{{ $item->late_checkout }}</td>
                     </tr>
+                    @endforeach
+                    
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.col -->
+              </div>
+              @empty($transports_auto)
+              <div class="row">
+                <div class="col-12">
+                  <h4>
+                    <i class="fas fa-car"></i> {{ __('Transportation - Auto') }}
+                    
+                  </h4>
+                </div>
+                <!-- /.col -->
+              </div>
+              <div class="row">
+                <div class="col-12 table-responsive">
+                  <table class="table table-striped">
+                    <thead>
                     <tr>
-                      <td>1</td>
-                      <td>Need for Speed IV</td>
-                      <td>247-925-726</td>
-                      <td>Wes Anderson umami biodiesel</td>
-                      <td>$50.00</td>
+                      <th>Transport</th>
+                      <th>Auto</th>
+                      <th>Car Make</th>
+                      <th>Transport Goal</th>
+                      <th>From</th>
+                      <th>To</th>
+                      <th>Driver Name</th>
+                      <th>Driver Phone</th>
+                      <th>Date Time</th>
+                      <th>Status</th>
                     </tr>
+                    </thead>
+                    <tbody>
+                      @foreach ($transports_auto as $item )
                     <tr>
-                      <td>1</td>
-                      <td>Monsters DVD</td>
-                      <td>735-845-642</td>
-                      <td>Terry Richardson helvetica tousled street art master</td>
-                      <td>$10.70</td>
+                      <td>{{ $item->transport_type }}</td>
+                      <td>{{ $item->auto_type }}</td>
+                      <td>{{ $item->car_make }}</td>
+                      <td>{{ $item->pickup_or_dropoff_or_marshrut }}</td>
+                      <td>{{ $item->pickup_or_dropoff_from }}</td>
+                      <td>{{ $item->pickup_or_dropoff_to }}</td>
+                      <td>{{ $item->driver_name }}</td>
+                      <td>{{ $item->driver_tel }}</td>
+                      <td>{{ $item->pickup_or_dropoff_date_time }}</td>
+                      <td>{{ $item->transport_status }}</td>
                     </tr>
+                    @endforeach
+                    
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.col -->
+              </div>
+              @endempty
+              
+              @if ( $transports_air->count() )
+              <div class="row">
+                <div class="col-12">
+                  <h4>
+                    <i class="fas fa-plane"></i> {{ __('Transportation - Air') }}
+                    
+                  </h4>
+                </div>
+                <!-- /.col -->
+              </div>
+              <div class="row">
+                <div class="col-12 table-responsive">
+                  <table class="table table-striped">
+                    <thead>
                     <tr>
-                      <td>1</td>
-                      <td>Grown Ups Blue Ray</td>
-                      <td>422-568-642</td>
-                      <td>Tousled lomo letterpress</td>
-                      <td>$25.99</td>
+                      <th>Transport</th>
+                      <th>Auto</th>
+                      <th>Car Make</th>
+                      <th>Transport Goal</th>
+                      <th>From</th>
+                      <th>To</th>
+                      <th>Driver Name</th>
+                      <th>Driver Phone</th>
+                      <th>Date Time</th>
+                      <th>Status</th>
                     </tr>
+                    </thead>
+                    <tbody>
+                      @foreach ($transports_air as $item )
+                    <tr>
+                      <td>{{ $item->transport_type }}</td>
+                      <td>{{ $item->auto_type }}</td>
+                      <td>{{ $item->car_make }}</td>
+                      <td>{{ $item->pickup_or_dropoff_or_marshrut }}</td>
+                      <td>{{ $item->pickup_or_dropoff_from }}</td>
+                      <td>{{ $item->pickup_or_dropoff_to }}</td>
+                      <td>{{ $item->driver_name }}</td>
+                      <td>{{ $item->driver_tel }}</td>
+                      <td>{{ $item->pickup_or_dropoff_date_time }}</td>
+                      <td>{{ $item->transport_status }}</td>
+                    </tr>
+                    @endforeach
+                    
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.col -->
+              </div>
+            @endif
+            @if ( $transports_train->count() )
+              <div class="row">
+                <div class="col-12">
+                  <h4>
+                    <i class="fas fa-plane"></i> {{ __('Transportation - Train') }}
+                    
+                  </h4>
+                </div>
+                <!-- /.col -->
+              </div>
+              <div class="row">
+                <div class="col-12 table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                    <tr>
+                      <th>Transport</th>
+                      <th>Auto</th>
+                      <th>Car Make</th>
+                      <th>Transport Goal</th>
+                      <th>From</th>
+                      <th>To</th>
+                      <th>Driver Name</th>
+                      <th>Driver Phone</th>
+                      <th>Date Time</th>
+                      <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                      @foreach ($transports_air as $item )
+                    <tr>
+                      <td>{{ $item->transport_type }}</td>
+                      <td>{{ $item->auto_type }}</td>
+                      <td>{{ $item->car_make }}</td>
+                      <td>{{ $item->pickup_or_dropoff_or_marshrut }}</td>
+                      <td>{{ $item->pickup_or_dropoff_from }}</td>
+                      <td>{{ $item->pickup_or_dropoff_to }}</td>
+                      <td>{{ $item->driver_name }}</td>
+                      <td>{{ $item->driver_tel }}</td>
+                      <td>{{ $item->pickup_or_dropoff_date_time }}</td>
+                      <td>{{ $item->transport_status }}</td>
+                    </tr>
+                    @endforeach
+                    
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.col -->
+              </div>
+            @endif
+              <div class="row">
+                <div class="col-12">
+                  <h4>
+                    <i class="fas fa-people-arrows"></i> {{ __('Guides') }}
+                    
+                  </h4>
+                </div>
+                <!-- /.col -->
+              </div>
+
+              <!-- Table row -->
+              <div class="row">
+                <div class="col-12 table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Tel</th>
+                      <th>Language</th>
+                      <th>Extra Info</th>
+                      <th>Guide Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                      @foreach ($guides as $item )
+                    <tr>
+                      <td>{{ $item->guide_name }}</td>
+                      <td>{{ $item->guide_phone }}</td>
+                      <td>{{ $item->guide_lang }}</td>
+                      <td>{{ $item->guide_extra_info }}</td>
+                      <td>{{ $item->guide_status }}</td>
+                    </tr>
+                    @endforeach
+                    
                     </tbody>
                   </table>
                 </div>
@@ -135,10 +305,7 @@
                 <!-- accepted payments column -->
                 <div class="col-6">
                   <p class="lead">Payment Methods:</p>
-                  <img src="../../dist/img/credit/visa.png" alt="Visa">
-                  <img src="../../dist/img/credit/mastercard.png" alt="Mastercard">
-                  <img src="../../dist/img/credit/american-express.png" alt="American Express">
-                  <img src="../../dist/img/credit/paypal2.png" alt="Paypal">
+                 
 
                   <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
                     Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem
