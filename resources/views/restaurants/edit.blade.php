@@ -35,7 +35,6 @@
                                     <select class="custom-select rounded-0" name="tourgroup_id" id="exampleSelectRounded0">
                                         <option value=""  >Select Tour Group..</option>
                                         @foreach ($tourgroups as $tourgroup )
-               
                                         <option {{ old('tourgroup_id', $tourgroup->tourgroup_name) == $tourgroup_name ? "selected" : "" }} value="{{ $tourgroup->id }}">{{ $tourgroup->tourgroup_name }}</option>
                                         @endforeach
                                     </select>

@@ -61,8 +61,6 @@
                                       <option value="2" {{ $user->role == 2 ? 'selected' : '' }}>Tour operator</option>
                                       <option value="3" {{ $user->role == 3 ? 'selected' : '' }}>Booking agent</option>
                                       <option value="4" {{ $user->role == 4 ? 'selected' : '' }}>Transport</option>
-
-                                      
                                     </select>
                                 </div>
                                 <div class="form-group">
