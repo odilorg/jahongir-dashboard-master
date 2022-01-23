@@ -104,6 +104,9 @@
 
                             </tbody>
                         </table>
+                        <div class="pagination-block">
+                            {{ $tickets->links('admin.layouts.paginationlinks') }}
+                          </div>
                     </div>
                     <!-- /.card-body -->
                 </div>

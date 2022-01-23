@@ -22,7 +22,7 @@ class RestaurantController extends Controller
        ->whereHas('tourgroup', function($q) use($value) {
        $q->where('user_id', '=', $value); 
         })
-        ->get();
+        ->paginate(13);;
         
     //    / dd($guides);
         return view('restaurants.index', compact('restaurants'));

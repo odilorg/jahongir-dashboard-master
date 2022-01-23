@@ -99,6 +99,9 @@
 
                             </tbody>
                         </table>
+                        <div class="pagination-block">
+                            {{ $restaurants->links('admin.layouts.paginationlinks') }}
+                          </div>
                     </div>
                     <!-- /.card-body -->
                 </div>

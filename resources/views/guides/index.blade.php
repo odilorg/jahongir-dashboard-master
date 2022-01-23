@@ -98,6 +98,9 @@
 
                             </tbody>
                         </table>
+                        <div class="pagination-block">
+                            {{ $guides->links('admin.layouts.paginationlinks') }}
+                          </div>
                     </div>
                     <!-- /.card-body -->
                 </div>

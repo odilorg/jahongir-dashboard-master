@@ -23,7 +23,7 @@ class GuideController extends Controller
        ->whereHas('tourgroup', function($q) use($value) {
        $q->where('user_id', '=', $value); 
         })
-        ->get();
+        ->paginate(13);;
     //    / dd($guides);
         return view('guides.index', compact('guides'));
     }

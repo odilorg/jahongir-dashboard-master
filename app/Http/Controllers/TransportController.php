@@ -31,7 +31,7 @@ class TransportController extends Controller
                             'transports.pickup_or_dropoff_to',
                             'transports.id',
                               ])
-                    ->paginate(3);
+                    ->paginate(13);
         return view('transports.index', compact('transports'));
     }
 
