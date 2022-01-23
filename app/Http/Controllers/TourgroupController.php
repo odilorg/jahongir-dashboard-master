@@ -156,13 +156,37 @@ class TourgroupController extends Controller
                  
                    ])
             ->get();
+            $restaurants = Tourgroup::join('restaurants', 'restaurants.tourgroup_id', '=', 'tourgroups.id')
+            
+            ->where('user_id', '=', auth()->user()->id)
+            ->where('tourgroups.id', '=', $tourgroup->id)
+            ->select([
+                
+                'restaurants.*',
+                
+                 
+                   ])
+            ->get();
+            $tickets = Tourgroup::join('tickets', 'tickets.tourgroup_id', '=', 'tourgroups.id')
+            
+            ->where('user_id', '=', auth()->user()->id)
+            ->where('tourgroups.id', '=', $tourgroup->id)
+            ->select([
+                
+                'tickets.*',
+                
+                 
+                   ])
+            ->get();
   // dd(empty($transports_air));
         return view('tourgroups.show', compact(
             'transports_train',
             'transports_auto',
             'transports_air', 
             'tourgroup', 
-            'hotels', 
+            'hotels',
+            'tickets',
+            'restaurants', 
             'guides'));
     }
 

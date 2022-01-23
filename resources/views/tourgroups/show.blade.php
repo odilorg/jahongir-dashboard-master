@@ -112,7 +112,7 @@
                 </div>
                 <!-- /.col -->
               </div>
-              @empty($transports_auto)
+              @if ( $transports_auto->count() )
               <div class="row">
                 <div class="col-12">
                   <h4>
@@ -127,7 +127,6 @@
                   <table class="table table-striped">
                     <thead>
                     <tr>
-                      <th>Transport</th>
                       <th>Auto</th>
                       <th>Car Make</th>
                       <th>Transport Goal</th>
@@ -142,7 +141,6 @@
                     <tbody>
                       @foreach ($transports_auto as $item )
                     <tr>
-                      <td>{{ $item->transport_type }}</td>
                       <td>{{ $item->auto_type }}</td>
                       <td>{{ $item->car_make }}</td>
                       <td>{{ $item->pickup_or_dropoff_or_marshrut }}</td>
@@ -160,7 +158,7 @@
                 </div>
                 <!-- /.col -->
               </div>
-              @endempty
+              @endif
               
               @if ( $transports_air->count() )
               <div class="row">
@@ -177,14 +175,9 @@
                   <table class="table table-striped">
                     <thead>
                     <tr>
-                      <th>Transport</th>
-                      <th>Auto</th>
-                      <th>Car Make</th>
-                      <th>Transport Goal</th>
+                      <th>Ticket Class</th>
                       <th>From</th>
                       <th>To</th>
-                      <th>Driver Name</th>
-                      <th>Driver Phone</th>
                       <th>Date Time</th>
                       <th>Status</th>
                     </tr>
@@ -192,14 +185,9 @@
                     <tbody>
                       @foreach ($transports_air as $item )
                     <tr>
-                      <td>{{ $item->transport_type }}</td>
-                      <td>{{ $item->auto_type }}</td>
-                      <td>{{ $item->car_make }}</td>
-                      <td>{{ $item->pickup_or_dropoff_or_marshrut }}</td>
+                      <td>{{ $item->air_ticket_class }}</td>
                       <td>{{ $item->pickup_or_dropoff_from }}</td>
                       <td>{{ $item->pickup_or_dropoff_to }}</td>
-                      <td>{{ $item->driver_name }}</td>
-                      <td>{{ $item->driver_tel }}</td>
                       <td>{{ $item->pickup_or_dropoff_date_time }}</td>
                       <td>{{ $item->transport_status }}</td>
                     </tr>
@@ -215,7 +203,7 @@
               <div class="row">
                 <div class="col-12">
                   <h4>
-                    <i class="fas fa-plane"></i> {{ __('Transportation - Train') }}
+                    <i class="fas fa-train"></i> {{ __('Transportation - Train') }}
                     
                   </h4>
                 </div>
@@ -226,29 +214,21 @@
                   <table class="table table-striped">
                     <thead>
                     <tr>
-                      <th>Transport</th>
-                      <th>Auto</th>
-                      <th>Car Make</th>
-                      <th>Transport Goal</th>
+                      <th>Name</th>
+                      <th>Ticket Class</th>
                       <th>From</th>
                       <th>To</th>
-                      <th>Driver Name</th>
-                      <th>Driver Phone</th>
                       <th>Date Time</th>
                       <th>Status</th>
                     </tr>
                     </thead>
                     <tbody>
-                      @foreach ($transports_air as $item )
+                      @foreach ($transports_train as $item )
                     <tr>
-                      <td>{{ $item->transport_type }}</td>
-                      <td>{{ $item->auto_type }}</td>
-                      <td>{{ $item->car_make }}</td>
-                      <td>{{ $item->pickup_or_dropoff_or_marshrut }}</td>
+                      <td>{{ $item->train_name }}</td>
+                      <td>{{ $item->train_ticket_class }}</td>
                       <td>{{ $item->pickup_or_dropoff_from }}</td>
                       <td>{{ $item->pickup_or_dropoff_to }}</td>
-                      <td>{{ $item->driver_name }}</td>
-                      <td>{{ $item->driver_tel }}</td>
                       <td>{{ $item->pickup_or_dropoff_date_time }}</td>
                       <td>{{ $item->transport_status }}</td>
                     </tr>
@@ -291,6 +271,88 @@
                       <td>{{ $item->guide_lang }}</td>
                       <td>{{ $item->guide_extra_info }}</td>
                       <td>{{ $item->guide_status }}</td>
+                    </tr>
+                    @endforeach
+                    
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.col -->
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <h4>
+                    <i class="fas fa-utensils"></i> {{ __('Restaurants') }}
+                    
+                  </h4>
+                </div>
+                <!-- /.col -->
+              </div>
+
+              <!-- Table row -->
+              <div class="row">
+                <div class="col-12 table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                    <tr>
+                      <th>Location</th>
+                      <th>Name</th>
+                      <th>Phone</th>
+                      <th>Date Time</th>
+                      <th>Extra Info</th>
+                      <th>Restaurants Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                      @foreach ($restaurants as $item )
+                    <tr>
+                      <td>{{ $item->restaurant_city }}</td>
+                      <td>{{ $item->restaurant_name }}</td>
+                      <td>{{ $item->restaurant_tel }}</td>
+                      <td>{{ $item->book_date_time }}</td>
+                      <td>{{ $item->extra_info_restaurant }}</td>
+                      <td>{{ $item->restaurant_status }}</td>
+                    </tr>
+                    @endforeach
+                    
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.col -->
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <h4>
+                    <i class="fas fa-ticket-alt"></i> {{ __('Tickets') }}
+                    
+                  </h4>
+                </div>
+                <!-- /.col -->
+              </div>
+
+              <!-- Table row -->
+              <div class="row">
+                <div class="col-12 table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                    <tr>
+                      <th>Location</th>
+                      <th>Name</th>
+                      <th>Voucher name</th>
+                      <th>Date</th>
+                      <th>Extra Info</th>
+                      <th>Restaurants Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                      @foreach ($tickets as $item )
+                    <tr>
+                      <td>{{ $item->ticket_location }}</td>
+                      <td>{{ $item->monument_name }}</td>
+                      <td>{{ $item->voucher_number }}</td>
+                      <td>{{ $item->ticket_date }}</td>
+                      <td>{{ $item->ticket_extra_info }}</td>
+                      <td>{{ $item->ticket_status }}</td>
                     </tr>
                     @endforeach
                     

@@ -39,11 +39,12 @@ Route::middleware(['auth', 'revalidate'])->group(function () {
         'tickets' => TicketController::class,
     
     ]);
-    Route::post('/transports/auto', [TransportController::class, 'auto'])->name('auto');
-    Route::post('/transports/air', [TransportController::class, 'air'])->name('air');
-    Route::post('/transports/train', [TransportController::class, 'train'])->name('train');    
+    // Route::post('/transports/auto', [TransportController::class, 'auto'])->name('auto');
+    // Route::post('/transports/air', [TransportController::class, 'air'])->name('air');
+    // Route::post('/transports/train', [TransportController::class, 'train'])->name('train');    
     
 });
 
 Route::resource('users', UserController::class)->middleware(['can:admin','revalidate']);
+Route::post('/tourgroups/status', [RegisterController::class, 'status'])->name('tourgroups_status')->middleware(['auth','revalidate']);
 
