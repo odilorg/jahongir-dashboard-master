@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\Guide;
+use App\Models\Ticket;
 use App\Models\Tourgroup;
+use App\Models\Restaurant;
 use Illuminate\Http\Request;
+use App\Models\Hotelreservation;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -73,9 +77,28 @@ class TourgroupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Tourgroup $tourgroup)
     {
-        return "Tour Reservcation - $id";
+        
+         $transports = Tourgroup::join('transports', 'transports.tourgroup_id', '=', 'tourgroups.id')
+            ->join('hotelreservations', 'hotelreservations.tourgroup_id', '=', 'tourgroups.id')
+            ->join('guides', 'guides.tourgroup_id', '=', 'tourgroups.id')
+            ->join('restaurants', 'restaurants.tourgroup_id', '=', 'tourgroups.id')
+            ->join('tickets', 'tickets.tourgroup_id', '=', 'tourgroups.id')
+            ->where('user_id', '=', auth()->user()->id)
+            ->where('tourgroups.id', '=', $tourgroup->id)
+            ->select([
+                'tourgroups.*',
+                'transports.*',
+                'hotelreservations.*',
+                'guides.*',
+                'restaurants.*',
+                'tickets.*',
+                 
+                   ])
+            ->first();
+   
+        return view('tourgroups.show', compact('transports'));
     }
 
     /**

@@ -76,7 +76,7 @@
                                     <td>{{ $item->tourgroup_status }}</td>
 
                                     <td><a class="btn btn-primary btn-sm"
-                                            href="{{ route('tourgroups.show', ['tourgroup' =>1]) }}">
+                                        href="tourgroups/{{ $item->id }}">
                                             <i class="fas fa-folder">
                                             </i>
                                             View

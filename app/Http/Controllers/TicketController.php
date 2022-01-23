@@ -23,7 +23,7 @@ class TicketController extends Controller
        ->whereHas('tourgroup', function($q) use($value) {
        $q->where('user_id', '=', $value); 
         })
-        ->paginate(13);;
+        ->paginate(13);
         
     //    / dd($guides);
         return view('tickets.index', compact('tickets'));
@@ -60,7 +60,8 @@ class TicketController extends Controller
             'ticket_file' => ['nullable', 'image', 'max:1000'],
             'tourgroup_id' => ['required'],
         ]);
-        $catalog = rand(1, 878547);if (isset($attributes['ticket_file'] )) {
+        //$catalog = rand(1, 878547);
+        if (isset($attributes['ticket_file'] )) {
             $attributes['ticket_file'] = request()->file('ticket_file')->store('ticket_file');
         }
         
