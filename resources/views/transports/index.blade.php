@@ -101,6 +101,9 @@
 
                             </tbody>
                         </table>
+                        <div class="pagination-block">
+                            {{ $transports->links('admin.layouts.paginationlinks') }}
+                          </div>
                     </div>
                     <!-- /.card-body -->
                 </div>

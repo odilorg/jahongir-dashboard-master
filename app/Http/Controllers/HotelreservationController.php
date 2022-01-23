@@ -25,7 +25,7 @@ class HotelreservationController extends Controller
        ->whereHas('tourgroup', function($q) use($value) {
        $q->where('user_id', '=', $value); 
         })
-        ->get();
+        ->paginate(3);
         return view('hotelreservations.index', compact('hotelreservations'));
     }
 

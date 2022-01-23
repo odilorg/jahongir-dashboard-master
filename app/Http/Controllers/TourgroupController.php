@@ -17,8 +17,8 @@ class TourgroupController extends Controller
      */
     public function index()
     {
-        $tourgroups = Tourgroup::with('user')->whereUserId(Auth::user()->id)->get();
-        
+        $tourgroups = Tourgroup::with('user')->whereUserId(Auth::user()->id)->paginate(13);
+       
      
     // dd($tourgroups);
        

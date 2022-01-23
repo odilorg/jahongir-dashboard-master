@@ -22,7 +22,7 @@ class TransportController extends Controller
        //$transports = Transport::all();
         $transports = Tourgroup::join('transports', 'transports.tourgroup_id', '=', 'tourgroups.id')
                     ->where('user_id', '=', auth()->user()->id)
-              		->get(['transports.transport_type',
+              		->select(['transports.transport_type',
                             'transports.pickup_or_dropoff_date_time',
                             'tourgroups.tourgroup_name',
                             'transports.extra_info', 
@@ -30,7 +30,8 @@ class TransportController extends Controller
                             'transports.pickup_or_dropoff_from', 
                             'transports.pickup_or_dropoff_to',
                             'transports.id',
-                              ]);
+                              ])
+                    ->paginate(3);
         return view('transports.index', compact('transports'));
     }
 
