@@ -242,4 +242,28 @@ class TourgroupController extends Controller
         $tourgroup->delete();
         return redirect('tourgroups');
     }
+    public function status(Tourgroup $tourgroup)
+    {
+       
+        $status = Tourgroup::join('transports', 'transports.tourgroup_id', '=', 'tourgroups.id')
+            ->join('hotelreservations', 'hotelreservations.tourgroup_id', '=', 'tourgroups.id')
+            ->join('guides', 'guides.tourgroup_id', '=', 'tourgroups.id')
+            ->join('restaurants', 'restaurants.tourgroup_id', '=', 'tourgroups.id')
+            ->join('tickets', 'tickets.tourgroup_id', '=', 'tourgroups.id')
+            ->where('user_id', '=', auth()->user()->id)
+            ->where('tourgroups.id', '=', $tourgroup->id)
+            ->select([
+                'tourgroups.tourgroup_status',
+                'transports.transport_status',
+                'hotelreservations.*',
+                'guides.guide_status',
+                'restaurants.restaurant_status',
+                'tickets.ticket_status',
+                 
+                   ])
+            ->get();
+        return view('tourgroups.status', 'status');
+        // $tourgroup->delete();
+        // return redirect('tourgroups');
+    }
 }

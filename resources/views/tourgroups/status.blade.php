@@ -44,18 +44,12 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0">
-                        <div>
-                            <a class="btn btn-info btn-sm" href="{{ route('tourgroups.create') }}">
-                                <i class="fas fa-pencil-alt">
-                                </i>
-                                Add Tour Group
-                            </a>
-                        </div>
+                        
                         <table class="table table-hover text-nowrap">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>TourGr Name</th>
+                                    <th>Tourgroup</th>
+                                    <th>Transport</th>
                                     <th>TourGr Country</th>
                                     <th>CI Date</th>
                                     <th>CO Date</th>
@@ -75,17 +69,10 @@
                                     <td>{{ $item->tourgroup_pax }}</td>
                                     <td>{{ $item->tourgroup_status }}</td>
 
-                                    <td><a class="btn btn-primary btn-sm"
-                                        href="tourgroups/{{ $item->id }}">
+                                    <td><a class="btn btn-primary btn-sm" href="tourgroups/{{ $item->id }}">
                                             <i class="fas fa-folder">
                                             </i>
                                             View
-                                        </a>
-                                        <a class="btn btn-primary btn-sm"
-                                        href="status/{{ $item->id }}">
-                                            <i class="fas fa-folder">
-                                            </i>
-                                            Status
                                         </a>
                                         <a class="btn btn-info btn-sm" href="tourgroups/{{ $item->id }}/edit">
                                             <i class="fas fa-pencil-alt">
@@ -107,7 +94,7 @@
                             </tbody>
                         </table>
                         <div class="pagination-block">
-                          {{ $tourgroups->links('admin.layouts.paginationlinks') }}
+                            {{ $tourgroups->links('admin.layouts.paginationlinks') }}
                         </div>
                     </div>
                     <!-- /.card-body -->

@@ -46,5 +46,5 @@ Route::middleware(['auth', 'revalidate'])->group(function () {
 });
 
 Route::resource('users', UserController::class)->middleware(['can:admin','revalidate']);
-Route::post('/tourgroups/status', [RegisterController::class, 'status'])->name('tourgroups_status')->middleware(['auth','revalidate']);
+Route::get('/status', [TourgroupController::class, 'status'])->name('tourgroups_status');
 
