@@ -10,6 +10,7 @@ use App\Http\Controllers\TourgroupController;
 use App\Http\Controllers\TransportController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\HotelreservationController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,7 @@ Route::middleware(['auth', 'revalidate'])->group(function () {
         'guides' => GuideController::class,
         'restaurants' => RestaurantController::class,
         'tickets' => TicketController::class,
+        'products' => ProductController::class,
     
     ]);
     // Route::post('/transports/auto', [TransportController::class, 'auto'])->name('auto');
