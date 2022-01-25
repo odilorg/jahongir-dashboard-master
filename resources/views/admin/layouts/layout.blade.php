@@ -244,7 +244,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 class="nav-link {{ (request()->is('products*')) ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-atom"></i>
                                 <p>
-                                    Products
+                                    {{ __('Maxsulotlar') }}
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('invnetories.index'); }}"
+                                class="nav-link {{ (request()->is('invnetories*')) ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-boxes"></i>
+                                <p>
+                                    {{ __('Sklad') }}
                                 </p>
                             </a>
                         </li>

@@ -47,6 +47,12 @@ class User extends Authenticatable
     public function products() {
         return $this->hasMany(Product::class);
     }
+    public function inventories() {
+        return $this->hasMany(Inventory::class);
+    }
+    public function cargos() {
+        return $this->hasMany(Cargo::class);
+    }
     public function hotelreservations() {
         //return $this->hasManyThrough(Hotelreservation::class, through: Tourgroup::class);
         return $this->hasManyThrough(Hotelreservation::class, Tourgroup::class);
