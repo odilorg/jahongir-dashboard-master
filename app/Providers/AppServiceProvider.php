@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -17,9 +18,10 @@ class AppServiceProvider extends ServiceProvider
     {
         //
     }
+    
 
     /**
-     * Bootstrap any application services.
+     * Bootstra`p any application services.
      *
      * @return void
      */
@@ -28,5 +30,6 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('admin', function (User $user) {
             return $user->role == 1;
         });
+        
     }
 }

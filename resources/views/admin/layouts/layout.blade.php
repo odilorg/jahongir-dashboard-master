@@ -239,7 +239,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
                         @endcan
-
+                        <li class="nav-item">
+                            <a href="{{ route('products.index'); }}"
+                                class="nav-link {{ (request()->is('products*')) ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-atom"></i>
+                                <p>
+                                    Products
+                                </p>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a href="{{ route('tourgroups.index'); }}"
                                 class="nav-link {{ (request()->is('tourgroups*')) ? 'active' : '' }}">

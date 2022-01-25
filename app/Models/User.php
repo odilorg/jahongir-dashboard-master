@@ -42,6 +42,11 @@ class User extends Authenticatable
     public function tourgroups() {
         return $this->hasMany(Tourgroup::class);
     }
+
+    
+    public function products() {
+        return $this->hasMany(Product::class);
+    }
     public function hotelreservations() {
         //return $this->hasManyThrough(Hotelreservation::class, through: Tourgroup::class);
         return $this->hasManyThrough(Hotelreservation::class, Tourgroup::class);
