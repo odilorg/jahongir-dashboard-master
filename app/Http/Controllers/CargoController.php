@@ -77,9 +77,11 @@ class CargoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Cargo $cargo)
     {
-        //
+        // $tourgroup_name = $ticket->tourgroup->tourgroup_name;
+       // $tourgroups = Tourgroup::with('user')->whereUserId(Auth::user()->id)->get();
+        return view('cargos.edit', compact('cargo'));
     }
 
     /**
@@ -89,9 +91,24 @@ class CargoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Cargo $cargo)
     {
-        //
+        
+        $attributes =  request()->validate([
+
+            'cargo_arrival_date' => ['required ', 'max:255'],
+            'total_cargo_weight' => ['required','numeric'],
+            'cargo_total_sum' => ['required','numeric'],
+            'cargo_extra_info' => ['max:255'],
+            
+        ]);
+        $attributes['user_id'] = auth()->user()->id;
+        $attributes['cargo_arrival_date'] = Carbon::createFromFormat('m/d/Y', $request->cargo_arrival_date)->format('Y-m-d');
+        $cargo->update($attributes);
+        
+        return redirect('cargos');
+        
+    
     }
 
     /**
@@ -100,8 +117,9 @@ class CargoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Cargo $cargo)
     {
-        //
+        $cargo->delete();
+        return redirect('cargos');
     }
 }
