@@ -240,6 +240,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </li>
                         @endcan
                         <li class="nav-item">
+                            <a href="{{ route('cargos.index'); }}"
+                                class="nav-link {{ (request()->is('cargos*')) ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-truck-moving"></i>
+                                <p>
+                                    {{ __('Cargo') }}
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ route('products.index'); }}"
                                 class="nav-link {{ (request()->is('products*')) ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-atom"></i>

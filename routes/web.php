@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CargoController;
 use App\Models\Restaurant;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -42,6 +43,7 @@ Route::middleware(['auth', 'revalidate'])->group(function () {
         'tickets' => TicketController::class,
         'products' => ProductController::class,
         'invnetories' => InventoryController::class,
+        'cargos' => CargoController::class,
     
     ]);
     // Route::post('/transports/auto', [TransportController::class, 'auto'])->name('auto');

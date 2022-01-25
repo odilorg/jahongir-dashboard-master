@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\Cargo;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CargoController extends Controller
 {
@@ -13,7 +17,12 @@ class CargoController extends Controller
      */
     public function index()
     {
-        //
+        $cargos = Cargo::paginate(13);
+       
+     
+        // dd($products);
+            
+           return view('cargos.index', compact('cargos'));
     }
 
     /**
@@ -23,7 +32,7 @@ class CargoController extends Controller
      */
     public function create()
     {
-        //
+        return view('cargos.create');
     }
 
     /**
@@ -34,7 +43,21 @@ class CargoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributes =  request()->validate([
+
+            'cargo_arrival_date' => ['required ', 'max:255'],
+            'total_cargo_weight' => ['required','numeric'],
+            'cargo_total_sum' => ['required','numeric'],
+            'cargo_extra_info' => ['max:255'],
+            
+        ]);
+        $attributes['user_id'] = auth()->user()->id;
+        $attributes['cargo_arrival_date'] = Carbon::createFromFormat('m/d/Y', $request->cargo_arrival_date)->format('Y-m-d');
+        Cargo::create($attributes);
+        session()->flash('success', 'Cargo kiritildi');
+        session()->flash('type', 'Yangi Cargo');
+
+       return redirect('cargos'); 
     }
 
     /**

@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Cargo extends Model
 {
@@ -17,4 +19,12 @@ class Cargo extends Model
     public function products() {
         return $this->hasMany(Product::class);
     }
+    // public function setCargoArrivalDateAttribute($value)
+    // {
+    //     $this->attributes['cargo_arrival_date'] = Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d');
+    // }
+    public function getCargoArrivalDateAttribute($value)
+ {
+     return Carbon::parse($value)->format('d/m/Y');
+ }
 }
