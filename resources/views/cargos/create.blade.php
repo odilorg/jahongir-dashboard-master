@@ -31,20 +31,20 @@
                                 @csrf
                                 <div class="form-group">
                                     <label>{{ __('Kelgan Sana') }}</label>
-                                    <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                        <input type="text" value="{{ old('cargo_arrival_date') }}"
-                                            name="cargo_arrival_date" class="form-control @error('cargo_arrival_date')
-                                          {{ 'is-invalid' }} @enderror datetimepicker-input"
-                                            data-target="#reservationdate" />
-                                        <div class="input-group-append" data-target="#reservationdate"
-                                            data-toggle="datetimepicker">
-                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    <div class="input-group ">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                                         </div>
+                                        <input type="text" value="{{ old('cargo_arrival_date') }}"
+                                            name="cargo_arrival_date" class="date form-control @error('cargo_arrival_date')
+                                          {{ 'is-invalid' }} @enderror datetimepicker-input"
+                                             />
                                     </div>
                                     @error('cargo_arrival_date')
                                     <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
+                              
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">{{ __('Vazni') }}</label>
                                     <div class="input-group">

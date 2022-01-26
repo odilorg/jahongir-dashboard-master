@@ -15,9 +15,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <title>SSST</title>
 
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet"
+     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="{{ asset('assets/admin/css/admin.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/css/daterangepicker.css') }}">
@@ -28,10 +27,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{ asset('assets/admin/css/select2-bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/css/bootstrap-duallistbox.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/css/bs-stepper.min.css') }}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    
-
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"> </script>
+    <script src="{{ asset('assets/admin/js/bootstrap-datepicker.ru.min.js') }}"></script>
     <script>
         function closeDialog() {
             let d = document.getElementById('toastsContainerTopRight')
@@ -365,26 +365,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
             reserved.
         </footer>
     </div>
+    <script type="text/javascript">
+        $(".date").datepicker({
+            format: "mm/dd/yyyy",
+            todayBtn: "linked",
+            language: "ru",
+            todayHighlight: true,
+        });
+      </script>
+</body>
     <!-- ./wrapper -->
 
     <!-- REQUIRED SCRIPTS -->
     <script src="{{ asset('assets/admin/js/admin.js') }}"></script>
-    <script src="{{ asset('assets/admin/js/select2.full.min.js') }}">
-        >
-
-    </script>
-    <script src="{{ asset('assets/admin/js/moment.min.js') }}">
-        >
-
-    </script>
-    <script src="{{ asset('assets/admin/js/jquery.inputmask.min.js') }}">
-        >
-
-    </script>
-    <script src="{{ asset('assets/admin/js/tempusdominus-bootstrap-4.min.js') }}">
-        >
-
-    </script>
+    <script src="{{ asset('assets/admin/js/select2.full.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/moment.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/jquery.inputmask.min.js') }}">    </script>
+    <script src="{{ asset('assets/admin/js/tempusdominus-bootstrap-4.min.js') }}"></script>
 
 
     <script>
@@ -614,7 +611,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     
     
 
-</body>
+
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js" ></script>
     <script type="text/javascript">
@@ -627,5 +624,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
               }
           });
       </script>
+       
 
 </html>

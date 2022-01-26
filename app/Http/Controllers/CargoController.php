@@ -103,7 +103,7 @@ class CargoController extends Controller
             
         ]);
         $attributes['user_id'] = auth()->user()->id;
-        $attributes['cargo_arrival_date'] = Carbon::createFromFormat('m/d/Y', $request->cargo_arrival_date)->format('Y-m-d');
+        $attributes['cargo_arrival_date'] = Carbon::createFromFormat('d/m/Y', $request->cargo_arrival_date)->format('Y-m-d');
         $cargo->update($attributes);
         
         return redirect('cargos');
