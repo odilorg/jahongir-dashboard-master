@@ -44,6 +44,20 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
+                                    <label>{{ __('Narxi') }}</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                                        </div>
+                                        <input type="text" value="{{ old('product_price') }}" name="product_price"
+                                            class="form-control  @error('product_price')
+                                      {{ 'is-invalid' }} @enderror">
+                                    </div>
+                                    @error('product_price')
+                                    <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
                                     <label>{{ __('Vazni') }}</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">

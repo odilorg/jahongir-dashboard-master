@@ -56,6 +56,7 @@
                                 <tr>
                                     <th>{{ __('Maxsulot Nomi') }}</th>
                                     <th>{{ __('Maxsulot Vazni') }}</th>
+                                    <th>{{ __('Maxsulot Narxi') }}</th>
                                     <th>{{ __('Maxsulot tavsifi') }}</th>
                                     <th>{{ __('Actions') }}</th>
                                 </tr>
@@ -65,6 +66,7 @@
                                 <tr>
                                     <td>{{ $item->product_name }} </span></td>
                                     <td>{{ $item->product_weight }} </span></td>
+                                    <td>{{ $item->product_price }} </span></td>
                                     <td>{{ $item->product_description }}</td>
                                     <td><a class="btn btn-primary btn-sm" href="products/{{ $item->id }}">
                                             <i class="fas fa-folder">

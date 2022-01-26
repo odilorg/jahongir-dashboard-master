@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddProductTotalWeightToInventoriesTable extends Migration
+class AddProductPriceToProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddProductTotalWeightToInventoriesTable extends Migration
      */
     public function up()
     {
-        Schema::table('inventories', function (Blueprint $table) {
-           $table->decimal('product_total_weight',10,2);
+        Schema::table('products', function (Blueprint $table) {
+           $table->decimal('product_price', 10,2);
         });
     }
 
@@ -25,8 +25,8 @@ class AddProductTotalWeightToInventoriesTable extends Migration
      */
     public function down()
     {
-        Schema::table('inventories', function (Blueprint $table) {
-            Schema::dropIfExists('product_total_weight');
+        Schema::table('products', function (Blueprint $table) {
+            Schema::dropIfExists('product_price');
         });
     }
 }

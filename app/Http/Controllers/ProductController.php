@@ -16,7 +16,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(13);
+        $products = Product::orderBy('product_name', 'asc')->paginate(13);
        
      
    // dd($products);
@@ -48,6 +48,7 @@ class ProductController extends Controller
 
             'product_name' => ['required ', 'max:255'],
             'product_weight' => ['numeric'],
+            'product_price' => ['numeric'],
             'product_description' => ['max:255'],
          
         ]);
@@ -94,6 +95,7 @@ class ProductController extends Controller
 
             'product_name' => ['required ', 'max:255'],
             'product_weight' => ['numeric'],
+            'product_price' => ['numeric'],
             'product_description' => ['max:255'],
          
         ]);
