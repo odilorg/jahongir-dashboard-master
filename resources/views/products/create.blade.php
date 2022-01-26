@@ -35,9 +35,9 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-air-freshener"></i></span>
                                         </div>
-                                        <input type="text" value="{{ old('product_name') }}" name="product_name"
+                                        <input type="text" 
                                             class="form-control  @error('product_name')
-                                      {{ 'is-invalid' }} @enderror">
+                                      {{ 'is-invalid' }} @enderror" value="{{ old('product_name') }}" name="product_name">
                                     </div>
                                     @error('product_name')
                                     <p class="text-danger">{{ $message }}</p>

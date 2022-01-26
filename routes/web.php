@@ -1,19 +1,21 @@
 <?php
 
-use App\Http\Controllers\CargoController;
+use App\Models\Inventory;
 use App\Models\Restaurant;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CargoController;
 use App\Http\Controllers\GuideController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\TourgroupController;
 use App\Http\Controllers\TransportController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\HotelreservationController;
-use App\Http\Controllers\InventoryController;
-use App\Http\Controllers\ProductController;
-use App\Models\Inventory;
+use App\Http\Controllers\AutocompleteSearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +33,9 @@ Route::post('/', [RegisterController::class, 'login'])->name('login');
 
 
 Route::post('/logout', [RegisterController::class, 'logout'])->name('logout');
-
+//Route::get('search', [SearchController::class, 'search'])->name('search');
+Route::get('autocomplete-search', [AutocompleteSearchController::class, 'index']);
+Route::get('boo', [AutocompleteSearchController::class, 'query'])->name('autocomplete');
 
 Route::middleware(['auth', 'revalidate'])->group(function () {
     Route::resources([
@@ -54,4 +58,9 @@ Route::middleware(['auth', 'revalidate'])->group(function () {
 
 Route::resource('users', UserController::class)->middleware(['can:admin','revalidate']);
 Route::get('/status', [TourgroupController::class, 'status'])->name('tourgroups_status');
+
+
+
+
+
 

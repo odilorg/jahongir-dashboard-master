@@ -1,6 +1,16 @@
 @extends('admin.layouts.layout')
 
 @section('content')
+<script type="text/javascript">
+    var path = "{{ route('autocomplete') }}";
+      $('input.typeahead').typeahead({
+          source:  function (query, process) {
+            return $.get(path, { query: query }, function (data) {
+                return process(data);
+            });
+          }
+      });
+  </script>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -49,14 +59,16 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-air-freshener"></i></span>
                                         </div>
-                                        <input type="text" value="{{ old('product_name') }}" name="product_name"
-                                            class="form-control  @error('product_name')
+                                        <input type="text" value="{{ old('product_name') }}" id="product_name" name="product_name"
+                                            class="form-control typeahead @error('product_name')
                                       {{ 'is-invalid' }} @enderror">
+                                      <div id="productList"></div>
                                     </div>
                                     @error('product_name')
                                     <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
+                                {{ csrf_field() }}
                                 <div class="form-group">
                                     <label>{{ __('Miqdori') }}</label>
                                     <div class="input-group">
@@ -127,6 +139,9 @@
 </div>
 <!-- /.content -->
 </div>
+
+
+
 
 
 

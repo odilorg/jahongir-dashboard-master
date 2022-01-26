@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cargo;
+use App\Models\Product;
 use App\Models\Inventory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class InventoryController extends Controller
@@ -127,4 +129,10 @@ class InventoryController extends Controller
     {
         //
     }
+
+    public function search()
+    {
+        dd('hello');
+    }
+    
 }
