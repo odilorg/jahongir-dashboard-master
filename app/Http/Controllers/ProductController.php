@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cargo;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +16,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with('user')->whereUserId(Auth::user()->id)->paginate(13);
+        $products = Product::paginate(13);
        
      
    // dd($products);
@@ -30,7 +31,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+       
+        
+        return view('products.create');
     }
 
     /**
@@ -41,7 +44,19 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributes =  request()->validate([
+
+            'product_name' => ['required ', 'max:255'],
+            'product_weight' => ['numeric'],
+            'product_description' => ['max:255'],
+         
+        ]);
+        $attributes['user_id'] = auth()->user()->id;
+        Product::create($attributes);
+        session()->flash('success', 'Maxsulot yaratildi');
+        session()->flash('type', 'Yangi Maxsulot');
+
+       return redirect('products'); 
     }
 
     /**
@@ -61,9 +76,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
-        //
+        return view('products.edit', compact('product'));
     }
 
     /**
@@ -73,9 +88,22 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Product $product)
     {
-        //
+        $attributes =  request()->validate([
+
+            'product_name' => ['required ', 'max:255'],
+            'product_weight' => ['numeric'],
+            'product_description' => ['max:255'],
+         
+        ]);
+        $attributes['user_id'] = auth()->user()->id;
+        $product->update($attributes);
+        session()->flash('success', 'Maxsulot ozgartrildi');
+        session()->flash('type', 'Maxsulot');
+ 
+        
+        return redirect('products');
     }
 
     /**

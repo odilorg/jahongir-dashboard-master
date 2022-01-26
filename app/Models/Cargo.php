@@ -19,6 +19,9 @@ class Cargo extends Model
     public function products() {
         return $this->hasMany(Product::class);
     }
+    public function inventories() {
+        return $this->hasMany(Inventory::class);
+    }
     // public function setCargoArrivalDateAttribute($value)
     // {
     //     $this->attributes['cargo_arrival_date'] = Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d');

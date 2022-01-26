@@ -54,33 +54,37 @@
                         <table class="table table-hover text-nowrap">
                             <thead>
                                 <tr>
+                                    <th>{{ __('Cargo Sana') }}</th>
                                     <th>{{ __('Maxsulot Nomi') }}</th>
                                     <th>{{ __('Maxsulot miqdori') }}</th>
                                     <th>{{ __('Maxsulot narxi') }}</th>
                                     <th>{{ __('Maxsulot vazni') }}</th>
                                     <th>{{ __('Maxsulot jami qiymati') }}</th>
+                                    <th>{{ __('Maxsulot jami vazni') }}</th>
                                     <th>{{ __('Actions') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($invnetories as $item )
+                                @foreach ($inventories as $item )
                                 <tr>
+                                    <td>{{ $item->cargo->cargo_arrival_date }} </span></td>
                                     <td>{{ $item->product_name }} </span></td>
                                     <td>{{ $item->product_quantity }}</td>
                                     <td>{{ $item->product_price }}</td>
-                                    <td>{{ $item->product_price_total }}</td>
                                     <td>{{ $item->product_weight }}</td>
-                                    <td><a class="btn btn-primary btn-sm" href="products/{{ $item->id }}">
+                                    <td>{{ $item->product_price_total }}</td>
+                                    <td>{{ $item->product_total_weight }}</td>
+                                    <td><a class="btn btn-primary btn-sm" href="inventories/{{ $item->id }}">
                                             <i class="fas fa-folder">
                                             </i>
                                             View
                                         </a>
-                                        <a class="btn btn-info btn-sm" href="products/{{ $item->id }}/edit">
+                                        <a class="btn btn-info btn-sm" href="inventories/{{ $item->id }}/edit">
                                             <i class="fas fa-pencil-alt">
                                             </i>
                                             Edit
                                         </a>
-                                        <form action="/products/{{ $item->id }}" method="post"
+                                        <form action="/inventories/{{ $item->id }}" method="post"
                                             class="float-left">
                                             @csrf
                                             @method('delete')
@@ -97,7 +101,7 @@
                             </tbody>
                         </table>
                         <div class="pagination-block">
-                            {{ $products->links('admin.layouts.paginationlinks') }}
+                            {{ $inventories->links('admin.layouts.paginationlinks') }}
                           </div>
                     </div>
                     <!-- /.card-body -->

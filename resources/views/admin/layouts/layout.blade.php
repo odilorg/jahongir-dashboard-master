@@ -258,8 +258,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('invnetories.index'); }}"
-                                class="nav-link {{ (request()->is('invnetories*')) ? 'active' : '' }}">
+                            <a href="{{ route('inventories.index'); }}"
+                                class="nav-link {{ (request()->is('inventories*')) ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-boxes"></i>
                                 <p>
                                     {{ __('Sklad') }}

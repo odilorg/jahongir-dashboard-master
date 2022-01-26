@@ -42,7 +42,7 @@ Route::middleware(['auth', 'revalidate'])->group(function () {
         'restaurants' => RestaurantController::class,
         'tickets' => TicketController::class,
         'products' => ProductController::class,
-        'invnetories' => InventoryController::class,
+        'inventories' => InventoryController::class,
         'cargos' => CargoController::class,
     
     ]);
