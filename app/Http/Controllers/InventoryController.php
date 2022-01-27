@@ -18,9 +18,27 @@ class InventoryController extends Controller
      */
     public function index()
     {
-        $inventories = Inventory::paginate(13);
-        $inventories = Inventory::with(['cargo'])->paginate(13);
-        // dd($inventories);
+       
+        $inventories = Inventory::join('cargos', 'inventories.cargo_id', '=', 'cargos.id')
+            ->join('products', 'inventories.product_id', '=', 'products.id')
+            ->select([
+                'inventories.*',
+                'products.*',
+                'cargos.*',
+                             ])
+            ->paginate(13);
+    //   / dd($inventories);
+        // $inventories = Inventory::paginate(13);
+        // $inventories = Inventory::with(['cargo'])->paginate(13);
+
+        //  $products = DB::table('products')
+        //     ->where('product_name', $inventories->product_name)
+        //     ->get();
+
+
+
+
+
            return view('inventories.index', compact('inventories'));
     }
 
@@ -46,18 +64,24 @@ class InventoryController extends Controller
     {
         $attributes =  request()->validate([
 
-            'product_name' => ['required ', 'max:255'],
+            // 'product_id' => ['required', 'max:10'],
             'product_quantity' => ['required', 'numeric'],
-            'product_price' => ['required', 'numeric'],
-            
-            'product_weight' => ['required', 'numeric'],
-            'inventory_extra_info' => ['max:255'],
             'cargo_id' => ['required', 'max:10'],
         ]);
+        $product_name = $request->input('product_name');
+        //dd($product_name);
+        $product = DB::table('products')
+            ->where('product_name', $product_name)
+            ->first();
+        $attributes['product_id'] = $product->id;        
+
+
+       // $product = Product::with('cargo_id');
+      // dd($attributes);
         $attributes['user_id'] = auth()->user()->id;
-        $attributes['product_price_total'] =  $attributes['product_price'] * $attributes['product_quantity'];
-        $attributes['product_total_weight'] =  $attributes['product_weight'] * $attributes['product_quantity'];
-       // dd($attributes); 
+        $attributes['product_price_total'] =  $product->product_price * $attributes['product_quantity'];
+      $attributes['product_total_weight'] = $product->product_weight * $attributes['product_quantity'];
+       // dd($attributes['product_price_total'] ); 
         Inventory::create($attributes);
         session()->flash('success', 'Maxsulot yaratildi');
         session()->flash('type', 'Yangi Maxsulot');

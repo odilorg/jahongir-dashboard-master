@@ -16,13 +16,13 @@ class CreateInventoriesTable extends Migration
         Schema::create('inventories', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('product_name');
+            $table->foreignId('product_id');
             $table->integer('product_quantity');
-            $table->decimal('product_price', 10, 2);
             $table->decimal('product_price_total', 10, 2);
-            $table->decimal('product_weight', 10, 2);
+            $table->decimal('product_total_weight',10,2);
             $table->foreignId('user_id');
             $table->foreignId('cargo_id');
+
             
         });
     }

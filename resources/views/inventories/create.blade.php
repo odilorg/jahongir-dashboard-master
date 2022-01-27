@@ -83,48 +83,6 @@
                                     <p class="text-danger">{{ $message }}</p>
                                     @enderror
                                 </div>
-                                <div class="form-group">
-                                    <label>{{ __('Narxi') }}</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
-                                        </div>
-                                        <input type="text" value="{{ old('product_price') }}" name="product_price"
-                                            class="form-control  @error('product_price')
-                                      {{ 'is-invalid' }} @enderror">
-                                    </div>
-                                    @error('product_price')
-                                    <p class="text-danger">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label>{{ __('Vazni') }}</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-balance-scale"></i></span>
-                                        </div>
-                                        <input type="text" value="{{ old('product_weight') }}" name="product_weight"
-                                            class="form-control  @error('product_weight')
-                                      {{ 'is-invalid' }} @enderror">
-                                    </div>
-                                    @error('product_weight')
-                                    <p class="text-danger">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">{{ __('Tavsifi') }}</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-info-circle"></i></span>
-                                        </div>
-                                        <input type="text" value="{{ old('product_description') }}" name="product_description"
-                                            class="form-control  @error('product_description')
-                                      {{ 'is-invalid' }} @enderror">
-                                    </div>
-                                    @error('product_description')
-                                    <p class="text-danger">{{ $message }}</p>
-                                    @enderror
-                                </div>
                                 <button type="submit">Submit</button>
                             </form>
                         </div>
