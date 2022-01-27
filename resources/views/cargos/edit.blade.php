@@ -32,9 +32,9 @@
                                 @method('PUT')
                                 <div class="form-group">
                                     <label>{{ __('Kelgan Sana') }}</label>
-                                    <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                                    <div class="input-group " id="reservationdate" data-target-input="nearest">
                                         <input type="text" value="{{ old('cargo_arrival_date', $cargo->cargo_arrival_date) }}"
-                                            name="cargo_arrival_date" class="form-control @error('cargo_arrival_date')
+                                            name="cargo_arrival_date" class="form-control date @error('cargo_arrival_date')
                                           {{ 'is-invalid' }} @enderror datetimepicker-input"
                                             data-target="#reservationdate" />
                                         <div class="input-group-append" data-target="#reservationdate"

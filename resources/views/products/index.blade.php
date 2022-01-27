@@ -51,13 +51,13 @@
                                 {{ __('Maxsulot kiriting') }}
                             </a>
                         </div>
-                        <table class="table table-hover text-nowrap">
+                        <table >
                             <thead>
                                 <tr>
                                     <th>{{ __('Maxsulot Nomi') }}</th>
                                     <th>{{ __('Maxsulot Vazni') }}</th>
                                     <th>{{ __('Maxsulot Narxi') }}</th>
-                                    <th>{{ __('Maxsulot tavsifi') }}</th>
+                                    
                                     <th>{{ __('Actions') }}</th>
                                 </tr>
                             </thead>
@@ -67,7 +67,7 @@
                                     <td>{{ $item->product_name }} </span></td>
                                     <td>{{ $item->product_weight }} </span></td>
                                     <td>{{ $item->product_price }} </span></td>
-                                    <td>{{ $item->product_description }}</td>
+                                    
                                     <td><a class="btn btn-primary btn-sm" href="products/{{ $item->id }}">
                                             <i class="fas fa-folder">
                                             </i>
@@ -110,7 +110,72 @@
 </section>
 <!-- /.content -->
 </div>
+<style>
+    table { 
+  width: 100%; 
+  border-collapse: collapse; 
+}
+/* Zebra striping */
+tr:nth-of-type(odd) { 
+  background: #eee; 
+}
+th { 
+  background: #333; 
+  color: white; 
+  font-weight: bold; 
+}
+td, th { 
+  padding: 6px; 
+  border: 1px solid #ccc; 
+  text-align: left; 
+}
+ @media 
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
 
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr { 
+		display: block; 
+	}
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	tr { border: 1px solid #ccc; }
+	
+	td { 
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 50%; 
+	}
+	
+	td:before { 
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+	}
+	
+	/*
+	Label the data
+	*/
+    td:nth-of-type(1):before { content: "Maxsulot Nomi"; }
+	td:nth-of-type(2):before { content: "Maxsulot vazni"; }
+	td:nth-of-type(3):before { content: "Maxsulot narxi"; }
+	td:nth-of-type(4):before { content: "Actions"; }
+
+}   
+</style>
 
 
 
