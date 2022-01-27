@@ -55,8 +55,8 @@
                   </div>
                 <div class="form-group">
                   <label>Check In Date:</label>
-                    <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                        <input type="text" value="{{ old('tourgroup_ci') }}" name="tourgroup_ci" class="form-control @error('tourgroup_ci')
+                    <div class="input-group " id="reservationdate" data-target-input="nearest">
+                        <input type="text" value="{{ old('tourgroup_ci') }}" name="tourgroup_ci" class="form-control date @error('tourgroup_ci')
                         {{ 'is-invalid' }} @enderror datetimepicker-input" data-target="#reservationdate"/>
                         <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -68,8 +68,8 @@
                 </div>
                 <div class="form-group">
                   <label>Check Out Date:</label>
-                    <div class="input-group date" id="reservationdate2" data-target-input="nearest">
-                        <input type="text" value="{{ old('tourgroup_co') }}" name="tourgroup_co" class="form-control @error('tourgroup_co')
+                    <div class="input-group " id="reservationdate2" data-target-input="nearest">
+                        <input type="text" value="{{ old('tourgroup_co') }}" name="tourgroup_co" class="form-control date @error('tourgroup_co')
                         {{ 'is-invalid' }} @enderror datetimepicker-input" data-target="#reservationdate2"/>
                         <div class="input-group-append" data-target="#reservationdate2" data-toggle="datetimepicker">
                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>

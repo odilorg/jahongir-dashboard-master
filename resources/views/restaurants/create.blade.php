@@ -73,8 +73,8 @@
                                   </div>
                                 <div class="form-group">
                                     <label>{{ __('Date and time:') }}</label>
-                                      <div class="input-group date" id="reservationdatetime" data-target-input="nearest">
-                                          <input type="text" name="book_date_time" value="{{ old('book_date_time') }}" class="form-control datetimepicker-input class="form-control @error('book_date_time')
+                                      <div class="input-group " id="reservationdatetime" data-target-input="nearest">
+                                          <input type="text" name="book_date_time" value="{{ old('book_date_time') }}" class="form-control date datetimepicker-input class="form-control @error('book_date_time')
                                           {{ 'is-invalid' }} @enderror"" data-target="#reservationdatetime">
                                           <div class="input-group-append" data-target="#reservationdatetime" data-toggle="datetimepicker">
                                               <div class="input-group-text"><i class="fa fa-calendar"></i></div>
