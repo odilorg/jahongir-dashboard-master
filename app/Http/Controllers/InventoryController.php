@@ -64,7 +64,7 @@ class InventoryController extends Controller
     {
         $attributes =  request()->validate([
 
-            // 'product_id' => ['required', 'max:10'],
+            
             'product_quantity' => ['required', 'numeric'],
             'cargo_id' => ['required', 'max:10'],
         ]);
