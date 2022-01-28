@@ -121,7 +121,10 @@ if (count($cargos)) {
     }
     
  } else {
-    return back()->withErrors('name', 'name is required!');
+    session()->flash('error', 'Maxsulotni mavjud emas Skladga kiriting');
+    //dd(session('error'));
+    return redirect('cargos'); 
+  
  } 
 
 

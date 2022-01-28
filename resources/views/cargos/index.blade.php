@@ -39,6 +39,9 @@
                                         <i class="fas fa-search"></i>
                                     </button>
                                 </div>
+                                @error('cargo_arrival_date')
+                                    <p class="text-danger">{{ $error }}</p>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -93,13 +96,12 @@
                                     </td>
                                 </tr>
                                 @endforeach
-                                @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                               
+                               
+                          
                             </tbody>
                         </table>
+                      
                         <div class="pagination-block">
                             {{ $cargos->links('admin.layouts.paginationlinks') }}
                           </div>

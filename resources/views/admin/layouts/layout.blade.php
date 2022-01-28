@@ -354,6 +354,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div>
             </div>
         </p>
+        @elseif (session()->has('error'))
+        <p>
+            <div id="toastsContainerTopRight" class="toasts-top-right fixed">
+                <div class="toast bg-danger fade show" role="alert" aria-live="assertive" aria-atomic="true">
+                    
+                    <div class="toast-body">{{ session()->get('error') }}</div>
+                </div>
+            </div>
+        </p>
         @endif
         <footer class="main-footer">
             <!-- To the right -->
