@@ -74,6 +74,20 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
+                                    <label>{{ __('Foiz Nacenka') }}</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                                        </div>
+                                        <input type="text" value="{{ old('margin_cargo') }}" name="margin_cargo"
+                                            class="form-control  @error('margin_cargo')
+                                      {{ 'is-invalid' }} @enderror">
+                                    </div>
+                                    @error('margin_cargo')
+                                    <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
                                     <label for="exampleInputEmail1">{{ __('Qoshimcha') }}</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">

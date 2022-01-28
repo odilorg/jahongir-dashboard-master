@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Cargo;
 
+use App\Models\Inventory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -66,9 +67,19 @@ class CargoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Cargo $cargo)
     {
-        //
+        
+        $cargos = Inventory::join('cargos', 'inventories.cargo_id', '=', 'cargos.id')
+            ->join('products', 'inventories.product_id', '=', 'products.id')
+            ->where('cargos.id',$cargo->id)
+            ->select([
+                'inventories.*',
+                'products.*',
+                'cargos.*',
+                             ])
+            ->paginate(13);
+            return view('cargos.show', compact('cargos', 'cargo'));
     }
 
     /**
