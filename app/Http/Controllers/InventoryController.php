@@ -22,7 +22,7 @@ class InventoryController extends Controller
         $inventories = Inventory::join('cargos', 'inventories.cargo_id', '=', 'cargos.id')
             ->join('products', 'inventories.product_id', '=', 'products.id')
             ->select([
-                'inventories.id','inventories.product_price_total',
+                'inventories.id','inventories.product_price_total','inventories.product_quantity','inventories.product_total_weight',
                 'products.product_name','products.product_price','products.product_weight',
                 'cargos.cargo_arrival_date',
                              ])
@@ -31,7 +31,7 @@ class InventoryController extends Controller
             //$inventories = Product::with('inventory')->get();       
 
 
-    dd($inventories); 
+    //dd($inventories); 
            // $inventories = Inventory::paginate(13);
         // $inventories = Inventory::with(['cargo'])->paginate(13);
 

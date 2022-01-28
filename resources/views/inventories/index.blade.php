@@ -67,7 +67,7 @@
                             <tbody>
                                 @foreach ($inventories as $item )
                                 <tr>
-                                    <td>{{ $item->cargo->cargo_arrival_date }} </span></td>
+                                    <td>{{ $item->cargo_arrival_date }} </span></td>
                                     <td>{{ $item->product_name }} </span></td>
                                     <td>{{ $item->product_quantity }}</td>
                                     <td>{{ $item->product_price }}</td>

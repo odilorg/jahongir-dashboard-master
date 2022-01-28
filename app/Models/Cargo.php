@@ -26,8 +26,8 @@ class Cargo extends Model
     // {
     //     $this->attributes['cargo_arrival_date'] = Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d');
     // }
-    public function getCargoArrivalDateAttribute($value)
- {
-     return Carbon::parse($value)->format('d/m/Y');
- }
+//     public function getCargoArrivalDateAttribute($value)
+//  {
+//      return Carbon::parse($value)->format('d/m/Y');
+//  }
 }

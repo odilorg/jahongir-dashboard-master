@@ -82,14 +82,13 @@ class CargoController extends Controller
                              ])
                                          
             ->get();
-             
+           //  dd($cargos);
         $sum_cargos = Inventory::join('cargos', 'inventories.cargo_id', '=', 'cargos.id')
         ->join('products', 'inventories.product_id', '=', 'products.id')
         ->where('cargos.id',$cargo->id)
         
         ->sum('inventories.product_total_weight');
-                                     
-        
+          
 //calculations
 
 $i=-1;
@@ -104,20 +103,26 @@ foreach($cargos as $object)
     $cargos_items[] = $object->toArray();
     
 }
+$a = date_create($cargo->cargo_arrival_date);
+$a = date_format($a,"Y-m-d" );
 
-// $assoc = array();
-//dd($product_cargo_add);
+//dd($a);
 //kurs from cbu Uz + 100 som
-$url = 'https://cbu.uz/ru/arkhiv-kursov-valyut/json/USD/'.now();
+$url = 'https://cbu.uz/ru/arkhiv-kursov-valyut/json/USD/'.$a;
 $json = file_get_contents($url);
 $kurs_dol = json_decode($json);
 $kurs_dol =  floatval($kurs_dol[0]->Rate) + 100;
-
-foreach ($product_cargo_add as $i=>$value) {
-    $rr = array('sell_price' => $value);
-    $qq = array('sell_price_uzs' =>  $value * $kurs_dol); 
-    $w[] = array_merge($cargos_items[$i], $rr, $qq  );
-}
+                             
+if (count($cargos)) {
+    foreach ($product_cargo_add as $i=>$value) {
+        $rr = array('sell_price' => $value);
+        $qq = array('sell_price_uzs' =>  $value * $kurs_dol); 
+        $w[] = array_merge($cargos_items[$i], $rr, $qq  );
+    }
+    
+ } else {
+    return back()->withErrors('name', 'name is required!');
+ } 
 
 
 //dd($jo[0]->Rate);
