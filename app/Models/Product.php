@@ -18,4 +18,8 @@ class Product extends Model
         return $this->belongsTo(Cargo::class);
 
     }
+    public function inventory() {
+        return $this->belongsTo(Inventory::class);
+
+    }
 }

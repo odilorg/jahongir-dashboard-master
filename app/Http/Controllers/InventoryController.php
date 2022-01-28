@@ -22,13 +22,17 @@ class InventoryController extends Controller
         $inventories = Inventory::join('cargos', 'inventories.cargo_id', '=', 'cargos.id')
             ->join('products', 'inventories.product_id', '=', 'products.id')
             ->select([
-                'inventories.*',
-                'products.*',
-                'cargos.*',
+                'inventories.id','inventories.product_price_total',
+                'products.product_name','products.product_price','products.product_weight',
+                'cargos.cargo_arrival_date',
                              ])
             ->paginate(13);
-    //   / dd($inventories);
-        // $inventories = Inventory::paginate(13);
+
+            //$inventories = Product::with('inventory')->get();       
+
+
+    dd($inventories); 
+           // $inventories = Inventory::paginate(13);
         // $inventories = Inventory::with(['cargo'])->paginate(13);
 
         //  $products = DB::table('products')
@@ -36,7 +40,7 @@ class InventoryController extends Controller
         //     ->get();
 
 
-
+//dd($inventories[0]);
 
 
            return view('inventories.index', compact('inventories'));

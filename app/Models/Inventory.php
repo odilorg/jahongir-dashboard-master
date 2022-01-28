@@ -17,5 +17,9 @@ class Inventory extends Model
         return $this->belongsTo(Cargo::class);
 
     }
+    public function products() {
+        return $this->hasMany(Product::class);
+
+    }
 }
 
