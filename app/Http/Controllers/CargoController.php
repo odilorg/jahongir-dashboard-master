@@ -50,6 +50,7 @@ class CargoController extends Controller
             'total_cargo_weight' => ['required','numeric'],
             'cargo_total_sum' => ['required','numeric'],
             'cargo_extra_info' => ['max:255'],
+            'margin_cargo' => ['required', 'numeric'],
             
         ]);
         $attributes['user_id'] = auth()->user()->id;
@@ -73,13 +74,58 @@ class CargoController extends Controller
         $cargos = Inventory::join('cargos', 'inventories.cargo_id', '=', 'cargos.id')
             ->join('products', 'inventories.product_id', '=', 'products.id')
             ->where('cargos.id',$cargo->id)
+            
             ->select([
                 'inventories.*',
                 'products.*',
                 'cargos.*',
                              ])
-            ->paginate(13);
-            return view('cargos.show', compact('cargos', 'cargo'));
+                                         
+            ->get();
+             
+        $sum_cargos = Inventory::join('cargos', 'inventories.cargo_id', '=', 'cargos.id')
+        ->join('products', 'inventories.product_id', '=', 'products.id')
+        ->where('cargos.id',$cargo->id)
+        
+        ->sum('inventories.product_total_weight');
+                                     
+        
+//calculations
+
+$i=-1;
+foreach ($cargos as $cargo) {
+    $i=$i+1;
+$perc[$i] = $cargo->product_total_weight / $sum_cargos * 100;
+$cargo_add[$i] = $perc[$i] * $cargo->cargo_total_sum / 100;
+$product_cargo_add[$i] = ($cargo->product_price + $cargo_add[$i]);
+}
+foreach($cargos as $object)
+{
+    $cargos_items[] = $object->toArray();
+    
+}
+
+// $assoc = array();
+//dd($product_cargo_add);
+//kurs from cbu Uz + 100 som
+$url = 'https://cbu.uz/ru/arkhiv-kursov-valyut/json/USD/'.now();
+$json = file_get_contents($url);
+$kurs_dol = json_decode($json);
+$kurs_dol =  floatval($kurs_dol[0]->Rate) + 100;
+
+foreach ($product_cargo_add as $i=>$value) {
+    $rr = array('sell_price' => $value);
+    $qq = array('sell_price_uzs' =>  $value * $kurs_dol); 
+    $w[] = array_merge($cargos_items[$i], $rr, $qq  );
+}
+
+
+//dd($jo[0]->Rate);
+
+
+
+
+            return view('cargos.show', compact('w', 'cargo', 'kurs_dol'));
     }
 
     /**
@@ -111,6 +157,7 @@ class CargoController extends Controller
             'total_cargo_weight' => ['required','numeric'],
             'cargo_total_sum' => ['required','numeric'],
             'cargo_extra_info' => ['max:255'],
+            'margin_cargo' => ['required', 'numeric'],
             
         ]);
         $attributes['user_id'] = auth()->user()->id;

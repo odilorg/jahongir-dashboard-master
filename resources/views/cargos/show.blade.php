@@ -47,7 +47,7 @@
                         <div class="card-header">
                             <h3 class="card-title">
                               <i class="fas fa-bullhorn"></i>
-                              Cargo kelgan sana - {{ $cargo->cargo_arrival_date }}
+                               Cargo kelgan sana - {{ $cargo->cargo_arrival_date }}; Vazni - {{ $cargo->total_cargo_weight }}kg; Summa - {{ $cargo->cargo_total_sum }}$; Kurs - {{ $kurs_dol }}
                             </h3>
                           </div>
                         
@@ -56,33 +56,41 @@
                                 <tr>
                                     
                                     <th>{{ __('Maxsulot Nomi') }}</th>
-                                    <th>{{ __('Maxsulot miqdori') }}</th>
-                                    <th>{{ __('Maxsulot narxi') }}</th>
-                                    <th>{{ __('Maxsulot vazni') }}</th>
-                                    <th>{{ __('Maxsulot jami qiymati') }}</th>
-                                    <th>{{ __('Maxsulot jami vazni') }}</th>
+                                    <th>{{ __('Maxsulot miqdori, d') }}</th>
+                                    <th>{{ __('Maxsulot narxi, $') }}</th>
+                                    <th>{{ __('Maxsulot vazni, gr') }}</th>
+                                    <th>{{ __('Maxsulot jami qiymati, $') }}</th>
+                                    <th>{{ __('Maxsulot jami vazni, gr') }}</th>
+                                    <th>{{ __('Maxsulot nacenka bn $') }}</th>
+                                    <th>{{ __('Maxsulot nacenka bn Uzs') }}</th>
                                     
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($cargos as $item )
+                                
+                                @foreach ($w  as $item )
                                 <tr>
                                     
-                                    <td>{{ $item->product_name }} </span></td>
-                                    <td>{{ $item->product_quantity }}</td>
-                                    <td>{{ $item->product_price }}</td>
-                                    <td>{{ $item->product_weight }}</td>
-                                    <td>{{ $item->product_price_total }}</td>
-                                    <td>{{ $item->product_total_weight }}</td>
+                                    
+                                    <td>{{ $item['product_name'] }}</td>    
+                                    <td>{{ $item['product_quantity'] }}</td>    
+                                    <td>{{ $item['product_price'] }}</td>    
+                                    <td>{{ $item['product_weight'] }}</td>    
+                                    <td>{{ $item['product_price_total'] }}</td>    
+                                    <td>{{ $item['product_total_weight'] }}</td>    
+                                    <td>{{ round($item['sell_price'], 2) }}</td> 
+                                    <td>{{  number_format($item['sell_price_uzs'],2,","," ") }}</td>    
+                                   
+                                   
+                                    @endforeach
+                                    
                                     
                                 </tr>
-                                @endforeach
+                               
 
                             </tbody>
                         </table>
-                        <div class="pagination-block">
-                            {{ $cargos->links('admin.layouts.paginationlinks') }}
-                          </div>
+                        
                     </div>
                     <!-- /.card-body -->
                 </div>

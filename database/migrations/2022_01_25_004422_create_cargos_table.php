@@ -21,6 +21,7 @@ class CreateCargosTable extends Migration
             $table->decimal('cargo_total_sum', 10 ,2);
             $table->string('cargo_extra_info')->nullable();
             $table->foreignId('user_id');
+            $table->decimal('margin_cargo', 4 ,2);
         });
     }
 

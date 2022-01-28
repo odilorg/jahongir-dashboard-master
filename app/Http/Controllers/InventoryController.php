@@ -63,8 +63,6 @@ class InventoryController extends Controller
     public function store(Request $request)
     {
         $attributes =  request()->validate([
-
-            
             'product_quantity' => ['required', 'numeric'],
             'cargo_id' => ['required', 'max:10'],
         ]);

@@ -55,8 +55,9 @@
                             <thead>
                                 <tr>
                                     <th>{{ __('Cargo kelgan sana') }}</th>
-                                    <th>{{ __('Cargo vazni') }}</th>
+                                    <th>{{ __('Cargo vazni, kg') }}</th>
                                     <th>{{ __('Cargo jami summa') }}</th>
+                                    <th>{{ __('Cargo foiz nacenka') }}</th>
                                     <th>{{ __('Cargo qo\'shimcha') }}</th>
                                     <th>{{ __('Actions') }}</th>
                                 </tr>
@@ -67,6 +68,7 @@
                                     <td>{{ $item->cargo_arrival_date }} </span></td>
                                     <td>{{ $item->total_cargo_weight }}</td>
                                     <td>{{ $item->cargo_total_sum }}</td>
+                                    <td>{{ $item->margin_cargo }}</td>
                                     <td>{{ $item->cargo_extra_info }}</td>
                                     <td><a class="btn btn-primary btn-sm" href="cargos/{{ $item->id }}">
                                             <i class="fas fa-folder">
