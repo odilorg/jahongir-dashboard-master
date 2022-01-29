@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Carbon\Carbon;
-use App\Models\Cargo;
 
+use App\Models\Cargo;
 use App\Models\Inventory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -91,6 +92,8 @@ class CargoController extends Controller
           
 //calculations
 
+$nacenka =floatval($cargos[0]->margin_cargo);
+//dd($nacenka);
 $i=-1;
 foreach ($cargos as $cargo) {
     $i=$i+1;
@@ -108,16 +111,37 @@ $a = date_format($a,"Y-m-d" );
 
 //dd($a);
 //kurs from cbu Uz + 100 som
-$url = 'https://cbu.uz/ru/arkhiv-kursov-valyut/json/USD/'.$a;
-$json = file_get_contents($url);
-$kurs_dol = json_decode($json);
-$kurs_dol =  floatval($kurs_dol[0]->Rate) + 100;
+
+$url = 'https://api.exchangerate.host/convert?from=USD&to=UZS&date='.$a;
+$response_json = file_get_contents($url);
+$response = json_decode($response_json);
+
+if(false !== $response_json) {
+    try {
+        $response = json_decode($response_json);
+        if($response->success === true) {
+            
+            $kurs_dol =  floatval($response->result) + 80;
+            
+        }
+    } catch(Exception $e) {
+        session()->flash('error', 'Exchange website is down');
+        //dd(session('error'));
+        return redirect('cargos');
+    }
+}  
+   //dd($kurs_dol);
+// $json = file_get_contents($url);
+// $kurs_dol = json_decode($json);
+// $kurs_dol =  floatval($kurs_dol[0]->Rate) + 100;
                              
 if (count($cargos)) {
     foreach ($product_cargo_add as $i=>$value) {
         $rr = array('sell_price' => $value);
         $qq = array('sell_price_uzs' =>  $value * $kurs_dol); 
-        $w[] = array_merge($cargos_items[$i], $rr, $qq  );
+        $p = array('sell_price_margin' => $value * $nacenka / 100 + $value);
+        $pp = array('sell_price_margin_uzs' => ($value * $nacenka / 100 + $value) * $kurs_dol);
+        $w[] = array_merge($cargos_items[$i], $rr, $qq, $p, $pp  );
     }
     
  } else {
@@ -128,7 +152,7 @@ if (count($cargos)) {
  } 
 
 
-//dd($jo[0]->Rate);
+//dd($w);
 
 
 

@@ -47,7 +47,7 @@
                         <div class="card-header">
                             <h3 class="card-title">
                               <i class="fas fa-bullhorn"></i>
-                               Cargo kelgan sana - {{ $cargo->cargo_arrival_date }}; Vazni - {{ $cargo->total_cargo_weight }}kg; Summa - {{ $cargo->cargo_total_sum }}$; Kurs - {{ $kurs_dol }}
+                               Cargo kelgan sana - {{ $cargo->cargo_arrival_date }}; Vazni - {{ $cargo->total_cargo_weight }}kg; Summa - {{ $cargo->cargo_total_sum }}$; Kurs - {{ number_format($kurs_dol,2,","," ")  }}
                             </h3>
                           </div>
                         
@@ -61,8 +61,10 @@
                                     <th>{{ __('Maxsulot vazni, gr') }}</th>
                                     <th>{{ __('Maxsulot jami qiymati, $') }}</th>
                                     <th>{{ __('Maxsulot jami vazni, gr') }}</th>
-                                    <th>{{ __('Maxsulot nacenka bn $') }}</th>
-                                    <th>{{ __('Maxsulot nacenka bn Uzs') }}</th>
+                                    <th>{{ __('Maxsulot o\'zi narxi $') }}</th>
+                                    <th>{{ __('Maxsulot o\'zi narxi Uzs') }}</th>
+                                    <th>{{ __('Maxsulot narxi nacenka bn  $') }}</th>
+                                    <th>{{ __('Maxsulot narxi nacenka bn Uzs') }}</th>
                                     
                                 </tr>
                             </thead>
@@ -79,7 +81,9 @@
                                     <td>{{ $item['product_price_total'] }}</td>    
                                     <td>{{ $item['product_total_weight'] }}</td>    
                                     <td>{{ round($item['sell_price'], 2) }}</td> 
-                                    <td>{{  number_format($item['sell_price_uzs'],2,","," ") }}</td>    
+                                    <td>{{  number_format($item['sell_price_uzs'],2,","," ") }}</td>  
+                                    <td>{{  number_format($item['sell_price_margin'],2,","," ") }}</td>  
+                                    <td>{{  number_format($item['sell_price_margin_uzs'],2,","," ") }}</td>    
                                    
                                    
                                     @endforeach
