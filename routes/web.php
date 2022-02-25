@@ -16,6 +16,7 @@ use App\Http\Controllers\TransportController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\HotelreservationController;
 use App\Http\Controllers\AutocompleteSearchController;
+use App\Http\Controllers\DocumentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,9 +46,7 @@ Route::middleware(['auth', 'revalidate'])->group(function () {
         'guides' => GuideController::class,
         'restaurants' => RestaurantController::class,
         'tickets' => TicketController::class,
-        'products' => ProductController::class,
-        'inventories' => InventoryController::class,
-        'cargos' => CargoController::class,
+        'documents' => DocumentController::class,
     
     ]);
     // Route::post('/transports/auto', [TransportController::class, 'auto'])->name('auto');

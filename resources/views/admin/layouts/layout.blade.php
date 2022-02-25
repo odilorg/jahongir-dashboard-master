@@ -295,6 +295,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <p>Entrance Tickets</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('documents.index'); }}"
+                                class="nav-link {{ (request()->is('documents*')) ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-file"></i>
+                                <p>Documents Upload</p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
