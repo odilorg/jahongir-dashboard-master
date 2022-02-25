@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use League\CommonMark\Node\Block\Document;
 
 class Tourgroup extends Model
 {
@@ -20,6 +21,10 @@ class Tourgroup extends Model
     }
     public function tickets() {
         return $this->hasMany(Ticket::class);
+
+    }
+    public function documents() {
+        return $this->hasMany(Document::class);
 
     }
     public function restaurants() {

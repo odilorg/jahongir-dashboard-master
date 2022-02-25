@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
+use League\CommonMark\Node\Block\Document;
 
 class User extends Authenticatable
 {
@@ -41,6 +42,9 @@ class User extends Authenticatable
 
     public function tourgroups() {
         return $this->hasMany(Tourgroup::class);
+    }
+    public function documents() {
+        return $this->hasMany(Document::class);
     }
 
     
